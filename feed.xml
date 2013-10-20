@@ -1,3 +1,51 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilsson's Blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilsson's Blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/temporary-placeholder-post/</guid><link>http://www.johanilsson.com/2013/10/temporary-placeholder-post/</link><title>Temporary placeholder post</title><description>&lt;p&gt;Content goes here&lt;/p&gt;
-</description><pubDate>Wed, 02 Oct 2013 04:00:00 Z</pubDate><a10:updated>2013-10-02T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Content goes here&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</guid><link>http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</link><title>Brainfart when sorting Lists</title><description>&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Array.Sort(myList.ToArray());
+foreach(var i in myList)
+{ // Do something with i }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My first though was “Wait what?” Is there some hidden functionality of List.ToArray() that I have missed which only is passed onto jedi masters? Does this way of sorting perform better than just List.Sort?&lt;/p&gt;
+
+&lt;p&gt;I had to investigate, so I wrote up this little code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var list = new List&amp;lt;int&amp;amp;gt; {9, 4, 7, 1, 2};
+
+Array.Sort(list.ToArray());
+foreach (var i in list)
+{
+   Console.WriteLine(i);
+}
+
+Console.ReadKey();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lo and behold the printed sequence is: 9 4 7 1 2, hence we are creating an array, sorting it then throwing it away, only to use our list in the foreach.&lt;/p&gt;
+
+&lt;p&gt;List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same&lt;/p&gt;
+</description><pubDate>Mon, 24 Oct 2011 04:00:00 Z</pubDate><a10:updated>2011-10-24T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Array.Sort(myList.ToArray());
+foreach(var i in myList)
+{ // Do something with i }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My first though was “Wait what?” Is there some hidden functionality of List.ToArray() that I have missed which only is passed onto jedi masters? Does this way of sorting perform better than just List.Sort?&lt;/p&gt;
+
+&lt;p&gt;I had to investigate, so I wrote up this little code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var list = new List&amp;lt;int&amp;amp;gt; {9, 4, 7, 1, 2};
+
+Array.Sort(list.ToArray());
+foreach (var i in list)
+{
+   Console.WriteLine(i);
+}
+
+Console.ReadKey();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lo and behold the printed sequence is: 9 4 7 1 2, hence we are creating an array, sorting it then throwing it away, only to use our list in the foreach.&lt;/p&gt;
+
+&lt;p&gt;List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same&lt;/p&gt;
 </a10:content></item></channel></rss>
