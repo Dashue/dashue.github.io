@@ -1,4 +1,78 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</guid><link>http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</link><title>Brainfart when sorting Lists</title><description>&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/implicit-operators/</guid><link>http://www.johanilsson.com/2011/10/implicit-operators/</link><title>Implicit Operators</title><description>&lt;p&gt;Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.&lt;/p&gt;
+
+&lt;p&gt;Like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var domainModel = new DomainModel
+{
+    Firstname = "Firstname",
+    Lastname = "Lastname"
+};
+
+ViewModel viewModel = domainModel;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What allows us to do this is something called an "Implicit Operator". Which are defined like below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;private class ViewModel
+{
+    public string Name { get; set; }
+
+    public static implicit operator ViewModel(DomainModel model)
+    {
+        return new ViewModel
+        {
+            Name = model.Firstname + " " + model.Lastname
+        };
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;!----&gt;
+
+&lt;pre&gt;&lt;code&gt;private class DomainModel
+{
+    public string Firstname { get; set; }
+    public string Lastname { get; set; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description><pubDate>Wed, 26 Oct 2011 04:00:00 Z</pubDate><a10:updated>2011-10-26T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.&lt;/p&gt;
+
+&lt;p&gt;Like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var domainModel = new DomainModel
+{
+    Firstname = "Firstname",
+    Lastname = "Lastname"
+};
+
+ViewModel viewModel = domainModel;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What allows us to do this is something called an "Implicit Operator". Which are defined like below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;private class ViewModel
+{
+    public string Name { get; set; }
+
+    public static implicit operator ViewModel(DomainModel model)
+    {
+        return new ViewModel
+        {
+            Name = model.Firstname + " " + model.Lastname
+        };
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;!----&gt;
+
+&lt;pre&gt;&lt;code&gt;private class DomainModel
+{
+    public string Firstname { get; set; }
+    public string Lastname { get; set; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</guid><link>http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</link><title>Brainfart when sorting Lists</title><description>&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Array.Sort(myList.ToArray());
 foreach(var i in myList)

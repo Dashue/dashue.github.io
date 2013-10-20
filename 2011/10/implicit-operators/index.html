@@ -6,7 +6,7 @@
     <meta http-equiv="last-modified" content="2013-10-19T23:52:42.8372160-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2011/10/implicit-operators/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -44,14 +44,25 @@
                 <div id="content" role="main">
                   
 
-  <ul class="posts">
-    <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/10/implicit-operators/">Implicit Operators</a> 
-        <span>posted on 26 okt 2011</span>
-      </h1> 
+<div id="post">
+    <h1>Implicit Operators</h1>
+
+    <div class="post-note">
+      posted on 26 okt 2011
+       | <a href="/category/.net">.Net</a>
       
-      <p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
+      <!-- <div class="addthis_toolbox addthis_default_style" style="float:right;">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+        <a class="addthis_button_linkedin_counter"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+      </div> -->
+    </div>
+    
+    
+        
+    <p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
 
 <p>Like so:</p>
 
@@ -89,55 +100,36 @@ ViewModel viewModel = domainModel;
 }
 </code></pre>
 
-      <p><a href="/2011/10/implicit-operators/">Read more...</a></p>
-    </li>
-    <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/10/brainfart-when-sorting-lists/">Brainfart when sorting Lists</a> 
-        <span>posted on 24 okt 2011</span>
-      </h1> 
-      
-      <p>Just encountered this piece of code today:</p>
 
-<pre><code>Array.Sort(myList.ToArray());
-foreach(var i in myList)
-{ // Do something with i }
-</code></pre>
+    <!--<div id="disqus_thread"></div>
+<script>
+    var reset_disqus = function(){
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                //this.page.identifier = '';
+                this.page.url = 'http://www.johanilsson.com/2011/10/implicit-operators/';
+                //this.page.title = '';
+            }
+        });
+    };
 
-<p>My first though was “Wait what?” Is there some hidden functionality of List.ToArray() that I have missed which only is passed onto jedi masters? Does this way of sorting perform better than just List.Sort?</p>
+    var disqus_shortname = 'philliphaydon';
+    var disqus_url = 'http://www.johanilsson.com/2011/10/implicit-operators/';
 
-<p>I had to investigate, so I wrote up this little code:</p>
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 
-<pre><code>var list = new List&lt;int&amp;gt; {9, 4, 7, 1, 2};
-
-Array.Sort(list.ToArray());
-foreach (var i in list)
-{
-   Console.WriteLine(i);
-}
-
-Console.ReadKey();
-</code></pre>
-
-<p>Lo and behold the printed sequence is: 9 4 7 1 2, hence we are creating an array, sorting it then throwing it away, only to use our list in the foreach.</p>
-
-<p>List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same</p>
-
-      <p><a href="/2011/10/brainfart-when-sorting-lists/">Read more...</a></p>
-    </li>
-  </ul> 
-
-  <!-- Pagination links -->
-  <div id="post-pagination" class="pagination">
-
-   
-
-      <!--<a href="/">Previous Page</a>-->
-
-
-  </div>
-
-
+    window.addEventListener('orientationchange', reset_disqus);
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ca97356d8c1454"></script>
+</div>
                 </div>
                 <!-- #content -->
             </div>
