@@ -22,6 +22,42 @@
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</guid><link>http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</link><title>Todays Refactoring: Dictionary usage</title><description>&lt;p&gt;Code like the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (dictionary.ContainsKey(key))
+{
+  dictionary[key] = value;  
+}
+else
+{
+  dictionary.Add(key, value);  
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Can be substituted with the following with the same functionality:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dictionary[key] = value;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code will be cleaner, functionality will be the same and a few operations faster :P&lt;/p&gt;
+</description><pubDate>Tue, 01 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-01T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Code like the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (dictionary.ContainsKey(key))
+{
+  dictionary[key] = value;  
+}
+else
+{
+  dictionary.Add(key, value);  
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Can be substituted with the following with the same functionality:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dictionary[key] = value;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code will be cleaner, functionality will be the same and a few operations faster :P&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/implicit-operators/</guid><link>http://www.johanilsson.com/2011/10/implicit-operators/</link><title>Implicit Operators</title><description>&lt;p&gt;Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.&lt;/p&gt;
 
 &lt;p&gt;Like so:&lt;/p&gt;
