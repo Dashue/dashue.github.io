@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-10-22T20:07:14.7675659-04:00" />
+    <meta http-equiv="last-modified" content="2013-10-22T20:18:25.1799113-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -65,6 +65,31 @@
 <a href="https://jabbr.net/#/rooms/SandraSnow">Questions goes here</a></p>
 
       <p><a href="/2013/10/migrating-to-sandra-snow/">Read more...</a></p>
+    </li>
+    <li class="fancy-container lightblue">
+      <h1>
+        <a href="/2011/11/regions/">Regions!?!</a> 
+        <span>posted on 04 nov 2011</span>
+      </h1> 
+      
+      <p>I do hate regions and here's why!</p>
+
+<p>A region isn't an anti-pattern or even a code smell in itself but it is often used as a means to hide them. Regions are for folding code and to "hide" it, and I'm wondering, what are you hiding, wouldn't it be better to take some pride in your work, invest some time and refactor your code so you don't have to hide it? </p>
+
+<p>A region is more often than not an indication of that something needs to be renamed, refactored and sometimes even rewritten into new functions, value-objects or even classes.</p>
+
+<p>I still haven't been presented with a valid use of regions, and the ones that keep coming up are:</p>
+
+<ul>
+<li><p>Separating different functionality in a method - <em>Hello? Have you forgotten that methods should be short and do one thing only. If your method does more than one thing, don't separate it into regions, refactor it into more methods! Giving you a "Table of Content" of the functionality being called.</em></p></li>
+<li><p>Grouping different kind of class members together - Hello? Heard about stylecop, this is what it's for.</p></li>
+<li><p>Hiding generated code - Hello? Heard about partial classes?</p></li>
+<li><p>Dividing contents in my large class - Hello? Give me your email and I'll send you a book about this latest thing called OO programming and Inheritance</p></li>
+</ul>
+
+<p>Conclusion: <strong>Regions are a bad practice both inside and outside of methods!</strong> Stay away from those regions, refactor your code, implement stylecop for sorting class members and learn how to navigate using visual studio or resharper.</p>
+
+      <p><a href="/2011/11/regions/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
       <h1>
@@ -226,6 +251,8 @@ Console.ReadKey();
 					<ul class="category-list">
 						  <li><a href="/category/.net" title=".Net">.Net</a></li>
 						  <li><a href="/category/opensource" title="Opensource">Opensource</a></li>
+						  <li><a href="/category/rant" title="Rant">Rant</a></li>
+						  <li><a href="/category/software-development" title="Software Development">Software Development</a></li>
 					</ul>
                 </aside>
 				

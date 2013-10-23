@@ -6,7 +6,7 @@
     <meta http-equiv="last-modified" content="2013-10-22T20:18:25.1799113-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/category/opensource/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2011/11/regions/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -44,20 +44,73 @@
                 <div id="content" role="main">
                   
 
-  <header>
-  <div class="head-inner">
-    <h1><a href="/categories/">Categories</a> - Opensource</h1>
-  </div>
-  </header>
+<div id="post">
+    <h1>Regions!?!</h1>
 
-  <ul class="category-list fancy-container orange">
-      <li>
-        <a href="/2013/10/migrating-to-sandra-snow/" title="Migrating To Sandra.Snow">Migrating To Sandra.Snow</a> 
-        <small>(21 okt 2013)</small>
-      </li>
-  </ul>
-  
+    <div class="post-note">
+      posted on 04 nov 2011
+       | <a href="/category/.net">.Net</a>
+       | <a href="/category/rant">Rant</a>
+       | <a href="/category/software-development">Software Development</a>
+      
+      <!-- <div class="addthis_toolbox addthis_default_style" style="float:right;">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+        <a class="addthis_button_linkedin_counter"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+      </div> -->
+    </div>
+    
+    
+        
+    <p>I do hate regions and here's why!</p>
 
+<p>A region isn't an anti-pattern or even a code smell in itself but it is often used as a means to hide them. Regions are for folding code and to "hide" it, and I'm wondering, what are you hiding, wouldn't it be better to take some pride in your work, invest some time and refactor your code so you don't have to hide it? </p>
+
+<p>A region is more often than not an indication of that something needs to be renamed, refactored and sometimes even rewritten into new functions, value-objects or even classes.</p>
+
+<p>I still haven't been presented with a valid use of regions, and the ones that keep coming up are:</p>
+
+<ul>
+<li><p>Separating different functionality in a method - <em>Hello? Have you forgotten that methods should be short and do one thing only. If your method does more than one thing, don't separate it into regions, refactor it into more methods! Giving you a "Table of Content" of the functionality being called.</em></p></li>
+<li><p>Grouping different kind of class members together - Hello? Heard about stylecop, this is what it's for.</p></li>
+<li><p>Hiding generated code - Hello? Heard about partial classes?</p></li>
+<li><p>Dividing contents in my large class - Hello? Give me your email and I'll send you a book about this latest thing called OO programming and Inheritance</p></li>
+</ul>
+
+<p>Conclusion: <strong>Regions are a bad practice both inside and outside of methods!</strong> Stay away from those regions, refactor your code, implement stylecop for sorting class members and learn how to navigate using visual studio or resharper.</p>
+
+
+    <!--<div id="disqus_thread"></div>
+<script>
+    var reset_disqus = function(){
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                //this.page.identifier = '';
+                this.page.url = 'http://www.johanilsson.com/2011/11/regions/';
+                //this.page.title = '';
+            }
+        });
+    };
+
+    var disqus_shortname = 'philliphaydon';
+    var disqus_url = 'http://www.johanilsson.com/2011/11/regions/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    window.addEventListener('orientationchange', reset_disqus);
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ca97356d8c1454"></script>
+</div>
                 </div>
                 <!-- #content -->
             </div>
@@ -97,7 +150,6 @@
                     <h1 class="widget-title"><a href="/categories">Categories</a></h1>
 					<ul class="category-list">
 						  <li><a href="/category/.net" title=".Net">.Net</a></li>
-						  <li><a href="/category/opensource" title="Opensource">Opensource</a></li>
 						  <li><a href="/category/rant" title="Rant">Rant</a></li>
 						  <li><a href="/category/software-development" title="Software Development">Software Development</a></li>
 					</ul>
