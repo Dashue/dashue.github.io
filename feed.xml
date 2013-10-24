@@ -22,38 +22,6 @@
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/regions/</guid><link>http://www.johanilsson.com/2011/11/regions/</link><title>Regions!?!</title><description>&lt;p&gt;I do hate regions and here's why!&lt;/p&gt;
-
-&lt;p&gt;A region isn't an anti-pattern or even a code smell in itself but it is often used as a means to hide them. Regions are for folding code and to "hide" it, and I'm wondering, what are you hiding, wouldn't it be better to take some pride in your work, invest some time and refactor your code so you don't have to hide it? &lt;/p&gt;
-
-&lt;p&gt;A region is more often than not an indication of that something needs to be renamed, refactored and sometimes even rewritten into new functions, value-objects or even classes.&lt;/p&gt;
-
-&lt;p&gt;I still haven't been presented with a valid use of regions, and the ones that keep coming up are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Separating different functionality in a method - &lt;em&gt;Hello? Have you forgotten that methods should be short and do one thing only. If your method does more than one thing, don't separate it into regions, refactor it into more methods! Giving you a "Table of Content" of the functionality being called.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Grouping different kind of class members together - Hello? Heard about stylecop, this is what it's for.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Hiding generated code - Hello? Heard about partial classes?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Dividing contents in my large class - Hello? Give me your email and I'll send you a book about this latest thing called OO programming and Inheritance&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Conclusion: &lt;strong&gt;Regions are a bad practice both inside and outside of methods!&lt;/strong&gt; Stay away from those regions, refactor your code, implement stylecop for sorting class members and learn how to navigate using visual studio or resharper.&lt;/p&gt;
-</description><pubDate>Fri, 04 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-04T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I do hate regions and here's why!&lt;/p&gt;
-
-&lt;p&gt;A region isn't an anti-pattern or even a code smell in itself but it is often used as a means to hide them. Regions are for folding code and to "hide" it, and I'm wondering, what are you hiding, wouldn't it be better to take some pride in your work, invest some time and refactor your code so you don't have to hide it? &lt;/p&gt;
-
-&lt;p&gt;A region is more often than not an indication of that something needs to be renamed, refactored and sometimes even rewritten into new functions, value-objects or even classes.&lt;/p&gt;
-
-&lt;p&gt;I still haven't been presented with a valid use of regions, and the ones that keep coming up are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Separating different functionality in a method - &lt;em&gt;Hello? Have you forgotten that methods should be short and do one thing only. If your method does more than one thing, don't separate it into regions, refactor it into more methods! Giving you a "Table of Content" of the functionality being called.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Grouping different kind of class members together - Hello? Heard about stylecop, this is what it's for.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Hiding generated code - Hello? Heard about partial classes?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Dividing contents in my large class - Hello? Give me your email and I'll send you a book about this latest thing called OO programming and Inheritance&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Conclusion: &lt;strong&gt;Regions are a bad practice both inside and outside of methods!&lt;/strong&gt; Stay away from those regions, refactor your code, implement stylecop for sorting class members and learn how to navigate using visual studio or resharper.&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</guid><link>http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</link><title>Todays Refactoring: Dictionary usage</title><description>&lt;p&gt;Code like the following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;if (dictionary.ContainsKey(key))
