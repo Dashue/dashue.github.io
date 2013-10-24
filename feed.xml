@@ -22,6 +22,118 @@
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/technical-debt-101/</guid><link>http://www.johanilsson.com/2011/11/technical-debt-101/</link><title>Technical debt 101</title><description>&lt;h1&gt;Technical Debt 101&lt;/h1&gt;
+
+&lt;p&gt;I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Interest:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Every minute spent on not-quite-right code counts as interest on that debt - Wikipedia&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The amount of interest is based on a number of things, among others:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Lack of knowledge - Either from time passing and people forget stuff, or from people changing jobs, leave of absence, death etc.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Increase in complexity - New functionality will be designed and implemented on top and according to existing technical debt, writing more code to get around code, with more code you need more tests and this code and tests needs review. Hence technical debt will increase technical debt.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;How to spot debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are some signs to look for when you go "debt spotting&amp;amp;" to make it easier to point technical debt.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The code areas where you as a developer when assigned bugs or to extend this code feel your heart sink, your moral drop e.g spaghetti code, or unnecessary complexity, or if the intent of the code isn't clear enough so it has to use comments or regions as a crutch for relaying what it does&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The average amounts of tasks per sprint decreases&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The number of tests increases at the same time as "average amount of tasks/sprint decreases"&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With an agile project methodology you don&amp;#8217;t necessarily have a lower technical debt but because of its support for rapid changes the debt will be highlighted at an earlier stage allowing you to decide if to pay this debt or not.&lt;/p&gt;
+
+&lt;p&gt;In my experience test driven development and tests in general protect you from some technical debt because you've had to go through the steps of "red", "green", "refactor"; and thereby paid a little of the debt up front.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Paying debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Like with any debt there is always an enforcer, a collector that will &lt;em&gt;make&lt;/em&gt; you pay that debt. With technical debt, this collector is usually time, or new requirements.  &lt;/p&gt;
+
+&lt;p&gt;Because of the interest, paying the debt will be more and more expensive as time goes, until you are forced by time to pay, at its most latest stage. This is when its the most expensive to pay the debt because you are most prone to the interests of people with skills have moved on, system have changed, a lot of technical debt has been built and made dependent on underlying technical debt. The debt may even be so large so for you to be able to pay it your feature development will stagnate and may even lead to loss of market pieces.&lt;/p&gt;
+
+&lt;p&gt;Often project managers don't allow developers to pay technical debt, or don't prioritise it since its sometimes hard to motivate a sprint that starts with 12 tasks and ends with 12 tasks still to do, with the only thing the developers salary has paid is the debt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Types of Technical Debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Bugs are not technical debt until someone decides to not fix them.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Manage technical debt = planned technical debt&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Unmanaged is the worst, this is only fixed when the pain is felt&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Monitoring Technical Debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to be able to monitor the debt, you must keep track of it. This involves keeping track of both the managed debt introduced on purpose using shortcuts, quick solutions and the "not-quite-right" solutions, and the unmanaged ones whenever they are encountered and grade them in some way that gives them a relational size difference. My personal view is that for every day that goes by of coding, it's very unlikely that the technical debt remains the same but instead rather if you don't pay some you gain some. Taking time into consideration, just a small daily increase will eventually become very expensive to pay off, leave it too long and a rewrite may end up being your only solution. &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Technical debt is like an iceberg with only 10 percent visible.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Until next time, keep track of that 10 percent for all your life's worth : )&lt;/p&gt;
+</description><pubDate>Thu, 10 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-10T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Technical Debt 101&lt;/h1&gt;
+
+&lt;p&gt;I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Interest:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Every minute spent on not-quite-right code counts as interest on that debt - Wikipedia&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The amount of interest is based on a number of things, among others:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Lack of knowledge - Either from time passing and people forget stuff, or from people changing jobs, leave of absence, death etc.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Increase in complexity - New functionality will be designed and implemented on top and according to existing technical debt, writing more code to get around code, with more code you need more tests and this code and tests needs review. Hence technical debt will increase technical debt.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;How to spot debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are some signs to look for when you go "debt spotting&amp;amp;" to make it easier to point technical debt.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The code areas where you as a developer when assigned bugs or to extend this code feel your heart sink, your moral drop e.g spaghetti code, or unnecessary complexity, or if the intent of the code isn't clear enough so it has to use comments or regions as a crutch for relaying what it does&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The average amounts of tasks per sprint decreases&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The number of tests increases at the same time as "average amount of tasks/sprint decreases"&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With an agile project methodology you don&amp;#8217;t necessarily have a lower technical debt but because of its support for rapid changes the debt will be highlighted at an earlier stage allowing you to decide if to pay this debt or not.&lt;/p&gt;
+
+&lt;p&gt;In my experience test driven development and tests in general protect you from some technical debt because you've had to go through the steps of "red", "green", "refactor"; and thereby paid a little of the debt up front.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Paying debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Like with any debt there is always an enforcer, a collector that will &lt;em&gt;make&lt;/em&gt; you pay that debt. With technical debt, this collector is usually time, or new requirements.  &lt;/p&gt;
+
+&lt;p&gt;Because of the interest, paying the debt will be more and more expensive as time goes, until you are forced by time to pay, at its most latest stage. This is when its the most expensive to pay the debt because you are most prone to the interests of people with skills have moved on, system have changed, a lot of technical debt has been built and made dependent on underlying technical debt. The debt may even be so large so for you to be able to pay it your feature development will stagnate and may even lead to loss of market pieces.&lt;/p&gt;
+
+&lt;p&gt;Often project managers don't allow developers to pay technical debt, or don't prioritise it since its sometimes hard to motivate a sprint that starts with 12 tasks and ends with 12 tasks still to do, with the only thing the developers salary has paid is the debt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Types of Technical Debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Bugs are not technical debt until someone decides to not fix them.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Manage technical debt = planned technical debt&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Unmanaged is the worst, this is only fixed when the pain is felt&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Monitoring Technical Debt:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to be able to monitor the debt, you must keep track of it. This involves keeping track of both the managed debt introduced on purpose using shortcuts, quick solutions and the "not-quite-right" solutions, and the unmanaged ones whenever they are encountered and grade them in some way that gives them a relational size difference. My personal view is that for every day that goes by of coding, it's very unlikely that the technical debt remains the same but instead rather if you don't pay some you gain some. Taking time into consideration, just a small daily increase will eventually become very expensive to pay off, leave it too long and a rewrite may end up being your only solution. &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Technical debt is like an iceberg with only 10 percent visible.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Until next time, keep track of that 10 percent for all your life's worth : )&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</guid><link>http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</link><title>Todays Refactoring: Dictionary usage</title><description>&lt;p&gt;Code like the following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;if (dictionary.ContainsKey(key))
