@@ -6,7 +6,7 @@
     <meta http-equiv="last-modified" content="2013-10-27T19:23:41.5470643-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2012/01/my-take-on-ref/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -42,11 +42,12 @@
                   
 
 <div id="post">
-    <h1>Todays Refactoring: Dictionary usage</h1>
+    <h1>My take on Ref</h1>
 
     <div class="post-note">
-      posted on 01 nov 2011
+      posted on 11 jan 2012
        | <a href="/category/.net">.Net</a>
+       | <a href="/category/software-development">Software Development</a>
       
       <!-- <div class="addthis_toolbox addthis_default_style" style="float:right;">
         <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
@@ -59,24 +60,34 @@
     
     
         
-    <p>Code like the following:</p>
+    <h1>My Take on Ref</h1>
 
-<pre><code>if (dictionary.ContainsKey(key))
-{
-  dictionary[key] = value;  
-}
-else
-{
-  dictionary.Add(key, value);  
-}
+<p>A good friend of mine asked me to share my thoughts on the ref keyword so here goes.</p>
+
+<p>To give it some context: To me a good method is a function taking a variable amount of parameters, making some processing and possibly returning the result. Furthermore the method should do one thing and one thing only and never change input parameter values.</p>
+
+<p>Now the ref keyword allow developers to stray from this "ideal" method by allowing it to change the values of the input parameters. Obfuscating the self-documentation of the method and by this diffusing what the method does and what it's single responsibility is. This creates a required understanding by your fellow colleagues about the intricates of the method, and in turn requires every developer to know how every method in the system is implemented.</p>
+
+<p>The most common reason for using ref parameters is simply that your method is doing to much, rendering you unable to return a single value/collection to account for everything that is being done, ending up with sending and object as input parameter and changing a lot of values. This may be improved by returning part of the data as an out parameter and part of it as the return value if possible.</p>
+
+<p>The reason why I think that using out is better than ref is because out doesn't obfuscate the api and the intention of the method. Using Ref conveys that "This method might(?) change values of the parameter or even the parameter itself" while Out conveys that "This method will change the parameter".</p>
+
+<p>Consider these two implementations of this contrived example:</p>
+
+<pre><code>Example 1: Returning value
+Assert.AreEqual(4, Square(2));
+
+Example 2: Using Ref
+float a = 2;  
+Square(a);  
+Assert.AreEqual(4, a);
 </code></pre>
 
-<p>Can be substituted with the following with the same functionality:</p>
+<p>I would like to end this post with my oppinion on the "Ref" and "Out" keywords.</p>
 
-<pre><code>dictionary[key] = value;
-</code></pre>
-
-<p>The code will be cleaner, functionality will be the same and a few operations faster :P</p>
+<blockquote>
+  <p>Although there are valid cases when the right solution is to use Ref and Out, from my experince I say you rarely need to use Out, and you need a really good reason for using Ref.</p>
+</blockquote>
 
 
     <!--<div id="disqus_thread"></div>
@@ -86,14 +97,14 @@ else
             reload: true,
             config: function () {
                 //this.page.identifier = '';
-                this.page.url = 'http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/';
+                this.page.url = 'http://www.johanilsson.com/2012/01/my-take-on-ref/';
                 //this.page.title = '';
             }
         });
     };
 
     var disqus_shortname = 'philliphaydon';
-    var disqus_url = 'http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/';
+    var disqus_url = 'http://www.johanilsson.com/2012/01/my-take-on-ref/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -147,6 +158,7 @@ else
                     <h1 class="widget-title"><a href="/categories">Categories</a></h1>
 					<ul class="category-list">
 						  <li><a href="/category/.net" title=".Net">.Net</a></li>
+						  <li><a href="/category/software-development" title="Software Development">Software Development</a></li>
 					</ul>
                 </aside>
 				
