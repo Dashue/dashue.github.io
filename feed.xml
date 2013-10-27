@@ -22,6 +22,44 @@
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</guid><link>http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</link><title>The 4 stages of learning a design pattern</title><description>&lt;h1&gt;Stages of Learning a Design Pattern&lt;/h1&gt;
+
+&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
+
+&lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
+
+&lt;h3&gt;Stage 1 - Awakening&lt;/h3&gt;
+
+&lt;p&gt;Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.&lt;/p&gt;
+
+&lt;h3&gt;Stage 2 - Overzealous&lt;/h3&gt;
+
+&lt;p&gt;I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!&lt;/p&gt;
+
+&lt;h3&gt;Stage 3 - Mastery&lt;/h3&gt;
+
+&lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
+
+&lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
+</description><pubDate>Fri, 09 Dec 2011 04:00:00 Z</pubDate><a10:updated>2011-12-09T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Stages of Learning a Design Pattern&lt;/h1&gt;
+
+&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
+
+&lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
+
+&lt;h3&gt;Stage 1 - Awakening&lt;/h3&gt;
+
+&lt;p&gt;Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.&lt;/p&gt;
+
+&lt;h3&gt;Stage 2 - Overzealous&lt;/h3&gt;
+
+&lt;p&gt;I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!&lt;/p&gt;
+
+&lt;h3&gt;Stage 3 - Mastery&lt;/h3&gt;
+
+&lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
+
+&lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/daily-refactoring/</guid><link>http://www.johanilsson.com/2011/11/daily-refactoring/</link><title>Daily refactoring</title><description>&lt;h1&gt;Daily Refactoring&lt;/h1&gt;
 
 &lt;pre&gt;&lt;code&gt;#region MyRegion
