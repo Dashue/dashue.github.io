@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-10-27T19:23:41.5470643-04:00" />
+    <meta http-equiv="last-modified" content="2013-10-28T17:33:39.6234596-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -62,6 +62,32 @@
 <a href="https://jabbr.net/#/rooms/SandraSnow">Questions goes here</a></p>
 
       <p><a href="/2013/10/migrating-to-sandra-snow/">Read more...</a></p>
+    </li>
+    <li class="fancy-container lightblue">
+      <h1>
+        <a href="/2012/01/enumerable-zip/">Enumerable.Zip</a> 
+        <span>posted on 13 jan 2012</span>
+      </h1> 
+      
+      <h1>Enumerable.Zip</h1>
+
+<p>I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.</p>
+
+<p>Signature is as follows:</p>
+
+<pre><code>public static IEnumerable&lt;TResult&gt; Zip&lt;TFirst, TSecond, TResult&gt;(
+    this IEnumerable&lt;TFirst&gt; first,
+    IEnumerable&lt;TSecond&gt; second,
+    Func&lt;TFirst, TSecond, TResult&gt; func);
+</code></pre>
+
+<p>Much like a zipper it "zips" together two IEnumerables applying a specified function over each pair of elements.
+I've seen examples which print the greater number from two list of ints, which constructs addresses from four lists of city/street/number/flatnumber and one that prints name and age from name/age lists.</p>
+
+<p>I have as of yet found a good real world example, and am incapable of thinking one up.<br />
+Anyone out there who have made good use of this added functionality?</p>
+
+      <p><a href="/2012/01/enumerable-zip/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
       <h1>

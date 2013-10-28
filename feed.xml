@@ -22,6 +22,40 @@
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/enumerable-zip/</guid><link>http://www.johanilsson.com/2012/01/enumerable-zip/</link><title>Enumerable.Zip</title><description>&lt;h1&gt;Enumerable.Zip&lt;/h1&gt;
+
+&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
+
+&lt;p&gt;Signature is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public static IEnumerable&amp;lt;TResult&amp;gt; Zip&amp;lt;TFirst, TSecond, TResult&amp;gt;(
+    this IEnumerable&amp;lt;TFirst&amp;gt; first,
+    IEnumerable&amp;lt;TSecond&amp;gt; second,
+    Func&amp;lt;TFirst, TSecond, TResult&amp;gt; func);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Much like a zipper it "zips" together two IEnumerables applying a specified function over each pair of elements.
+I've seen examples which print the greater number from two list of ints, which constructs addresses from four lists of city/street/number/flatnumber and one that prints name and age from name/age lists.&lt;/p&gt;
+
+&lt;p&gt;I have as of yet found a good real world example, and am incapable of thinking one up.&lt;br /&gt;
+Anyone out there who have made good use of this added functionality?&lt;/p&gt;
+</description><pubDate>Fri, 13 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-13T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Enumerable.Zip&lt;/h1&gt;
+
+&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
+
+&lt;p&gt;Signature is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public static IEnumerable&amp;lt;TResult&amp;gt; Zip&amp;lt;TFirst, TSecond, TResult&amp;gt;(
+    this IEnumerable&amp;lt;TFirst&amp;gt; first,
+    IEnumerable&amp;lt;TSecond&amp;gt; second,
+    Func&amp;lt;TFirst, TSecond, TResult&amp;gt; func);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Much like a zipper it "zips" together two IEnumerables applying a specified function over each pair of elements.
+I've seen examples which print the greater number from two list of ints, which constructs addresses from four lists of city/street/number/flatnumber and one that prints name and age from name/age lists.&lt;/p&gt;
+
+&lt;p&gt;I have as of yet found a good real world example, and am incapable of thinking one up.&lt;br /&gt;
+Anyone out there who have made good use of this added functionality?&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/my-take-on-ref/</guid><link>http://www.johanilsson.com/2012/01/my-take-on-ref/</link><title>My take on Ref</title><description>&lt;h1&gt;My Take on Ref&lt;/h1&gt;
 
 &lt;p&gt;A good friend of mine asked me to share my thoughts on the ref keyword so here goes.&lt;/p&gt;
