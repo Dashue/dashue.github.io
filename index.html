@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-10-28T17:44:05.2602440-04:00" />
+    <meta http-equiv="last-modified" content="2013-10-29T16:38:59.0610189-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -62,6 +62,22 @@
 <a href="https://jabbr.net/#/rooms/SandraSnow">Questions goes here</a></p>
 
       <p><a href="/2013/10/migrating-to-sandra-snow/">Read more...</a></p>
+    </li>
+    <li class="fancy-container lightblue">
+      <h1>
+        <a href="/2012/01/code-that-is-hard-to-be-covered-by-tests-is/">Hard tested code</a> 
+        <span>posted on 14 jan 2012</span>
+      </h1> 
+      
+      <h1>Hard tested code</h1>
+
+<p>Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.</p>
+
+<p>Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.</p>
+
+<p><a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests">http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests</a></p>
+
+      <p><a href="/2012/01/code-that-is-hard-to-be-covered-by-tests-is/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
       <h1>
@@ -389,40 +405,6 @@ ViewModel viewModel = domainModel;
 
       <p><a href="/2011/10/implicit-operators/">Read more...</a></p>
     </li>
-    <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/10/brainfart-when-sorting-lists/">Brainfart when sorting Lists</a> 
-        <span>posted on 24 okt 2011</span>
-      </h1> 
-      
-      <p>Just encountered this piece of code today:</p>
-
-<pre><code>Array.Sort(myList.ToArray());
-foreach(var i in myList)
-{ // Do something with i }
-</code></pre>
-
-<p>My first though was “Wait what?” Is there some hidden functionality of List.ToArray() that I have missed which only is passed onto jedi masters? Does this way of sorting perform better than just List.Sort?</p>
-
-<p>I had to investigate, so I wrote up this little code:</p>
-
-<pre><code>var list = new List&lt;int&amp;gt; {9, 4, 7, 1, 2};
-
-Array.Sort(list.ToArray());
-foreach (var i in list)
-{
-   Console.WriteLine(i);
-}
-
-Console.ReadKey();
-</code></pre>
-
-<p>Lo and behold the printed sequence is: 9 4 7 1 2, hence we are creating an array, sorting it then throwing it away, only to use our list in the foreach.</p>
-
-<p>List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same</p>
-
-      <p><a href="/2011/10/brainfart-when-sorting-lists/">Read more...</a></p>
-    </li>
   </ul> 
 
   <!-- Pagination links -->
@@ -432,6 +414,9 @@ Console.ReadKey();
 
       <!--<a href="/">Previous Page</a>-->
 
+    <p class="previous">
+      <a href="/page2">Next Page</a>
+    </p>
 
   </div>
 

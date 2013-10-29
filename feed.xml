@@ -22,6 +22,20 @@
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</guid><link>http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</link><title>Hard tested code</title><description>&lt;h1&gt;Hard tested code&lt;/h1&gt;
+
+&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
+
+&lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
+</description><pubDate>Sat, 14 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-14T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Hard tested code&lt;/h1&gt;
+
+&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
+
+&lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</guid><link>http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</link><title>Review TFS 11: The things I look forward to</title><description>&lt;h1&gt;Review TFS 11: The things I look forward to&lt;/h1&gt;
 
 &lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
@@ -530,54 +544,4 @@ ViewModel viewModel = domainModel;
     public string Lastname { get; set; }
 }
 &lt;/code&gt;&lt;/pre&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</guid><link>http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</link><title>Brainfart when sorting Lists</title><description>&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Array.Sort(myList.ToArray());
-foreach(var i in myList)
-{ // Do something with i }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;My first though was “Wait what?” Is there some hidden functionality of List.ToArray() that I have missed which only is passed onto jedi masters? Does this way of sorting perform better than just List.Sort?&lt;/p&gt;
-
-&lt;p&gt;I had to investigate, so I wrote up this little code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var list = new List&amp;lt;int&amp;amp;gt; {9, 4, 7, 1, 2};
-
-Array.Sort(list.ToArray());
-foreach (var i in list)
-{
-   Console.WriteLine(i);
-}
-
-Console.ReadKey();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Lo and behold the printed sequence is: 9 4 7 1 2, hence we are creating an array, sorting it then throwing it away, only to use our list in the foreach.&lt;/p&gt;
-
-&lt;p&gt;List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same&lt;/p&gt;
-</description><pubDate>Mon, 24 Oct 2011 04:00:00 Z</pubDate><a10:updated>2011-10-24T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Array.Sort(myList.ToArray());
-foreach(var i in myList)
-{ // Do something with i }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;My first though was “Wait what?” Is there some hidden functionality of List.ToArray() that I have missed which only is passed onto jedi masters? Does this way of sorting perform better than just List.Sort?&lt;/p&gt;
-
-&lt;p&gt;I had to investigate, so I wrote up this little code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var list = new List&amp;lt;int&amp;amp;gt; {9, 4, 7, 1, 2};
-
-Array.Sort(list.ToArray());
-foreach (var i in list)
-{
-   Console.WriteLine(i);
-}
-
-Console.ReadKey();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Lo and behold the printed sequence is: 9 4 7 1 2, hence we are creating an array, sorting it then throwing it away, only to use our list in the foreach.&lt;/p&gt;
-
-&lt;p&gt;List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same&lt;/p&gt;
 </a10:content></item></channel></rss>
