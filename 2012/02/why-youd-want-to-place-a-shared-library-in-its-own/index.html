@@ -6,7 +6,7 @@
     <meta http-equiv="last-modified" content="2013-10-31T18:14:17.5894878-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/category/.net/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -41,48 +41,87 @@
                 <div id="content" role="main">
                   
 
-  <header>
-  <div class="head-inner">
-    <h1><a href="/categories/">Categories</a> - .Net</h1>
-  </div>
-  </header>
+<div id="post">
+    <h1>Why you'd want to place a shared library in its own solution</h1>
 
-  <ul class="category-list fancy-container orange">
-      <li>
-        <a href="/2013/10/migrating-to-sandra-snow/" title="Migrating To Sandra.Snow">Migrating To Sandra.Snow</a> 
-        <small>(21 okt 2013)</small>
-      </li>
-      <li>
-        <a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/" title="PhotoUtil v1.0.0.1 aka Speeding up a c# project">PhotoUtil v1.0.0.1 aka Speeding up a c# project</a> 
-        <small>(25 jan 2012)</small>
-      </li>
-      <li>
-        <a href="/2012/01/enumerable-zip/" title="Enumerable.Zip">Enumerable.Zip</a> 
-        <small>(12 jan 2012)</small>
-      </li>
-      <li>
-        <a href="/2012/01/my-take-on-ref/" title="My take on Ref">My take on Ref</a> 
-        <small>(11 jan 2012)</small>
-      </li>
-      <li>
-        <a href="/2011/11/daily-refactoring/" title="Daily refactoring">Daily refactoring</a> 
-        <small>(22 nov 2011)</small>
-      </li>
-      <li>
-        <a href="/2011/11/todays-refactoring-dictionary-usage/" title="Todays Refactoring: Dictionary usage">Todays Refactoring: Dictionary usage</a> 
-        <small>(01 nov 2011)</small>
-      </li>
-      <li>
-        <a href="/2011/10/implicit-operators/" title="Implicit Operators">Implicit Operators</a> 
-        <small>(26 okt 2011)</small>
-      </li>
-      <li>
-        <a href="/2011/10/brainfart-when-sorting-lists/" title="Brainfart when sorting Lists">Brainfart when sorting Lists</a> 
-        <small>(24 okt 2011)</small>
-      </li>
-  </ul>
-  
+    <div class="post-note">
+      posted on 18 feb 2012
+       | <a href="/category/software-development">Software Development</a>
+      
+      <!-- <div class="addthis_toolbox addthis_default_style" style="float:right;">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+        <a class="addthis_button_linkedin_counter"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+      </div> -->
+    </div>
+    
+    
+        
+    <h1>Where to place shared functionality</h1>
 
+<p>A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.</p>
+
+<p>After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.</p>
+
+<h3>Presumptions</h3>
+
+<ul>
+<li>We will use internal Nuget feed for the library.</li>
+<li>X could be placed in either A or B or separate library.</li>
+</ul>
+
+<h3>Consuming the Library</h3>
+
+<p>Placing it in its own solution forces all projects consume it the same way, otherwise some projects would use nuget and one could use project reference. </p>
+
+<h3>Future Changes</h3>
+
+<p>If placed in A it would be easy to change according to requirement or quick fix for A and not think about B or any future consumers. Placing it in its own solution forces it to behave more like an independent library and less like a project reference. It makes more sense to open the solution for the library when change is needed than to open an unrelated solution containing the library.</p>
+
+<h3>Unrelated Functionality</h3>
+
+<p>Since the functionality is general and not related to neither A nor B, placing it in the same solution just because it's consumed by them is not a valid argument.</p>
+
+<h3>Versioning</h3>
+
+<p>The library has different release/deploy cycles than the consumers and using Nuget allows for choosing what version and if/when to upgrade. Different consumers can easily consume different versions of the library. </p>
+
+<h3>YAGNI</h3>
+
+<p>YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.</p>
+
+
+    <!--<div id="disqus_thread"></div>
+<script>
+    var reset_disqus = function(){
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                //this.page.identifier = '';
+                this.page.url = 'http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/';
+                //this.page.title = '';
+            }
+        });
+    };
+
+    var disqus_shortname = 'philliphaydon';
+    var disqus_url = 'http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    window.addEventListener('orientationchange', reset_disqus);
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ca97356d8c1454"></script>
+</div>
                 </div>
                 <!-- #content -->
             </div>
@@ -121,8 +160,6 @@
                 <aside id="archives-4" class="widget widget_archive">
                     <h1 class="widget-title"><a href="/categories">Categories</a></h1>
 					<ul class="category-list">
-						  <li><a href="/category/.net" title=".Net">.Net</a></li>
-						  <li><a href="/category/opensource" title="Opensource">Opensource</a></li>
 						  <li><a href="/category/software-development" title="Software Development">Software Development</a></li>
 					</ul>
                 </aside>
