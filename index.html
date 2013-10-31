@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-10-29T16:38:59.0610189-04:00" />
+    <meta http-equiv="last-modified" content="2013-10-30T21:19:34.8936385-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -62,6 +62,52 @@
 <a href="https://jabbr.net/#/rooms/SandraSnow">Questions goes here</a></p>
 
       <p><a href="/2013/10/migrating-to-sandra-snow/">Read more...</a></p>
+    </li>
+    <li class="fancy-container lightblue">
+      <h1>
+        <a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/">PhotoUtil v1.0.0.1 aka Speeding up a c# project</a> 
+        <span>posted on 25 jan 2012</span>
+      </h1> 
+      
+      <h1>Speeding up my hobby project</h1>
+
+<p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
+A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.</p>
+
+<p>Following is a short recap of that procedure.</p>
+
+<h3>Find out what's taking time 1: Analyze / Launch Performance Wizard</h3>
+
+<p>The first thing that popped out at me was a DateTime creation which took 100% of the CPU time (according to the performance report). I grab the DateTimeOriginal value from exif metadata of a photo and convert it into datetime, only because it allowed for cleaner code when accessing the date and time values later on in the code. Apparently parsing strings into datetime is slow, so instead I got it to work with some string manipulation.</p>
+
+<h3>Find out what's taking time 2: Analyze / Launch Performance Wizard</h3>
+
+<p>When reading exif data using GDI+ from a file the whole image is read into memory using new Bitmap(Path); then the desired properties are fetched using GetProperty. This made me switch focus to increasing concurrent files being worked on (read parallelization) instead of minimizing process time of each file. With this in mind I rewrote my foreach loop into using the parallel library.</p>
+
+<p>from</p>
+
+<pre><code>foreach(var filepath in filepaths)
+</code></pre>
+
+<p>into</p>
+
+<pre><code>Parallel.ForEach(filePaths, oldFilePath); 
+</code></pre>
+
+<h3>Taking it one step further:</h3>
+
+<p>After finding out that the whole image is read into memory I set out to find an alternate approach of extracting EXIF data from a photo. It wasn't long before I found a sweet project called <a href="http://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0">ExifLib</a> on <a href="https://www.nuget.org/packages/ExifLib/">Nuget</a> which only reads the Exif data portion of an image. ExifLib is a wonderful lib created by Simon McKenzie only available as source code from codeproject.com but I'm hoping to convince him to put it up on NuGet so more people can find and make use of it.</p>
+
+<h3>Results</h3>
+
+<p>100 images processed on an Intel Core 2 duo</p>
+
+<pre><code>Before optimizations:   00:00:20.8059121  
+After optimizations:    00:00:11:4034511
+Using ExifLib:          00:00:01.0714248
+</code></pre>
+
+      <p><a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
       <h1>
@@ -358,52 +404,6 @@ else
 <p>The code will be cleaner, functionality will be the same and a few operations faster :P</p>
 
       <p><a href="/2011/11/todays-refactoring-dictionary-usage/">Read more...</a></p>
-    </li>
-    <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/10/implicit-operators/">Implicit Operators</a> 
-        <span>posted on 26 okt 2011</span>
-      </h1> 
-      
-      <p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
-
-<p>Like so:</p>
-
-<pre><code>var domainModel = new DomainModel
-{
-    Firstname = "Firstname",
-    Lastname = "Lastname"
-};
-
-ViewModel viewModel = domainModel;
-</code></pre>
-
-<p>What allows us to do this is something called an "Implicit Operator". Which are defined like below.</p>
-
-<pre><code>private class ViewModel
-{
-    public string Name { get; set; }
-
-    public static implicit operator ViewModel(DomainModel model)
-    {
-        return new ViewModel
-        {
-            Name = model.Firstname + " " + model.Lastname
-        };
-    }
-}
-</code></pre>
-
-<!---->
-
-<pre><code>private class DomainModel
-{
-    public string Firstname { get; set; }
-    public string Lastname { get; set; }
-}
-</code></pre>
-
-      <p><a href="/2011/10/implicit-operators/">Read more...</a></p>
     </li>
   </ul> 
 

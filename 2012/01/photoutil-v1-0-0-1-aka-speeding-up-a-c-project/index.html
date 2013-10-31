@@ -6,7 +6,7 @@
     <meta http-equiv="last-modified" content="2013-10-30T21:19:34.8936385-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/category/.net/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -41,48 +41,93 @@
                 <div id="content" role="main">
                   
 
-  <header>
-  <div class="head-inner">
-    <h1><a href="/categories/">Categories</a> - .Net</h1>
-  </div>
-  </header>
+<div id="post">
+    <h1>PhotoUtil v1.0.0.1 aka Speeding up a c# project</h1>
 
-  <ul class="category-list fancy-container orange">
-      <li>
-        <a href="/2013/10/migrating-to-sandra-snow/" title="Migrating To Sandra.Snow">Migrating To Sandra.Snow</a> 
-        <small>(21 okt 2013)</small>
-      </li>
-      <li>
-        <a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/" title="PhotoUtil v1.0.0.1 aka Speeding up a c# project">PhotoUtil v1.0.0.1 aka Speeding up a c# project</a> 
-        <small>(25 jan 2012)</small>
-      </li>
-      <li>
-        <a href="/2012/01/enumerable-zip/" title="Enumerable.Zip">Enumerable.Zip</a> 
-        <small>(12 jan 2012)</small>
-      </li>
-      <li>
-        <a href="/2012/01/my-take-on-ref/" title="My take on Ref">My take on Ref</a> 
-        <small>(11 jan 2012)</small>
-      </li>
-      <li>
-        <a href="/2011/11/daily-refactoring/" title="Daily refactoring">Daily refactoring</a> 
-        <small>(22 nov 2011)</small>
-      </li>
-      <li>
-        <a href="/2011/11/todays-refactoring-dictionary-usage/" title="Todays Refactoring: Dictionary usage">Todays Refactoring: Dictionary usage</a> 
-        <small>(01 nov 2011)</small>
-      </li>
-      <li>
-        <a href="/2011/10/implicit-operators/" title="Implicit Operators">Implicit Operators</a> 
-        <small>(26 okt 2011)</small>
-      </li>
-      <li>
-        <a href="/2011/10/brainfart-when-sorting-lists/" title="Brainfart when sorting Lists">Brainfart when sorting Lists</a> 
-        <small>(24 okt 2011)</small>
-      </li>
-  </ul>
-  
+    <div class="post-note">
+      posted on 25 jan 2012
+       | <a href="/category/.net">.Net</a>
+       | <a href="/category/opensource">Opensource</a>
+      
+      <!-- <div class="addthis_toolbox addthis_default_style" style="float:right;">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+        <a class="addthis_button_linkedin_counter"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+      </div> -->
+    </div>
+    
+    
+        
+    <h1>Speeding up my hobby project</h1>
 
+<p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
+A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.</p>
+
+<p>Following is a short recap of that procedure.</p>
+
+<h3>Find out what's taking time 1: Analyze / Launch Performance Wizard</h3>
+
+<p>The first thing that popped out at me was a DateTime creation which took 100% of the CPU time (according to the performance report). I grab the DateTimeOriginal value from exif metadata of a photo and convert it into datetime, only because it allowed for cleaner code when accessing the date and time values later on in the code. Apparently parsing strings into datetime is slow, so instead I got it to work with some string manipulation.</p>
+
+<h3>Find out what's taking time 2: Analyze / Launch Performance Wizard</h3>
+
+<p>When reading exif data using GDI+ from a file the whole image is read into memory using new Bitmap(Path); then the desired properties are fetched using GetProperty. This made me switch focus to increasing concurrent files being worked on (read parallelization) instead of minimizing process time of each file. With this in mind I rewrote my foreach loop into using the parallel library.</p>
+
+<p>from</p>
+
+<pre><code>foreach(var filepath in filepaths)
+</code></pre>
+
+<p>into</p>
+
+<pre><code>Parallel.ForEach(filePaths, oldFilePath); 
+</code></pre>
+
+<h3>Taking it one step further:</h3>
+
+<p>After finding out that the whole image is read into memory I set out to find an alternate approach of extracting EXIF data from a photo. It wasn't long before I found a sweet project called <a href="http://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0">ExifLib</a> on <a href="https://www.nuget.org/packages/ExifLib/">Nuget</a> which only reads the Exif data portion of an image. ExifLib is a wonderful lib created by Simon McKenzie only available as source code from codeproject.com but I'm hoping to convince him to put it up on NuGet so more people can find and make use of it.</p>
+
+<h3>Results</h3>
+
+<p>100 images processed on an Intel Core 2 duo</p>
+
+<pre><code>Before optimizations:   00:00:20.8059121  
+After optimizations:    00:00:11:4034511
+Using ExifLib:          00:00:01.0714248
+</code></pre>
+
+
+    <!--<div id="disqus_thread"></div>
+<script>
+    var reset_disqus = function(){
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                //this.page.identifier = '';
+                this.page.url = 'http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/';
+                //this.page.title = '';
+            }
+        });
+    };
+
+    var disqus_shortname = 'philliphaydon';
+    var disqus_url = 'http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    window.addEventListener('orientationchange', reset_disqus);
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+    
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51ca97356d8c1454"></script>
+</div>
                 </div>
                 <!-- #content -->
             </div>
@@ -123,7 +168,6 @@
 					<ul class="category-list">
 						  <li><a href="/category/.net" title=".Net">.Net</a></li>
 						  <li><a href="/category/opensource" title="Opensource">Opensource</a></li>
-						  <li><a href="/category/software-development" title="Software Development">Software Development</a></li>
 					</ul>
                 </aside>
 				
