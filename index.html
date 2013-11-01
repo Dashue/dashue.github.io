@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-10-31T18:14:17.5894878-04:00" />
+    <meta http-equiv="last-modified" content="2013-11-01T19:46:44.6308509-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -62,6 +62,32 @@
 <a href="https://jabbr.net/#/rooms/SandraSnow">Questions goes here</a></p>
 
       <p><a href="/2013/10/migrating-to-sandra-snow/">Read more...</a></p>
+    </li>
+    <li class="fancy-container lightblue">
+      <h1>
+        <a href="/2012/02/a-few-caveats-when-using-strings-in-net/">A few caveats when using Strings in .Net</a> 
+        <span>posted on 23 feb 2012</span>
+      </h1> 
+      
+      <p>Strings in .Net are class objects and unlike value types they are stored on the heap.</p>
+
+<p>According to msdn: <a href="http://msdn.microsoft.com/en-us/library/ee787088.aspx">http://msdn.microsoft.com/en-us/library/ee787088.aspx</a></p>
+
+<blockquote>
+  <p>Garbage collection occurs when one of the following conditions is true:</p>
+  
+  <ul>
+  <li>The system has low physical memory.</li>
+  <li>The memory that is used by allocated objects on the managed heap surpasses an acceptable threshold. This means that a threshold of acceptable memory usage has been exceeded on the managed heap. This threshold is continuously adjusted as the process runs.</li>
+  <li>The GC.Collect  method is called. In almost all cases, you do not have to call this method, because the garbage collector runs continuously. This method is primarily used for unique situations and testing.</li>
+  </ul>
+</blockquote>
+
+<p>Due to the second condition creating a string object can trigger garbage collection, which is costly in terms of performance. As developers we want to keep the string creation to a minimum. Since strings in .Net are immutable (manipulation results in a the creation of a new instance) means that combining two strings "string1" + "string2" results in the creation of three strings and editing a string results in creating a new one with the modification.</p>
+
+<p>I think it's good to have the knowledge about how things work and why even though it's considered an micro optimization.</p>
+
+      <p><a href="/2012/02/a-few-caveats-when-using-strings-in-net/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
       <h1>
@@ -353,71 +379,6 @@ MyHelper.MyBool = true;
 <p>Tidier and faster : )</p>
 
       <p><a href="/2011/11/daily-refactoring/">Read more...</a></p>
-    </li>
-    <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/11/technical-debt-101/">Technical debt 101</a> 
-        <span>posted on 10 nov 2011</span>
-      </h1> 
-      
-      <h1>Technical Debt 101</h1>
-
-<p>I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. </p>
-
-<p><strong>Interest:</strong></p>
-
-<blockquote>
-  <p>Every minute spent on not-quite-right code counts as interest on that debt - Wikipedia</p>
-</blockquote>
-
-<p>The amount of interest is based on a number of things, among others:</p>
-
-<ul>
-<li><p>Lack of knowledge - Either from time passing and people forget stuff, or from people changing jobs, leave of absence, death etc.</p></li>
-<li><p>Increase in complexity - New functionality will be designed and implemented on top and according to existing technical debt, writing more code to get around code, with more code you need more tests and this code and tests needs review. Hence technical debt will increase technical debt.</p></li>
-</ul>
-
-<p><strong>How to spot debt:</strong></p>
-
-<p>There are some signs to look for when you go "debt spotting&amp;" to make it easier to point technical debt.</p>
-
-<ul>
-<li><p>The code areas where you as a developer when assigned bugs or to extend this code feel your heart sink, your moral drop e.g spaghetti code, or unnecessary complexity, or if the intent of the code isn't clear enough so it has to use comments or regions as a crutch for relaying what it does</p></li>
-<li><p>The average amounts of tasks per sprint decreases</p></li>
-<li><p>The number of tests increases at the same time as "average amount of tasks/sprint decreases"</p></li>
-</ul>
-
-<p>With an agile project methodology you don&#8217;t necessarily have a lower technical debt but because of its support for rapid changes the debt will be highlighted at an earlier stage allowing you to decide if to pay this debt or not.</p>
-
-<p>In my experience test driven development and tests in general protect you from some technical debt because you've had to go through the steps of "red", "green", "refactor"; and thereby paid a little of the debt up front.</p>
-
-<p><strong>Paying debt:</strong></p>
-
-<p>Like with any debt there is always an enforcer, a collector that will <em>make</em> you pay that debt. With technical debt, this collector is usually time, or new requirements.  </p>
-
-<p>Because of the interest, paying the debt will be more and more expensive as time goes, until you are forced by time to pay, at its most latest stage. This is when its the most expensive to pay the debt because you are most prone to the interests of people with skills have moved on, system have changed, a lot of technical debt has been built and made dependent on underlying technical debt. The debt may even be so large so for you to be able to pay it your feature development will stagnate and may even lead to loss of market pieces.</p>
-
-<p>Often project managers don't allow developers to pay technical debt, or don't prioritise it since its sometimes hard to motivate a sprint that starts with 12 tasks and ends with 12 tasks still to do, with the only thing the developers salary has paid is the debt.</p>
-
-<p><strong>Types of Technical Debt:</strong></p>
-
-<ul>
-<li><p>Bugs are not technical debt until someone decides to not fix them.</p></li>
-<li><p>Manage technical debt = planned technical debt</p></li>
-<li><p>Unmanaged is the worst, this is only fixed when the pain is felt</p></li>
-</ul>
-
-<p><strong>Monitoring Technical Debt:</strong></p>
-
-<p>In order to be able to monitor the debt, you must keep track of it. This involves keeping track of both the managed debt introduced on purpose using shortcuts, quick solutions and the "not-quite-right" solutions, and the unmanaged ones whenever they are encountered and grade them in some way that gives them a relational size difference. My personal view is that for every day that goes by of coding, it's very unlikely that the technical debt remains the same but instead rather if you don't pay some you gain some. Taking time into consideration, just a small daily increase will eventually become very expensive to pay off, leave it too long and a rewrite may end up being your only solution. </p>
-
-<blockquote>
-  <p>Technical debt is like an iceberg with only 10 percent visible.</p>
-</blockquote>
-
-<p>Until next time, keep track of that 10 percent for all your life's worth : )</p>
-
-      <p><a href="/2011/11/technical-debt-101/">Read more...</a></p>
     </li>
   </ul> 
 
