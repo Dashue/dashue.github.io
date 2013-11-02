@@ -1,6 +1,4 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</guid><link>http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</link><title>Migrating To Sandra.Snow</title><description>&lt;h1&gt;Migrating to Sandra.Snow&lt;/h1&gt;
-
-&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</guid><link>http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</link><title>Migrating To Sandra.Snow</title><description>&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
 
 &lt;p&gt;First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:&lt;/p&gt;
 
@@ -10,9 +8,7 @@
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Mon, 21 Oct 2013 04:00:00 Z</pubDate><a10:updated>2013-10-21T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Migrating to Sandra.Snow&lt;/h1&gt;
-
-&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
+</description><pubDate>Mon, 21 Oct 2013 04:00:00 Z</pubDate><a10:updated>2013-10-21T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
 
 &lt;p&gt;First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:&lt;/p&gt;
 
@@ -56,9 +52,7 @@
 &lt;p&gt;Due to the second condition creating a string object can trigger garbage collection, which is costly in terms of performance. As developers we want to keep the string creation to a minimum. Since strings in .Net are immutable (manipulation results in a the creation of a new instance) means that combining two strings "string1" + "string2" results in the creation of three strings and editing a string results in creating a new one with the modification.&lt;/p&gt;
 
 &lt;p&gt;I think it's good to have the knowledge about how things work and why even though it's considered an micro optimization.&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/</guid><link>http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/</link><title>Why you'd want to place a shared library in its own solution</title><description>&lt;h1&gt;Where to place shared functionality&lt;/h1&gt;
-
-&lt;p&gt;A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/</guid><link>http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/</link><title>Why you'd want to place a shared library in its own solution</title><description>&lt;p&gt;A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.&lt;/p&gt;
 
 &lt;p&gt;After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.&lt;/p&gt;
 
@@ -88,9 +82,7 @@
 &lt;h3&gt;YAGNI&lt;/h3&gt;
 
 &lt;p&gt;YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.&lt;/p&gt;
-</description><pubDate>Sat, 18 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-18T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Where to place shared functionality&lt;/h1&gt;
-
-&lt;p&gt;A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.&lt;/p&gt;
+</description><pubDate>Sat, 18 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-18T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.&lt;/p&gt;
 
 &lt;p&gt;After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.&lt;/p&gt;
 
@@ -120,9 +112,7 @@
 &lt;h3&gt;YAGNI&lt;/h3&gt;
 
 &lt;p&gt;YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</guid><link>http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</link><title>PhotoUtil v1.0.0.1 aka Speeding up a c# project</title><description>&lt;h1&gt;Speeding up my hobby project&lt;/h1&gt;
-
-&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</guid><link>http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</link><title>PhotoUtil v1.0.0.1 aka Speeding up a c# project</title><description>&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.&lt;/p&gt;
 
 &lt;p&gt;Following is a short recap of that procedure.&lt;/p&gt;
@@ -157,9 +147,7 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 After optimizations:    00:00:11:4034511
 Using ExifLib:          00:00:01.0714248
 &lt;/code&gt;&lt;/pre&gt;
-</description><pubDate>Wed, 25 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-25T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Speeding up my hobby project&lt;/h1&gt;
-
-&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
+</description><pubDate>Wed, 25 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-25T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.&lt;/p&gt;
 
 &lt;p&gt;Following is a short recap of that procedure.&lt;/p&gt;
@@ -194,23 +182,17 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 After optimizations:    00:00:11:4034511
 Using ExifLib:          00:00:01.0714248
 &lt;/code&gt;&lt;/pre&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</guid><link>http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</link><title>Hard tested code</title><description>&lt;h1&gt;Hard tested code&lt;/h1&gt;
-
-&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</guid><link>http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</link><title>Hard tested code</title><description>&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
 
 &lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Sat, 14 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-14T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Hard tested code&lt;/h1&gt;
-
-&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
+</description><pubDate>Sat, 14 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-14T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
 
 &lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</guid><link>http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</link><title>Review TFS 11: The things I look forward to</title><description>&lt;h1&gt;Review TFS 11: The things I look forward to&lt;/h1&gt;
-
-&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</guid><link>http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</link><title>Review TFS 11: The things I look forward to</title><description>&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
 
 &lt;h3&gt;Automerge content changes (finally)&lt;/h3&gt;
 
@@ -265,9 +247,7 @@ Using ExifLib:          00:00:01.0714248
 &lt;p&gt;I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.&lt;/p&gt;
 
 &lt;p&gt;Reference: &lt;a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T"&gt;Developer collaboration with Team Foundation Server 11&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Fri, 13 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-13T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Review TFS 11: The things I look forward to&lt;/h1&gt;
-
-&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
+</description><pubDate>Fri, 13 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-13T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
 
 &lt;h3&gt;Automerge content changes (finally)&lt;/h3&gt;
 
@@ -322,9 +302,7 @@ Using ExifLib:          00:00:01.0714248
 &lt;p&gt;I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.&lt;/p&gt;
 
 &lt;p&gt;Reference: &lt;a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T"&gt;Developer collaboration with Team Foundation Server 11&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/enumerable-zip/</guid><link>http://www.johanilsson.com/2012/01/enumerable-zip/</link><title>Enumerable.Zip</title><description>&lt;h1&gt;Enumerable.Zip&lt;/h1&gt;
-
-&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/enumerable-zip/</guid><link>http://www.johanilsson.com/2012/01/enumerable-zip/</link><title>Enumerable.Zip</title><description>&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
 
 &lt;p&gt;Signature is as follows:&lt;/p&gt;
 
@@ -339,9 +317,7 @@ I've seen examples which print the greater number from two list of ints, which c
 
 &lt;p&gt;I have as of yet found a good real world example, and am incapable of thinking one up.&lt;br /&gt;
 Anyone out there who have made good use of this added functionality?&lt;/p&gt;
-</description><pubDate>Thu, 12 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-12T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Enumerable.Zip&lt;/h1&gt;
-
-&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
+</description><pubDate>Thu, 12 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-12T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
 
 &lt;p&gt;Signature is as follows:&lt;/p&gt;
 
@@ -356,9 +332,7 @@ I've seen examples which print the greater number from two list of ints, which c
 
 &lt;p&gt;I have as of yet found a good real world example, and am incapable of thinking one up.&lt;br /&gt;
 Anyone out there who have made good use of this added functionality?&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/my-take-on-ref/</guid><link>http://www.johanilsson.com/2012/01/my-take-on-ref/</link><title>My take on Ref</title><description>&lt;h1&gt;My Take on Ref&lt;/h1&gt;
-
-&lt;p&gt;A good friend of mine asked me to share my thoughts on the ref keyword so here goes.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/my-take-on-ref/</guid><link>http://www.johanilsson.com/2012/01/my-take-on-ref/</link><title>My take on Ref</title><description>&lt;p&gt;A good friend of mine asked me to share my thoughts on the ref keyword so here goes.&lt;/p&gt;
 
 &lt;p&gt;To give it some context: To me a good method is a function taking a variable amount of parameters, making some processing and possibly returning the result. Furthermore the method should do one thing and one thing only and never change input parameter values.&lt;/p&gt;
 
@@ -384,9 +358,7 @@ Assert.AreEqual(4, a);
 &lt;blockquote&gt;
   &lt;p&gt;Although there are valid cases when the right solution is to use Ref and Out, from my experince I say you rarely need to use Out, and you need a really good reason for using Ref.&lt;/p&gt;
 &lt;/blockquote&gt;
-</description><pubDate>Wed, 11 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-11T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;My Take on Ref&lt;/h1&gt;
-
-&lt;p&gt;A good friend of mine asked me to share my thoughts on the ref keyword so here goes.&lt;/p&gt;
+</description><pubDate>Wed, 11 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-11T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;A good friend of mine asked me to share my thoughts on the ref keyword so here goes.&lt;/p&gt;
 
 &lt;p&gt;To give it some context: To me a good method is a function taking a variable amount of parameters, making some processing and possibly returning the result. Furthermore the method should do one thing and one thing only and never change input parameter values.&lt;/p&gt;
 
@@ -412,9 +384,7 @@ Assert.AreEqual(4, a);
 &lt;blockquote&gt;
   &lt;p&gt;Although there are valid cases when the right solution is to use Ref and Out, from my experince I say you rarely need to use Out, and you need a really good reason for using Ref.&lt;/p&gt;
 &lt;/blockquote&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</guid><link>http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</link><title>The 4 stages of learning a design pattern</title><description>&lt;h1&gt;Stages of Learning a Design Pattern&lt;/h1&gt;
-
-&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</guid><link>http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</link><title>The 4 stages of learning a design pattern</title><description>&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
 
 &lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
 
@@ -431,9 +401,7 @@ Assert.AreEqual(4, a);
 &lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
 
 &lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Fri, 09 Dec 2011 04:00:00 Z</pubDate><a10:updated>2011-12-09T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Stages of Learning a Design Pattern&lt;/h1&gt;
-
-&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
+</description><pubDate>Fri, 09 Dec 2011 04:00:00 Z</pubDate><a10:updated>2011-12-09T04:00:00Z</a10:updated><a10:content type="text">&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
 
 &lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
 
@@ -450,44 +418,36 @@ Assert.AreEqual(4, a);
 &lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
 
 &lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/daily-refactoring/</guid><link>http://www.johanilsson.com/2011/11/daily-refactoring/</link><title>Daily refactoring</title><description>&lt;h1&gt;Daily Refactoring&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;#region MyRegion
-    if (!MyHelper.MyBool)
-    {
-        myclass.Method(int, false, string, enum);
-        MyHelper.MyBool = true;
-    }
-    else
-    {
-        myclass.Method(int, true, string, enum);
-    }    
-#endregion    
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Is semantically the same as:&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/daily-refactoring/</guid><link>http://www.johanilsson.com/2011/11/daily-refactoring/</link><title>Daily refactoring</title><description>&lt;p&gt;#region MyRegion
+        if (!MyHelper.MyBool)
+        {
+            myclass.Method(int, false, string, enum);
+            MyHelper.MyBool = true;
+        }
+        else
+        {
+            myclass.Method(int, true, string, enum);
+        }&lt;br /&gt;
+    #endregion&lt;br /&gt;
+Is semantically the same as:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;myClass.Method(int, MyHelper.MyBool, string, enum);
 MyHelper.MyBool = true;      
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Tidier and faster : )&lt;/p&gt;
-</description><pubDate>Tue, 22 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-22T04:00:00Z</a10:updated><a10:content type="text">&lt;h1&gt;Daily Refactoring&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;#region MyRegion
-    if (!MyHelper.MyBool)
-    {
-        myclass.Method(int, false, string, enum);
-        MyHelper.MyBool = true;
-    }
-    else
-    {
-        myclass.Method(int, true, string, enum);
-    }    
-#endregion    
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Is semantically the same as:&lt;/p&gt;
+</description><pubDate>Tue, 22 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-22T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;#region MyRegion
+        if (!MyHelper.MyBool)
+        {
+            myclass.Method(int, false, string, enum);
+            MyHelper.MyBool = true;
+        }
+        else
+        {
+            myclass.Method(int, true, string, enum);
+        }&lt;br /&gt;
+    #endregion&lt;br /&gt;
+Is semantically the same as:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;myClass.Method(int, MyHelper.MyBool, string, enum);
 MyHelper.MyBool = true;      

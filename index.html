@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-11-01T19:57:31.2428350-04:00" />
+    <meta http-equiv="last-modified" content="2013-11-01T20:04:12.8808074-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -48,9 +48,7 @@
         <span>posted on 21 okt 2013</span>
       </h1> 
       
-      <h1>Migrating to Sandra.Snow</h1>
-
-<p>Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!</p>
+      <p>Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!</p>
 
 <p>First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:</p>
 
@@ -95,9 +93,7 @@
         <span>posted on 18 feb 2012</span>
       </h1> 
       
-      <h1>Where to place shared functionality</h1>
-
-<p>A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.</p>
+      <p>A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.</p>
 
 <p>After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.</p>
 
@@ -136,9 +132,7 @@
         <span>posted on 25 jan 2012</span>
       </h1> 
       
-      <h1>Speeding up my hobby project</h1>
-
-<p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
+      <p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.</p>
 
 <p>Following is a short recap of that procedure.</p>
@@ -182,9 +176,7 @@ Using ExifLib:          00:00:01.0714248
         <span>posted on 14 jan 2012</span>
       </h1> 
       
-      <h1>Hard tested code</h1>
-
-<p>Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.</p>
+      <p>Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.</p>
 
 <p>Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.</p>
 
@@ -198,9 +190,7 @@ Using ExifLib:          00:00:01.0714248
         <span>posted on 13 jan 2012</span>
       </h1> 
       
-      <h1>Review TFS 11: The things I look forward to</h1>
-
-<p>With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.</p>
+      <p>With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.</p>
 
 <h3>Automerge content changes (finally)</h3>
 
@@ -264,9 +254,7 @@ Using ExifLib:          00:00:01.0714248
         <span>posted on 12 jan 2012</span>
       </h1> 
       
-      <h1>Enumerable.Zip</h1>
-
-<p>I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.</p>
+      <p>I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.</p>
 
 <p>Signature is as follows:</p>
 
@@ -290,9 +278,7 @@ Anyone out there who have made good use of this added functionality?</p>
         <span>posted on 11 jan 2012</span>
       </h1> 
       
-      <h1>My Take on Ref</h1>
-
-<p>A good friend of mine asked me to share my thoughts on the ref keyword so here goes.</p>
+      <p>A good friend of mine asked me to share my thoughts on the ref keyword so here goes.</p>
 
 <p>To give it some context: To me a good method is a function taking a variable amount of parameters, making some processing and possibly returning the result. Furthermore the method should do one thing and one thing only and never change input parameter values.</p>
 
@@ -327,9 +313,7 @@ Assert.AreEqual(4, a);
         <span>posted on 09 dec 2011</span>
       </h1> 
       
-      <h1>Stages of Learning a Design Pattern</h1>
-
-<h3>Stage 0 - Ignorance</h3>
+      <h3>Stage 0 - Ignorance</h3>
 
 <p>You used what? Never heard of it.</p>
 
@@ -355,22 +339,18 @@ Assert.AreEqual(4, a);
         <span>posted on 22 nov 2011</span>
       </h1> 
       
-      <h1>Daily Refactoring</h1>
-
-<pre><code>#region MyRegion
-    if (!MyHelper.MyBool)
-    {
-        myclass.Method(int, false, string, enum);
-        MyHelper.MyBool = true;
-    }
-    else
-    {
-        myclass.Method(int, true, string, enum);
-    }    
-#endregion    
-</code></pre>
-
-<p>Is semantically the same as:</p>
+      <p>#region MyRegion
+        if (!MyHelper.MyBool)
+        {
+            myclass.Method(int, false, string, enum);
+            MyHelper.MyBool = true;
+        }
+        else
+        {
+            myclass.Method(int, true, string, enum);
+        }<br />
+    #endregion<br />
+Is semantically the same as:</p>
 
 <pre><code>myClass.Method(int, MyHelper.MyBool, string, enum);
 MyHelper.MyBool = true;      

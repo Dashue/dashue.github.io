@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-11-01T19:57:31.2428350-04:00" />
+    <meta http-equiv="last-modified" content="2013-11-01T20:04:12.8808074-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/2011/11/daily-refactoring/" />
@@ -59,22 +59,18 @@
     
     
         
-    <h1>Daily Refactoring</h1>
-
-<pre><code>#region MyRegion
-    if (!MyHelper.MyBool)
-    {
-        myclass.Method(int, false, string, enum);
-        MyHelper.MyBool = true;
-    }
-    else
-    {
-        myclass.Method(int, true, string, enum);
-    }    
-#endregion    
-</code></pre>
-
-<p>Is semantically the same as:</p>
+    <p>#region MyRegion
+        if (!MyHelper.MyBool)
+        {
+            myclass.Method(int, false, string, enum);
+            MyHelper.MyBool = true;
+        }
+        else
+        {
+            myclass.Method(int, true, string, enum);
+        }<br />
+    #endregion<br />
+Is semantically the same as:</p>
 
 <pre><code>myClass.Method(int, MyHelper.MyBool, string, enum);
 MyHelper.MyBool = true;      
