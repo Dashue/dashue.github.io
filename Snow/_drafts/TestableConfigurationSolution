@@ -1,5 +1,0 @@
-
-Enum cast and error handling for free (shows available values)
-
-return (ServiceAccount)Enum.Parse(typeof(ServiceAccount), (string)this["Account"]);
-return (ServiceAccount)this["Account"];
