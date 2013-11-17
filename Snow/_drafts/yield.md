@@ -16,3 +16,7 @@ foreach(){
 vs
 
 yield
+
+
+lazy evaluation
+one item at a time vs batch
