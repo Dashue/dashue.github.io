@@ -19,4 +19,4 @@ yield
 
 
 lazy evaluation
-one item at a time vs batch
+one item at a time vs batch, visualize using take.
