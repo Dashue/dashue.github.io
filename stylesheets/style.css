@@ -800,13 +800,13 @@ h4, h5, h6 {
     }
 
 #page {
-    width: 950px;
+    width: 1024px;
     margin: 0 auto;
 }
 
 #masthead {
     float: left;
-    width: 21%;
+    width: 17%;
     margin-top: 15px;
     margin-bottom: 0;
     padding: 1%;
@@ -820,7 +820,7 @@ h4, h5, h6 {
 
 .site-content, #colophon {
     float: right;
-    width: 75%;
+    width: 79%;
 }
 
 #content {
@@ -830,7 +830,7 @@ h4, h5, h6 {
     clear: left;
     float: left;
     overflow: hidden;
-    width: 21%;
+    width: 18%;
     padding: 1%;
 }
 
@@ -1120,23 +1120,31 @@ ul.posts {
     margin:0;
     padding:0;
 }
-
-  ul.posts > li > h1 {
-    margin-top: 0;
+  ul.posts > li{
+	height: 367px;
   }
-    ul.posts > li > h1 a {
-      margin-top: 0;
-      text-decoration: none;
-    }
-   
-    ul.posts > li > h1 span {
-      font-size: 8pt;
-      font-weight: normal;
-      display: block;
-      border-top: 1px #ccc solid;
-      padding-top: 5px;
-      color: #999;
-    }
+  
+  ul.posts div.postContent {
+		height: 96%;
+		overflow: hidden;
+	}
+	
+	  ul.posts > li > .postContent > h1 {
+		margin-top: 0;
+	  }
+		ul.posts > li > .postContent > h1 a {
+		  margin-top: 0;
+		  text-decoration: none;
+		}
+	   
+		ul.posts > li > .postContent > h1 span {
+		  font-size: 8pt;
+		  font-weight: normal;
+		  display: block;
+		  border-top: 1px #ccc solid;
+		  padding-top: 5px;
+		  color: #999;
+		}
     
 ul.archive li {
   margin-left: 15px;

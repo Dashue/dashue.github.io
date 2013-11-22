@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-11-21T22:43:41.2469233-04:00" />
+    <meta http-equiv="last-modified" content="2013-11-22T00:04:01.5446285-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/page2/" />
@@ -41,12 +41,13 @@
 
   <ul class="posts">
     <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/11/technical-debt-101/">Technical debt 101</a> 
-        <span>posted on 10 nov 2011</span>
-      </h1> 
-      
-      <p>I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. </p>
+      <div class="postContent">
+		<h1>
+			<a href="/2011/11/technical-debt-101/">Technical debt 101</a> 
+			<span>posted on 10 nov 2011</span>
+		</h1> 
+		
+		<p>I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. </p>
 
 <h3>Interest:</h3>
 
@@ -101,15 +102,17 @@
 
 <p>Until next time, keep track of that 10 percent for all your life's worth : )</p>
 
+	  </div>
       <p><a href="/2011/11/technical-debt-101/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/11/todays-refactoring-dictionary-usage/">Todays Refactoring: Dictionary usage</a> 
-        <span>posted on 01 nov 2011</span>
-      </h1> 
-      
-      <p>Code like the following:</p>
+      <div class="postContent">
+		<h1>
+			<a href="/2011/11/todays-refactoring-dictionary-usage/">Todays Refactoring: Dictionary usage</a> 
+			<span>posted on 01 nov 2011</span>
+		</h1> 
+		
+		<p>Code like the following:</p>
 
 <pre><code>if (dictionary.ContainsKey(key))
 {
@@ -128,15 +131,17 @@ else
 
 <p>The code will be cleaner, functionality will be the same and a few operations faster :P</p>
 
+	  </div>
       <p><a href="/2011/11/todays-refactoring-dictionary-usage/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/10/implicit-operators/">Implicit Operators</a> 
-        <span>posted on 26 okt 2011</span>
-      </h1> 
-      
-      <p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
+      <div class="postContent">
+		<h1>
+			<a href="/2011/10/implicit-operators/">Implicit Operators</a> 
+			<span>posted on 26 okt 2011</span>
+		</h1> 
+		
+		<p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
 
 <p>Like so:</p>
 
@@ -174,15 +179,17 @@ ViewModel viewModel = domainModel;
 }
 </code></pre>
 
+	  </div>
       <p><a href="/2011/10/implicit-operators/">Read more...</a></p>
     </li>
     <li class="fancy-container lightblue">
-      <h1>
-        <a href="/2011/10/brainfart-when-sorting-lists/">Brainfart when sorting Lists</a> 
-        <span>posted on 24 okt 2011</span>
-      </h1> 
-      
-      <p>Just encountered this piece of code today:</p>
+      <div class="postContent">
+		<h1>
+			<a href="/2011/10/brainfart-when-sorting-lists/">Brainfart when sorting Lists</a> 
+			<span>posted on 24 okt 2011</span>
+		</h1> 
+		
+		<p>Just encountered this piece of code today:</p>
 
 <pre><code>Array.Sort(myList.ToArray());
 foreach(var i in myList)
@@ -208,6 +215,7 @@ Console.ReadKey();
 
 <p>List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same</p>
 
+	  </div>
       <p><a href="/2011/10/brainfart-when-sorting-lists/">Read more...</a></p>
     </li>
   </ul> 
@@ -242,7 +250,7 @@ Console.ReadKey();
 				
 				<aside id="archives-4" class="widget widget_archive">
                     <h1 class="widget-title"><a href="/archive">Archive</a></h1>
-                    <ul class="posts">
+                    <ul class="archive">
                           <li><a href="/archive#2013oktober">oktober, 2013</a></li>
                           <li><a href="/archive#2012februari">februari, 2012</a></li>
                           <li><a href="/archive#2012januari">januari, 2012</a></li>
