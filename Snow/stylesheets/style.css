@@ -1121,6 +1121,7 @@ ul.posts {
     padding:0;
 }
   ul.posts > li{
+	display: block;
 	max-height: 367px;
   }
   
@@ -1145,7 +1146,10 @@ ul.posts {
 		  padding-top: 5px;
 		  color: #999;
 		}
-    
+  ul.posts .readMore {
+	position: relative;
+	right: -685px;
+  }
 ul.archive li {
   margin-left: 15px;
 }
