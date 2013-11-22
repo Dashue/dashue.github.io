@@ -134,7 +134,7 @@ blockquote {
     }
 
         blockquote cite:before {
-            content: "— 014 \0020";
+            content: "â€” 014 \0020";
         }
 
 address {
