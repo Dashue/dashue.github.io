@@ -7,7 +7,7 @@ published: true
 I wanted to share a way of handling application configuration that I haven¨t ecountered anyone else using. It leverages [ConfigurationSection](http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx) and gives you the possiblility to test drive your settings.
 
 ## The basic scenario
-Given an App.Config file with the following contents. (<u>Make sure you align the type property to your solution</u>)
+Given an App.Config file with the following contents. (**Make sure you align the type property to your solution**)
 
 	<configuration>
 		<configSections>
@@ -42,9 +42,7 @@ Heading back to the test we see that the only thing left to implement is the MyC
 
     public class MyConfiguration : ConfigurationSection, IMyConfiguration
     {
-        private MyConfiguration()
-        {
-        }
+        private MyConfiguration() {}
 
         public static IMyConfiguration Get()
         {
@@ -93,20 +91,65 @@ We will also get exception for any missing properties that are marked as require
 
 	Required attribute 'Age' not found.
 
-##Moving on to the slightly more advanced stuff
+##Moving on to the marginally more advanced stuff
 
-###Lists
+###Multiple Values
+Sometimes storing and fetching lists of values are required and leveraging the configuration section approach makes it really simple.
+
+The following is my preferred way of storing multiple values, it's quick and simple and have sufficed for everything I've needed to do.
+
 	<MyConfiguration MyStrings="value1,value2,value3" />
-Alot of converters
-###Nested values
-	<list>
-		<add value1/>
-		<add value2/>
-	</list>
 
-	<list>
-		<listItem>
-			<Value1>
-			<value2>
-		</listItem>
-	</list>
+	[ConfigurationProperty("MyStrings", IsRequired = true)]
+	[TypeConverter(typeof(CommaDelimitedStringCollectionConverter))]
+	public IEnumerable<string> MyStrings
+    {
+    	get
+        {
+        	return ((CommaDelimitedStringCollection)this["MyStrings"]).Cast<string>();
+        }
+	}	
+
+###TypeConverters
+Did you notice the use of TypeConverter of type **CommaDelimitedStringCollectionConverter** in the previous example? This is just one of many converters provided by the framework. The following is a lise of all the Converters I was able to find. I'll leave it up to the readed to tinker around and figure out which ones can be useful to their scenario.
+
+- ArrayConverter
+- BooleanConverter
+- ByteConverter
+- CharConverter
+- CollectionConverter
+- CommaDelimitedStringCollectionConverter
+- ComponentConverter
+- CultureInfoConverter
+- DateTimeConverter
+- DateTimeOffsetConverter
+- DecimalConverter
+- DoubleConverter
+- EnumConverter
+- ExpandableObjectConverter
+- ExtendedProtectionPolicyTypeConverter
+- GenericEnumConverter
+- GuidConverter
+- InfiniteIntConverter
+- InfiniteTimeSpanConverter
+- Int16Converter
+- Int32Converter
+- Int64Converter
+- MultilineStringConverter
+- NullableConverter
+- ReferenceConverter
+- SByteConverter
+- SingleConverter
+- StringConverter
+- TimeSpanConverter
+- TimeSpanMinutesConverter
+- TimeSpanMinutesOrInfiniteConverter
+- TimeSpanSecondsConverter
+- TimeSpanSecondsOrInfiniteConverter
+- TypeConverter
+- TypeNameConverter
+- UInt16Converter
+- UInt32Converter
+- UInt64Converter
+- UriTypeConverter
+- WhiteSpaceTrimStringConverter
