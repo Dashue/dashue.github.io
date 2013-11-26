@@ -1,4 +1,330 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</guid><link>http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</link><title>Migrating To Sandra.Snow</title><description>&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/</guid><link>http://www.johanilsson.com/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/</link><title>ConfigurationSection "A testable, dependable configuration solution"</title><description>&lt;p&gt;I wanted to share a way of handling application configuration that have helped me alot. It leverages &lt;a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx"&gt;ConfigurationSection&lt;/a&gt; and gives you the possiblility to test-drive your application settings. Let's jump in!&lt;/p&gt;
+
+&lt;h2&gt;The basic scenario&lt;/h2&gt;
+
+&lt;p&gt;Given an App.Config file with the following contents. (&lt;strong&gt;Make sure you align the type property to your solution&lt;/strong&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+    &amp;lt;configSections&amp;gt;
+        &amp;lt;section name="MyConfiguration" type="My.Namespace.MyConfiguration, My.Assembly"/&amp;gt;
+    &amp;lt;/configSections&amp;gt;
+
+    &amp;lt;MyConfiguration Age="25" Name="Name" DayOfBirth="Monday" /&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In tdd fashion, let's start out with the test. Normally I would add one property at a time to get a short red-green cycle, but for the sake of keeping down the size of this post we will add all of them at once.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Fact]
+public void ReadMyConfiguration()
+{
+    IMyConfiguration configuration = MyConfiguration.Get();
+
+    Assert.Equal(25, configuration.Age);
+    Assert.Equal("Name", configuration.Name);
+    Assert.Equal(DayOfWeek.Monday, configuration.DayOfBirth);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For demonstration purpose we read a number, a string and an enumeration. Let's go ahead and specify what will be our contract: IMyConfiguration.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public interface IMyConfiguration
+{
+    int Age { get; }
+    string Name { get; }
+    DayOfWeek DayOfBirth { get; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Heading back to the test we see that the only thing left to implement is the MyConfiguration class. Let's add the following implementation.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class MyConfiguration : ConfigurationSection, IMyConfiguration
+{
+    private MyConfiguration() {}
+
+    public static IMyConfiguration Get()
+    {
+        return (IMyConfiguration)ConfigurationManager.GetSection("MyConfiguration");
+    }
+
+    [ConfigurationProperty("Age", IsRequired = true)]
+    public int Age
+    {
+        get
+        {
+            return (int)this["Age"];
+        }
+    }
+
+    [ConfigurationProperty("Name", IsRequired = true)]
+    public string Name
+    {
+        get
+        {
+            return (string)this["Name"];
+        }
+    }
+
+    [ConfigurationProperty("DayOfBirth", IsRequired = true)]
+    public DayOfWeek DayOfBirth
+    {
+        get
+        {
+            return (DayOfWeek)this["DayOfBirth"];
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.&lt;/p&gt;
+
+&lt;h3&gt;Enums&lt;/h3&gt;
+
+&lt;p&gt;Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The value of the property 'DayOfBirth' cannot be parsed. 
+The error is: The enumeration value must be one of the following: 
+Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Required&lt;/h3&gt;
+
+&lt;p&gt;We will also be given an exception for any missing properties that are marked as required.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Required attribute 'Age' not found.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Moving on to the marginally more advanced stuff&lt;/h2&gt;
+
+&lt;h3&gt;Multiple Values&lt;/h3&gt;
+
+&lt;p&gt;Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.&lt;/p&gt;
+
+&lt;p&gt;The following is my preferred way of storing multiple values, it's quick and simple.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;MyConfiguration MyStrings="value1,value2,value3" /&amp;gt;
+
+[ConfigurationProperty("MyStrings", IsRequired = true)]
+[TypeConverter(typeof(CommaDelimitedStringCollectionConverter))]
+public IEnumerable&amp;lt;string&amp;gt; MyStrings
+{
+    get
+    {
+        return ((CommaDelimitedStringCollection)this["MyStrings"]).Cast&amp;lt;string&amp;gt;();
+    }
+}   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;TypeConverters&lt;/h3&gt;
+
+&lt;p&gt;Did you notice the use of the TypeConverter of type &lt;strong&gt;CommaDelimitedStringCollectionConverter&lt;/strong&gt; in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ArrayConverter&lt;/li&gt;
+&lt;li&gt;BooleanConverter&lt;/li&gt;
+&lt;li&gt;ByteConverter&lt;/li&gt;
+&lt;li&gt;CharConverter&lt;/li&gt;
+&lt;li&gt;CollectionConverter&lt;/li&gt;
+&lt;li&gt;CommaDelimitedStringCollectionConverter&lt;/li&gt;
+&lt;li&gt;ComponentConverter&lt;/li&gt;
+&lt;li&gt;CultureInfoConverter&lt;/li&gt;
+&lt;li&gt;DateTimeConverter&lt;/li&gt;
+&lt;li&gt;DateTimeOffsetConverter&lt;/li&gt;
+&lt;li&gt;DecimalConverter&lt;/li&gt;
+&lt;li&gt;DoubleConverter&lt;/li&gt;
+&lt;li&gt;EnumConverter&lt;/li&gt;
+&lt;li&gt;ExpandableObjectConverter&lt;/li&gt;
+&lt;li&gt;ExtendedProtectionPolicyTypeConverter&lt;/li&gt;
+&lt;li&gt;GenericEnumConverter&lt;/li&gt;
+&lt;li&gt;GuidConverter&lt;/li&gt;
+&lt;li&gt;InfiniteIntConverter&lt;/li&gt;
+&lt;li&gt;InfiniteTimeSpanConverter&lt;/li&gt;
+&lt;li&gt;Int16Converter&lt;/li&gt;
+&lt;li&gt;Int32Converter&lt;/li&gt;
+&lt;li&gt;Int64Converter&lt;/li&gt;
+&lt;li&gt;MultilineStringConverter&lt;/li&gt;
+&lt;li&gt;NullableConverter&lt;/li&gt;
+&lt;li&gt;ReferenceConverter&lt;/li&gt;
+&lt;li&gt;SByteConverter&lt;/li&gt;
+&lt;li&gt;SingleConverter&lt;/li&gt;
+&lt;li&gt;StringConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanMinutesConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanMinutesOrInfiniteConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanSecondsConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanSecondsOrInfiniteConverter&lt;/li&gt;
+&lt;li&gt;TypeConverter&lt;/li&gt;
+&lt;li&gt;TypeNameConverter&lt;/li&gt;
+&lt;li&gt;UInt16Converter&lt;/li&gt;
+&lt;li&gt;UInt32Converter&lt;/li&gt;
+&lt;li&gt;UInt64Converter&lt;/li&gt;
+&lt;li&gt;UriTypeConverter&lt;/li&gt;
+&lt;li&gt;WhiteSpaceTrimStringConverter&lt;/li&gt;
+&lt;/ul&gt;
+</description><pubDate>Mon, 25 Nov 2013 04:00:00 Z</pubDate><a10:updated>2013-11-25T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I wanted to share a way of handling application configuration that have helped me alot. It leverages &lt;a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx"&gt;ConfigurationSection&lt;/a&gt; and gives you the possiblility to test-drive your application settings. Let's jump in!&lt;/p&gt;
+
+&lt;h2&gt;The basic scenario&lt;/h2&gt;
+
+&lt;p&gt;Given an App.Config file with the following contents. (&lt;strong&gt;Make sure you align the type property to your solution&lt;/strong&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+    &amp;lt;configSections&amp;gt;
+        &amp;lt;section name="MyConfiguration" type="My.Namespace.MyConfiguration, My.Assembly"/&amp;gt;
+    &amp;lt;/configSections&amp;gt;
+
+    &amp;lt;MyConfiguration Age="25" Name="Name" DayOfBirth="Monday" /&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In tdd fashion, let's start out with the test. Normally I would add one property at a time to get a short red-green cycle, but for the sake of keeping down the size of this post we will add all of them at once.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Fact]
+public void ReadMyConfiguration()
+{
+    IMyConfiguration configuration = MyConfiguration.Get();
+
+    Assert.Equal(25, configuration.Age);
+    Assert.Equal("Name", configuration.Name);
+    Assert.Equal(DayOfWeek.Monday, configuration.DayOfBirth);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For demonstration purpose we read a number, a string and an enumeration. Let's go ahead and specify what will be our contract: IMyConfiguration.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public interface IMyConfiguration
+{
+    int Age { get; }
+    string Name { get; }
+    DayOfWeek DayOfBirth { get; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Heading back to the test we see that the only thing left to implement is the MyConfiguration class. Let's add the following implementation.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class MyConfiguration : ConfigurationSection, IMyConfiguration
+{
+    private MyConfiguration() {}
+
+    public static IMyConfiguration Get()
+    {
+        return (IMyConfiguration)ConfigurationManager.GetSection("MyConfiguration");
+    }
+
+    [ConfigurationProperty("Age", IsRequired = true)]
+    public int Age
+    {
+        get
+        {
+            return (int)this["Age"];
+        }
+    }
+
+    [ConfigurationProperty("Name", IsRequired = true)]
+    public string Name
+    {
+        get
+        {
+            return (string)this["Name"];
+        }
+    }
+
+    [ConfigurationProperty("DayOfBirth", IsRequired = true)]
+    public DayOfWeek DayOfBirth
+    {
+        get
+        {
+            return (DayOfWeek)this["DayOfBirth"];
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.&lt;/p&gt;
+
+&lt;h3&gt;Enums&lt;/h3&gt;
+
+&lt;p&gt;Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The value of the property 'DayOfBirth' cannot be parsed. 
+The error is: The enumeration value must be one of the following: 
+Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Required&lt;/h3&gt;
+
+&lt;p&gt;We will also be given an exception for any missing properties that are marked as required.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Required attribute 'Age' not found.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Moving on to the marginally more advanced stuff&lt;/h2&gt;
+
+&lt;h3&gt;Multiple Values&lt;/h3&gt;
+
+&lt;p&gt;Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.&lt;/p&gt;
+
+&lt;p&gt;The following is my preferred way of storing multiple values, it's quick and simple.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;MyConfiguration MyStrings="value1,value2,value3" /&amp;gt;
+
+[ConfigurationProperty("MyStrings", IsRequired = true)]
+[TypeConverter(typeof(CommaDelimitedStringCollectionConverter))]
+public IEnumerable&amp;lt;string&amp;gt; MyStrings
+{
+    get
+    {
+        return ((CommaDelimitedStringCollection)this["MyStrings"]).Cast&amp;lt;string&amp;gt;();
+    }
+}   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;TypeConverters&lt;/h3&gt;
+
+&lt;p&gt;Did you notice the use of the TypeConverter of type &lt;strong&gt;CommaDelimitedStringCollectionConverter&lt;/strong&gt; in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ArrayConverter&lt;/li&gt;
+&lt;li&gt;BooleanConverter&lt;/li&gt;
+&lt;li&gt;ByteConverter&lt;/li&gt;
+&lt;li&gt;CharConverter&lt;/li&gt;
+&lt;li&gt;CollectionConverter&lt;/li&gt;
+&lt;li&gt;CommaDelimitedStringCollectionConverter&lt;/li&gt;
+&lt;li&gt;ComponentConverter&lt;/li&gt;
+&lt;li&gt;CultureInfoConverter&lt;/li&gt;
+&lt;li&gt;DateTimeConverter&lt;/li&gt;
+&lt;li&gt;DateTimeOffsetConverter&lt;/li&gt;
+&lt;li&gt;DecimalConverter&lt;/li&gt;
+&lt;li&gt;DoubleConverter&lt;/li&gt;
+&lt;li&gt;EnumConverter&lt;/li&gt;
+&lt;li&gt;ExpandableObjectConverter&lt;/li&gt;
+&lt;li&gt;ExtendedProtectionPolicyTypeConverter&lt;/li&gt;
+&lt;li&gt;GenericEnumConverter&lt;/li&gt;
+&lt;li&gt;GuidConverter&lt;/li&gt;
+&lt;li&gt;InfiniteIntConverter&lt;/li&gt;
+&lt;li&gt;InfiniteTimeSpanConverter&lt;/li&gt;
+&lt;li&gt;Int16Converter&lt;/li&gt;
+&lt;li&gt;Int32Converter&lt;/li&gt;
+&lt;li&gt;Int64Converter&lt;/li&gt;
+&lt;li&gt;MultilineStringConverter&lt;/li&gt;
+&lt;li&gt;NullableConverter&lt;/li&gt;
+&lt;li&gt;ReferenceConverter&lt;/li&gt;
+&lt;li&gt;SByteConverter&lt;/li&gt;
+&lt;li&gt;SingleConverter&lt;/li&gt;
+&lt;li&gt;StringConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanMinutesConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanMinutesOrInfiniteConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanSecondsConverter&lt;/li&gt;
+&lt;li&gt;TimeSpanSecondsOrInfiniteConverter&lt;/li&gt;
+&lt;li&gt;TypeConverter&lt;/li&gt;
+&lt;li&gt;TypeNameConverter&lt;/li&gt;
+&lt;li&gt;UInt16Converter&lt;/li&gt;
+&lt;li&gt;UInt32Converter&lt;/li&gt;
+&lt;li&gt;UInt64Converter&lt;/li&gt;
+&lt;li&gt;UriTypeConverter&lt;/li&gt;
+&lt;li&gt;WhiteSpaceTrimStringConverter&lt;/li&gt;
+&lt;/ul&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</guid><link>http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</link><title>Migrating To Sandra.Snow</title><description>&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
 
 &lt;p&gt;First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:&lt;/p&gt;
 
@@ -418,40 +744,4 @@ Assert.AreEqual(4, a);
 &lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
 
 &lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/daily-refactoring/</guid><link>http://www.johanilsson.com/2011/11/daily-refactoring/</link><title>Daily refactoring</title><description>&lt;p&gt;#region MyRegion
-        if (!MyHelper.MyBool)
-        {
-            myclass.Method(int, false, string, enum);
-            MyHelper.MyBool = true;
-        }
-        else
-        {
-            myclass.Method(int, true, string, enum);
-        }&lt;br /&gt;
-    #endregion&lt;br /&gt;
-Is semantically the same as:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;myClass.Method(int, MyHelper.MyBool, string, enum);
-MyHelper.MyBool = true;      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tidier and faster : )&lt;/p&gt;
-</description><pubDate>Tue, 22 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-22T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;#region MyRegion
-        if (!MyHelper.MyBool)
-        {
-            myclass.Method(int, false, string, enum);
-            MyHelper.MyBool = true;
-        }
-        else
-        {
-            myclass.Method(int, true, string, enum);
-        }&lt;br /&gt;
-    #endregion&lt;br /&gt;
-Is semantically the same as:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;myClass.Method(int, MyHelper.MyBool, string, enum);
-MyHelper.MyBool = true;      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tidier and faster : )&lt;/p&gt;
 </a10:content></item></channel></rss>
