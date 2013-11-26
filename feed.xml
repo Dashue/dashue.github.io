@@ -161,6 +161,10 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;li&gt;UriTypeConverter&lt;/li&gt;
 &lt;li&gt;WhiteSpaceTrimStringConverter&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/Dashue/Blogging/tree/master/ConfigurationSection_Testable_and_Maintainable"&gt;Source for this blog post can be found here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Have fun!&lt;/p&gt;
 </description><pubDate>Mon, 25 Nov 2013 04:00:00 Z</pubDate><a10:updated>2013-11-25T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I wanted to share a way of handling application configuration that have helped me alot. It leverages &lt;a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx"&gt;ConfigurationSection&lt;/a&gt; and gives you the possiblility to test-drive your application settings. Let's jump in!&lt;/p&gt;
 
 &lt;h2&gt;The basic scenario&lt;/h2&gt;
@@ -324,6 +328,10 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;li&gt;UriTypeConverter&lt;/li&gt;
 &lt;li&gt;WhiteSpaceTrimStringConverter&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/Dashue/Blogging/tree/master/ConfigurationSection_Testable_and_Maintainable"&gt;Source for this blog post can be found here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Have fun!&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</guid><link>http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</link><title>Migrating To Sandra.Snow</title><description>&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
 
 &lt;p&gt;First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:&lt;/p&gt;

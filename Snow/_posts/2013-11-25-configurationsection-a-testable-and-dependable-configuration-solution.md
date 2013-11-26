@@ -152,3 +152,7 @@ Did you notice the use of the TypeConverter of type **CommaDelimitedStringCollec
 - UInt64Converter
 - UriTypeConverter
 - WhiteSpaceTrimStringConverter
+
+[Source for this blog post can be found here](https://github.com/Dashue/Blogging/tree/master/ConfigurationSection_Testable_and_Maintainable)
+
+Have fun!
