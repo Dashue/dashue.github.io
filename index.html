@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-11-25T20:15:44.6600733-04:00" />
+    <meta http-equiv="last-modified" content="2013-11-25T20:17:22.9606958-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -40,184 +40,6 @@
                   
 
   <ul class="posts">
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/">ConfigurationSection &quot;A testable, dependable configuration solution&quot;</a> 
-			<span>posted on 25 nov 2013</span>
-		</h1> 
-		
-		<p>I wanted to share a way of handling application configuration that have helped me alot. It leverages <a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx">ConfigurationSection</a> and gives you the possiblility to test-drive your application settings. Let's jump in!</p>
-
-<h2>The basic scenario</h2>
-
-<p>Given an App.Config file with the following contents. (<strong>Make sure you align the type property to your solution</strong>)</p>
-
-<pre><code>&lt;configuration&gt;
-    &lt;configSections&gt;
-        &lt;section name="MyConfiguration" type="My.Namespace.MyConfiguration, My.Assembly"/&gt;
-    &lt;/configSections&gt;
-
-    &lt;MyConfiguration Age="25" Name="Name" DayOfBirth="Monday" /&gt;
-&lt;/configuration&gt;
-</code></pre>
-
-<p>In tdd fashion, let's start out with the test. Normally I would add one property at a time to get a short red-green cycle, but for the sake of keeping down the size of this post we will add all of them at once.</p>
-
-<pre><code>[Fact]
-public void ReadMyConfiguration()
-{
-    IMyConfiguration configuration = MyConfiguration.Get();
-
-    Assert.Equal(25, configuration.Age);
-    Assert.Equal("Name", configuration.Name);
-    Assert.Equal(DayOfWeek.Monday, configuration.DayOfBirth);
-}
-</code></pre>
-
-<p>For demonstration purpose we read a number, a string and an enumeration. Let's go ahead and specify what will be our contract: IMyConfiguration.</p>
-
-<pre><code>public interface IMyConfiguration
-{
-    int Age { get; }
-    string Name { get; }
-    DayOfWeek DayOfBirth { get; }
-}
-</code></pre>
-
-<p>Heading back to the test we see that the only thing left to implement is the MyConfiguration class. Let's add the following implementation.</p>
-
-<pre><code>public class MyConfiguration : ConfigurationSection, IMyConfiguration
-{
-    private MyConfiguration() {}
-
-    public static IMyConfiguration Get()
-    {
-        return (IMyConfiguration)ConfigurationManager.GetSection("MyConfiguration");
-    }
-
-    [ConfigurationProperty("Age", IsRequired = true)]
-    public int Age
-    {
-        get
-        {
-            return (int)this["Age"];
-        }
-    }
-
-    [ConfigurationProperty("Name", IsRequired = true)]
-    public string Name
-    {
-        get
-        {
-            return (string)this["Name"];
-        }
-    }
-
-    [ConfigurationProperty("DayOfBirth", IsRequired = true)]
-    public DayOfWeek DayOfBirth
-    {
-        get
-        {
-            return (DayOfWeek)this["DayOfBirth"];
-        }
-    }
-}
-</code></pre>
-
-<p>We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.</p>
-
-<h3>Enums</h3>
-
-<p>Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:</p>
-
-<pre><code>The value of the property 'DayOfBirth' cannot be parsed. 
-The error is: The enumeration value must be one of the following: 
-Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
-</code></pre>
-
-<h3>Required</h3>
-
-<p>We will also be given an exception for any missing properties that are marked as required.</p>
-
-<pre><code>Required attribute 'Age' not found.
-</code></pre>
-
-<h2>Moving on to the marginally more advanced stuff</h2>
-
-<h3>Multiple Values</h3>
-
-<p>Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.</p>
-
-<p>The following is my preferred way of storing multiple values, it's quick and simple.</p>
-
-<pre><code>&lt;MyConfiguration MyStrings="value1,value2,value3" /&gt;
-
-[ConfigurationProperty("MyStrings", IsRequired = true)]
-[TypeConverter(typeof(CommaDelimitedStringCollectionConverter))]
-public IEnumerable&lt;string&gt; MyStrings
-{
-    get
-    {
-        return ((CommaDelimitedStringCollection)this["MyStrings"]).Cast&lt;string&gt;();
-    }
-}   
-</code></pre>
-
-<h3>TypeConverters</h3>
-
-<p>Did you notice the use of the TypeConverter of type <strong>CommaDelimitedStringCollectionConverter</strong> in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.</p>
-
-<ul>
-<li>ArrayConverter</li>
-<li>BooleanConverter</li>
-<li>ByteConverter</li>
-<li>CharConverter</li>
-<li>CollectionConverter</li>
-<li>CommaDelimitedStringCollectionConverter</li>
-<li>ComponentConverter</li>
-<li>CultureInfoConverter</li>
-<li>DateTimeConverter</li>
-<li>DateTimeOffsetConverter</li>
-<li>DecimalConverter</li>
-<li>DoubleConverter</li>
-<li>EnumConverter</li>
-<li>ExpandableObjectConverter</li>
-<li>ExtendedProtectionPolicyTypeConverter</li>
-<li>GenericEnumConverter</li>
-<li>GuidConverter</li>
-<li>InfiniteIntConverter</li>
-<li>InfiniteTimeSpanConverter</li>
-<li>Int16Converter</li>
-<li>Int32Converter</li>
-<li>Int64Converter</li>
-<li>MultilineStringConverter</li>
-<li>NullableConverter</li>
-<li>ReferenceConverter</li>
-<li>SByteConverter</li>
-<li>SingleConverter</li>
-<li>StringConverter</li>
-<li>TimeSpanConverter</li>
-<li>TimeSpanMinutesConverter</li>
-<li>TimeSpanMinutesOrInfiniteConverter</li>
-<li>TimeSpanSecondsConverter</li>
-<li>TimeSpanSecondsOrInfiniteConverter</li>
-<li>TypeConverter</li>
-<li>TypeNameConverter</li>
-<li>UInt16Converter</li>
-<li>UInt32Converter</li>
-<li>UInt64Converter</li>
-<li>UriTypeConverter</li>
-<li>WhiteSpaceTrimStringConverter</li>
-</ul>
-
-<p><a href="https://github.com/Dashue/Blogging/tree/master/ConfigurationSection_Testable_and_Maintainable">Source for this blog post can be found here</a></p>
-
-<p>Have fun!</p>
-
-	  </div>
-      <a class="readMore" href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/">Read more...</a>
-    </li>
     <li class="fancy-container lightblue">
       <div class="postContent">
 		<h1>
@@ -527,6 +349,35 @@ Assert.AreEqual(4, a);
 	  </div>
       <a class="readMore" href="/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/">Read more...</a>
     </li>
+    <li class="fancy-container lightblue">
+      <div class="postContent">
+		<h1>
+			<a href="/2011/11/daily-refactoring/">Daily refactoring</a> 
+			<span>posted on 22 nov 2011</span>
+		</h1> 
+		
+		<p>#region MyRegion
+        if (!MyHelper.MyBool)
+        {
+            myclass.Method(int, false, string, enum);
+            MyHelper.MyBool = true;
+        }
+        else
+        {
+            myclass.Method(int, true, string, enum);
+        }<br />
+    #endregion<br />
+Is semantically the same as:</p>
+
+<pre><code>myClass.Method(int, MyHelper.MyBool, string, enum);
+MyHelper.MyBool = true;      
+</code></pre>
+
+<p>Tidier and faster : )</p>
+
+	  </div>
+      <a class="readMore" href="/2011/11/daily-refactoring/">Read more...</a>
+    </li>
   </ul> 
 
   <!-- Pagination links -->
@@ -561,7 +412,6 @@ Assert.AreEqual(4, a);
 				<aside id="archives-4" class="widget widget_archive">
                     <h1 class="widget-title"><a href="/archive">Archive</a></h1>
                     <ul class="archive">
-                          <li><a href="/archive#2013november">november, 2013</a></li>
                           <li><a href="/archive#2013oktober">oktober, 2013</a></li>
                           <li><a href="/archive#2012februari">februari, 2012</a></li>
                           <li><a href="/archive#2012januari">januari, 2012</a></li>
