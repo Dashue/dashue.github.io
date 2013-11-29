@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-11-25T20:19:38.0084200-04:00" />
+    <meta http-equiv="last-modified" content="2013-11-29T16:45:35.3974304-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/page2/" />
@@ -40,6 +40,35 @@
                   
 
   <ul class="posts">
+    <li class="fancy-container lightblue">
+      <div class="postContent">
+		<h1>
+			<a href="/2011/11/daily-refactoring/">Daily refactoring</a> 
+			<span>posted on 22 nov 2011</span>
+		</h1> 
+		
+		<p>#region MyRegion
+        if (!MyHelper.MyBool)
+        {
+            myclass.Method(int, false, string, enum);
+            MyHelper.MyBool = true;
+        }
+        else
+        {
+            myclass.Method(int, true, string, enum);
+        }<br />
+    #endregion<br />
+Is semantically the same as:</p>
+
+<pre><code>myClass.Method(int, MyHelper.MyBool, string, enum);
+MyHelper.MyBool = true;      
+</code></pre>
+
+<p>Tidier and faster : )</p>
+
+	  </div>
+      <a class="readMore" href="/2011/11/daily-refactoring/">Read more...</a>
+    </li>
     <li class="fancy-container lightblue">
       <div class="postContent">
 		<h1>
@@ -251,6 +280,7 @@ Console.ReadKey();
 				<aside id="archives-4" class="widget widget_archive">
                     <h1 class="widget-title"><a href="/archive">Archive</a></h1>
                     <ul class="archive">
+                          <li><a href="/archive#2013november">november, 2013</a></li>
                           <li><a href="/archive#2013oktober">oktober, 2013</a></li>
                           <li><a href="/archive#2012februari">februari, 2012</a></li>
                           <li><a href="/archive#2012januari">januari, 2012</a></li>
