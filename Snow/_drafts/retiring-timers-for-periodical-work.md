@@ -1,6 +1,15 @@
 ---
 layout: post
-title: Migrating To Sandra.Snow
-categories: .Net, Opensource
-published: true
+title: Retiring timers for periodical work
+categories: .Net, Rx
+published: draft
 ---
+
+###Solutions
+Timer 
+Rx
+
+
+###No overlaps
+###Stop and Dispose
+###Scheduler
