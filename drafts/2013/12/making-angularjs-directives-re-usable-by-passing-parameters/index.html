@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="last-modified" content="2013-12-05T19:23:21.4585445-04:00" />
+    <title>johanilsson.com</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="canonical" href="http://www.johanilsson.com/drafts/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/" />
+</head>
+<body class="home blog">
+    <div id="page" class="hfeed site">
+        <header id="masthead" class="site-header fancy-container lightgreen" role="banner">
+            <hgroup>
+                <h1 class="site-title"><a href="/" title="Random Ventures" rel="home">Random Ventures</a></h1>
+                <p class="site-description">Software developer residing in the Caribbean</p>
+            </hgroup>
+            <nav role="navigation" class="site-navigation main-navigation">
+                <h1 class="assistive-text">Menu</h1>
+                <div class="assistive-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+                    <div class="textwidget logos">
+                        <a href="https://twitter.com/johanilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"><img src="/stylesheets/images/twitter.png"></a>
+                        <a href="http://stackoverflow.com/users/651787/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://stackoverflow.com']);"><img src="/stylesheets/images/stackoverflow.png"></a>
+                        <a href="http://www.linkedin.com/in/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://www.linkedin.com']);"><img src="/stylesheets/images/linkedin.png"></a>
+                        <a href="https://plus.google.com/101140440944452538537/" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://plus.google.com']);"><img src="/stylesheets/images/googleplus.png"></a>
+                        <a href="https://github.com/dashue" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://github.com']);"><img src="/stylesheets/images/github.png"></a>
+						<a href="https://www.goodreads.com/user/show/18905539-johan-nilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','https://www.goodreads.com/user/show/18905539-johan-nilsson']);"><img src="/stylesheets/images/goodreads.png"></a>
+                    </div>
+				<div class="menu">
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/rss">RSS</a> / <a href="/feed">Atom</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div id="main">
+            <div id="primary" class="site-content">
+                <div id="content" role="main">
+                  
+
+<div id="post">
+    <h1>Making angularjs directives re-usable by &quot;Passing parameters&quot;</h1>
+
+    <div class="post-note">
+      posted on 05 dec 2013
+       | <a href="/category/angularjs">AngularJS</a>
+      
+    </div>
+    
+    
+        
+    <p>To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:</p>
+
+<pre><code>@ : Binds to the value as a string
+= : Binds to a property
+&amp; : Binds to a function that can be called later
+</code></pre>
+
+<p>If binding from and to the same name, the name can be omitted like so:</p>
+
+<pre><code>name: '@name'
+name: '@
+</code></pre>
+
+<p>I've created a menu directive which we will refactor into utilizing all of these binding techniques. The menu have some hard-coded values namely <em>a title, two menu items with a text and a url, and an action that triggers when clicking an item.</em> The example is structured into four components, a view, a controller, a directive and a template. We will only be modifying the view, controller and directive in this example. Starting out they look like the following:</p>
+
+<p><strong>View:</strong></p>
+
+<pre><code>&lt;div ng-controller="AngularMenuCtrl"&gt;
+    &lt;menu /&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><strong>Controller:</strong></p>
+
+<pre><code>module.controller('AngularMenuCtrl', function () {
+});
+</code></pre>
+
+<p><strong>Template:</strong></p>
+
+<pre><code>&lt;div class="menu"&gt;
+    &lt;span&gt;{{title}}&lt;/span&gt;
+    &lt;ul&gt;
+        &lt;li ng-repeat="item in items" 
+            ng-class="{selected: $index==selectedIndex}" 
+            ng-click="Click($index)"&gt;{{item.Text}}&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><strong>Directive:</strong></p>
+
+<pre><code>app.directive("menu", function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/Menu.html',
+        link: function (scope) {
+            scope.title= 'Menu';
+
+            scope.items= [
+                    { Text: 'Item 1', Value: 'Url1' },
+                    { Text: 'Item 2', Value: 'Url2' }
+            ];
+
+            scope.Click = function (index) {
+                scope.selectedIndex = index;
+                alert("Transitioning to " + scope.items[index].Value);
+            };
+         }
+     };
+});
+</code></pre>
+
+<p>Let's start off with having the title be specified in the view by adding an html attribute called <strong>title</strong>.</p>
+
+<pre><code>&lt;menu title="Menu"/&gt;
+</code></pre>
+
+<p>We then remove the title assignment in the link function of our directive. And add the scope object to our directive and bind the title property to the string representation of our html attribute 
+<em>title</em> using the <strong>@</strong> binding. Remember that <strong>since we bind the html attribute 'title' to the directives' scope property 'title', we can omit the name and just use @ instead of @title</strong></p>
+
+<pre><code>app.directive("menu", function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/Menu.html',
+        scope: { title: '@' },
+        link: function (scope) {
+            scope.items= [
+                    { Text: 'Item 1', Value: 'Url1' },
+                    { Text: 'Item 2', Value: 'Url2' }
+            ];
+            scope.Click = function (index) {
+                scope.selectedIndex = index;
+                alert("Transitioning to " + scope.items[index].Value);
+            };
+         }
+     };
+});
+</code></pre>
+
+<p>Since the menu entries will almost always be different, let's go ahead and make them configurable by moving them to our menu controller. That way different menus can have different surrounding menu controllers. We'll do this by introducing a scope property named <em>items</em> and bind our html attribute with the same name to this new property. </p>
+
+<pre><code>&lt;menu title="Menu" items="items"/&gt;
+
+module.controller('AngularMenuCtrl', function ($scope) {
+     $scope.items = [
+           { Text: 'Item 1', Value: 'Url1' },
+           { Text: 'Item 2', Value: 'Url2' }];
+});
+</code></pre>
+
+<p>We then bind this new attribute to our directives' scope using <strong>=</strong>. And also remove the existing hard-coded menu items in the directive.</p>
+
+<pre><code>app.directive("menu", function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/Menu.html',
+        scope: {
+            title: '@',
+            items: '='
+        },
+        link: function (scope) { 
+            scope.Click = function (index) {
+                scope.selectedIndex = index;
+                alert("Transitioning to " + scope.items[index].Value);
+            };
+         }
+     };
+});
+</code></pre>
+
+<p>With two out of three objectives achieved the only thing left in our example is the hard-coded click functionality. For the click functionality we want the selection of the active menu item (and any other core menu functionality) to be re-used and at the same time allow for some custom user specified functionality to be run (in our case: alerting which url we are transitioning to).</p>
+
+<p>Let's take the same approach we took for menu items: We first create an <em>AlertTransition</em> function on the controller scope and move the alert functionality over from the directive:</p>
+
+<pre><code>module.controller('AngularMenuCtrl', function ($scope) {
+
+    $scope.items = [
+           { Text: 'Item 1', Value: 'Url1' },
+           { Text: 'Item 2', Value: 'Url2' }
+    ];
+
+    $scope.AlertTransition = function(index) {
+        alert("Transitioning to " + $scope.items[index].Value);
+    };
+});
+</code></pre>
+
+<p>We then bind this in our view, but note that this time the name of the html attribute and scope property are not the same, showing that they can be different.</p>
+
+<pre><code>&lt;menu title="Menu" items="items" click="AlertTransition(index)"/&gt;
+</code></pre>
+
+<p>We then bind the click html attribute to our directives' scope using the <strong>&amp;</strong> binding. This will pass a reference to a function to our directive that we can then invoke in our menu click function. </p>
+
+<pre><code>   app.directive("menu", function () {
+    return {
+        restrict: 'E',
+        templateUrl: '/Menu.html',
+        scope: {
+            title: '@',
+            items: '=',
+            click: '&amp;'
+        },
+        link: function (scope) {
+            scope.Click = function (index) {
+                scope.selectedIndex = index;
+                scope.click({ index: index });
+            };
+        }
+    };
+});
+</code></pre>
+
+<p>One tricky thing when invoking a function bound using <strong>&amp;</strong>, is that the parameters have to be passed in the form of an object:</p>
+
+<pre><code>{ parameterName: value }
+</code></pre>
+
+<p>And with this last step we have a fully working Menu directive ready for re-use :)<br />
+<a href="https://github.com/Dashue/Blogging/tree/master/Making_angularjs_directives_re_usable_by_passing_parameters">Get the code for this sample</a></p>
+
+
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-****"></script>
+
+</div>
+                </div>
+                <!-- #content -->
+            </div>
+            <!-- #primary .site-content -->
+
+            <div id="secondary" class="widget-area fancy-container lightred" role="complementary">
+                <aside id="archives-4" class="widget widget_archive">
+                    <h1 class="widget-title"><a href="/categories">Categories</a></h1>
+					<ul class="category-list">
+						  <li><a href="/category/.net" title=".Net">.Net</a></li>
+						  <li><a href="/category/opensource" title="Opensource">Opensource</a></li>
+						  <li><a href="/category/software-development" title="Software Development">Software Development</a></li>
+					</ul>
+                </aside>
+				
+				<aside id="archives-4" class="widget widget_archive">
+                    <h1 class="widget-title"><a href="/archive">Archive</a></h1>
+                    <ul class="archive">
+                          <li><a href="/archive#2013november">november, 2013</a></li>
+                          <li><a href="/archive#2013oktober">oktober, 2013</a></li>
+                          <li><a href="/archive#2012februari">februari, 2012</a></li>
+                          <li><a href="/archive#2012januari">januari, 2012</a></li>
+                          <li><a href="/archive#2011december">december, 2011</a></li>
+                          <li><a href="/archive#2011november">november, 2011</a></li>
+                          <li><a href="/archive#2011oktober">oktober, 2011</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <!-- #secondary .widget-area -->
+
+
+        </div>	
+        <!-- #main -->
+
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="site-info">
+                Powered by <a href="https://github.com/Sandra/Sandra.Snow" rel="generator">Sandra.Snow</a>.	
+            </div>
+            <!-- .site-info -->
+        </footer>
+        <!-- #colophon .site-footer -->
+    </div>
+    <!-- #page .hfeed .site -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src='/javascripts/prettify.js' type='text/javascript'></script>
+    <!--script src='http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js' type='text/javascript'></script-->
+    <script type='text/javascript'>
+      $(function () {
+        $("pre code").parent().each(function () {
+          if (!$(this).hasClass("prettyprint")) {
+            $(this).addClass("prettyprint");
+            a = true
+          }
+        });
+
+        prettyPrint();
+      });
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-655975-13']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</body>
+</html>
