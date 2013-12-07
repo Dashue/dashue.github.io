@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-12-05T19:23:21.4585445-04:00" />
+    <meta http-equiv="last-modified" content="2013-12-06T20:51:12.8234327-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
@@ -40,6 +40,86 @@
                   
 
   <ul class="posts">
+    <li class="fancy-container lightblue">
+      <div class="postContent">
+		<h1>
+			<a href="/2013/12/locking-made-easy/">Locking made easy</a> 
+			<span>posted on 06 dec 2013</span>
+		</h1> 
+		
+		<p>With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.</p>
+
+<p>The most common issues I've seen with locking solutions are:</p>
+
+<ul>
+<li>Having a Shared syncroot for multiple non-related data
+<ul>
+<li>Can lead to unnecessary and costly synchronization</li>
+<li>Can lead to deadlocks</li>
+</ul></li>
+<li>Having no visibility where locks are retrieved or set (i.e locks are acquired in multiple locations)
+<ul>
+<li>Leads to hard to read code</li>
+<li>Can lead to deadlocks</li>
+<li>Can lead to unlocked access of data </li>
+</ul></li>
+</ul>
+
+<p>So to remedy this, I came up with a simple piece of base that I call LockBase:</p>
+
+<pre><code>private readonly object _syncRoot;
+
+    public LockBase()
+    {
+        _syncRoot = new object();
+    }
+
+    public void WithLock(Action action)
+    {
+        lock (_syncRoot)
+        {
+            action.Invoke();
+        }
+    }
+
+    public T WithLock&lt;T&gt;(Func&lt;T&gt; action)
+    {
+        lock (_syncRoot)
+        {
+            return action.Invoke();
+        }
+    }
+}
+</code></pre>
+
+<p>I'm mostly using this to build specific caches. Something along the lines of this:</p>
+
+<pre><code>public class MyCache : LockBase
+{
+    private Dictionary&lt;int, string&gt; _cache = new Dictionary&lt;int, string&gt;();
+
+    public string Get(int key)
+    {
+        return WithLock(() =&gt; _cache[key]);
+    }
+
+    public void Set(int key, string value)
+    {
+        WithLock(() =&gt; _cache[key] = value);
+    }
+
+    public bool Contains(int key)
+    {
+        return WithLock(() =&gt; _cache.ContainsKey(key));
+    }
+}
+</code></pre>
+
+<p>Hope it helps</p>
+
+	  </div>
+      <a class="readMore" href="/2013/12/locking-made-easy/">Read more...</a>
+    </li>
     <li class="fancy-container lightblue">
       <div class="postContent">
 		<h1>
@@ -499,34 +579,6 @@ Assert.AreEqual(4, a);
 	  </div>
       <a class="readMore" href="/2012/01/my-take-on-ref/">Read more...</a>
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/">The 4 stages of learning a design pattern</a> 
-			<span>posted on 09 dec 2011</span>
-		</h1> 
-		
-		<h3>Stage 0 - Ignorance</h3>
-
-<p>You used what? Never heard of it.</p>
-
-<h3>Stage 1 - Awakening</h3>
-
-<p>Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.</p>
-
-<h3>Stage 2 - Overzealous</h3>
-
-<p>I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!</p>
-
-<h3>Stage 3 - Mastery</h3>
-
-<p>After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   </p>
-
-<p>Heard on <a href="http://www.dnrtv.com/default.aspx?showNum=194">dnrTV 194 Steve Smith on Commonly Used Design Patterns</a></p>
-
-	  </div>
-      <a class="readMore" href="/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/">Read more...</a>
-    </li>
   </ul> 
 
   <!-- Pagination links -->
@@ -561,6 +613,7 @@ Assert.AreEqual(4, a);
 				<aside id="archives-4" class="widget widget_archive">
                     <h1 class="widget-title"><a href="/archive">Archive</a></h1>
                     <ul class="archive">
+                          <li><a href="/archive#2013december">december, 2013</a></li>
                           <li><a href="/archive#2013november">november, 2013</a></li>
                           <li><a href="/archive#2013oktober">oktober, 2013</a></li>
                           <li><a href="/archive#2012februari">februari, 2012</a></li>

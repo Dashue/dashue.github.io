@@ -6,7 +6,7 @@
     <meta http-equiv="last-modified" content="2013-12-06T20:51:12.8234327-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2013/12/locking-made-easy/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -40,46 +40,85 @@
                   
 
 <div id="post">
-    <h1>Why you'd want to place a shared library in its own solution</h1>
+    <h1>Locking made easy</h1>
 
     <div class="post-note">
-      posted on 18 feb 2012
-       | <a href="/category/software-development">Software Development</a>
+      posted on 06 dec 2013
+       | <a href="/category/.net">.Net</a>
       
     </div>
     
     
         
-    <p>A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.</p>
+    <p>With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.</p>
 
-<p>After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.</p>
-
-<h3>Presumptions</h3>
+<p>The most common issues I've seen with locking solutions are:</p>
 
 <ul>
-<li>We will use internal Nuget feed for the library.</li>
-<li>X could be placed in either A or B or separate library.</li>
+<li>Having a Shared syncroot for multiple non-related data
+<ul>
+<li>Can lead to unnecessary and costly synchronization</li>
+<li>Can lead to deadlocks</li>
+</ul></li>
+<li>Having no visibility where locks are retrieved or set (i.e locks are acquired in multiple locations)
+<ul>
+<li>Leads to hard to read code</li>
+<li>Can lead to deadlocks</li>
+<li>Can lead to unlocked access of data </li>
+</ul></li>
 </ul>
 
-<h3>Consuming the Library</h3>
+<p>So to remedy this, I came up with a simple piece of base that I call LockBase:</p>
 
-<p>Placing it in its own solution forces all projects consume it the same way, otherwise some projects would use nuget and one could use project reference. </p>
+<pre><code>private readonly object _syncRoot;
 
-<h3>Future Changes</h3>
+    public LockBase()
+    {
+        _syncRoot = new object();
+    }
 
-<p>If placed in A it would be easy to change according to requirement or quick fix for A and not think about B or any future consumers. Placing it in its own solution forces it to behave more like an independent library and less like a project reference. It makes more sense to open the solution for the library when change is needed than to open an unrelated solution containing the library.</p>
+    public void WithLock(Action action)
+    {
+        lock (_syncRoot)
+        {
+            action.Invoke();
+        }
+    }
 
-<h3>Unrelated Functionality</h3>
+    public T WithLock&lt;T&gt;(Func&lt;T&gt; action)
+    {
+        lock (_syncRoot)
+        {
+            return action.Invoke();
+        }
+    }
+}
+</code></pre>
 
-<p>Since the functionality is general and not related to neither A nor B, placing it in the same solution just because it's consumed by them is not a valid argument.</p>
+<p>I'm mostly using this to build specific caches. Something along the lines of this:</p>
 
-<h3>Versioning</h3>
+<pre><code>public class MyCache : LockBase
+{
+    private Dictionary&lt;int, string&gt; _cache = new Dictionary&lt;int, string&gt;();
 
-<p>The library has different release/deploy cycles than the consumers and using Nuget allows for choosing what version and if/when to upgrade. Different consumers can easily consume different versions of the library. </p>
+    public string Get(int key)
+    {
+        return WithLock(() =&gt; _cache[key]);
+    }
 
-<h3>YAGNI</h3>
+    public void Set(int key, string value)
+    {
+        WithLock(() =&gt; _cache[key] = value);
+    }
 
-<p>YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.</p>
+    public bool Contains(int key)
+    {
+        return WithLock(() =&gt; _cache.ContainsKey(key));
+    }
+}
+</code></pre>
+
+<p>Hope it helps</p>
 
 
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-****"></script>

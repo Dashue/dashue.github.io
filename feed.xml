@@ -1,4 +1,142 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/</guid><link>http://www.johanilsson.com/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/</link><title>ConfigurationSection "A testable, dependable configuration solution"</title><description>&lt;p&gt;I wanted to share a way of handling application configuration that have helped me alot. It leverages &lt;a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx"&gt;ConfigurationSection&lt;/a&gt; and gives you the possiblility to test-drive your application settings. Let's jump in!&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/12/locking-made-easy/</guid><link>http://www.johanilsson.com/2013/12/locking-made-easy/</link><title>Locking made easy</title><description>&lt;p&gt;With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.&lt;/p&gt;
+
+&lt;p&gt;The most common issues I've seen with locking solutions are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Having a Shared syncroot for multiple non-related data
+&lt;ul&gt;
+&lt;li&gt;Can lead to unnecessary and costly synchronization&lt;/li&gt;
+&lt;li&gt;Can lead to deadlocks&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Having no visibility where locks are retrieved or set (i.e locks are acquired in multiple locations)
+&lt;ul&gt;
+&lt;li&gt;Leads to hard to read code&lt;/li&gt;
+&lt;li&gt;Can lead to deadlocks&lt;/li&gt;
+&lt;li&gt;Can lead to unlocked access of data &lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So to remedy this, I came up with a simple piece of base that I call LockBase:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;private readonly object _syncRoot;
+
+    public LockBase()
+    {
+        _syncRoot = new object();
+    }
+
+    public void WithLock(Action action)
+    {
+        lock (_syncRoot)
+        {
+            action.Invoke();
+        }
+    }
+
+    public T WithLock&amp;lt;T&amp;gt;(Func&amp;lt;T&amp;gt; action)
+    {
+        lock (_syncRoot)
+        {
+            return action.Invoke();
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm mostly using this to build specific caches. Something along the lines of this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class MyCache : LockBase
+{
+    private Dictionary&amp;lt;int, string&amp;gt; _cache = new Dictionary&amp;lt;int, string&amp;gt;();
+
+    public string Get(int key)
+    {
+        return WithLock(() =&amp;gt; _cache[key]);
+    }
+
+    public void Set(int key, string value)
+    {
+        WithLock(() =&amp;gt; _cache[key] = value);
+    }
+
+    public bool Contains(int key)
+    {
+        return WithLock(() =&amp;gt; _cache.ContainsKey(key));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hope it helps&lt;/p&gt;
+</description><pubDate>Fri, 06 Dec 2013 04:00:00 Z</pubDate><a10:updated>2013-12-06T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.&lt;/p&gt;
+
+&lt;p&gt;The most common issues I've seen with locking solutions are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Having a Shared syncroot for multiple non-related data
+&lt;ul&gt;
+&lt;li&gt;Can lead to unnecessary and costly synchronization&lt;/li&gt;
+&lt;li&gt;Can lead to deadlocks&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Having no visibility where locks are retrieved or set (i.e locks are acquired in multiple locations)
+&lt;ul&gt;
+&lt;li&gt;Leads to hard to read code&lt;/li&gt;
+&lt;li&gt;Can lead to deadlocks&lt;/li&gt;
+&lt;li&gt;Can lead to unlocked access of data &lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So to remedy this, I came up with a simple piece of base that I call LockBase:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;private readonly object _syncRoot;
+
+    public LockBase()
+    {
+        _syncRoot = new object();
+    }
+
+    public void WithLock(Action action)
+    {
+        lock (_syncRoot)
+        {
+            action.Invoke();
+        }
+    }
+
+    public T WithLock&amp;lt;T&amp;gt;(Func&amp;lt;T&amp;gt; action)
+    {
+        lock (_syncRoot)
+        {
+            return action.Invoke();
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I'm mostly using this to build specific caches. Something along the lines of this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class MyCache : LockBase
+{
+    private Dictionary&amp;lt;int, string&amp;gt; _cache = new Dictionary&amp;lt;int, string&amp;gt;();
+
+    public string Get(int key)
+    {
+        return WithLock(() =&amp;gt; _cache[key]);
+    }
+
+    public void Set(int key, string value)
+    {
+        WithLock(() =&amp;gt; _cache[key] = value);
+    }
+
+    public bool Contains(int key)
+    {
+        return WithLock(() =&amp;gt; _cache.ContainsKey(key));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hope it helps&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/</guid><link>http://www.johanilsson.com/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/</link><title>ConfigurationSection "A testable, dependable configuration solution"</title><description>&lt;p&gt;I wanted to share a way of handling application configuration that have helped me alot. It leverages &lt;a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx"&gt;ConfigurationSection&lt;/a&gt; and gives you the possiblility to test-drive your application settings. Let's jump in!&lt;/p&gt;
 
 &lt;h2&gt;The basic scenario&lt;/h2&gt;
 
@@ -718,38 +856,4 @@ Assert.AreEqual(4, a);
 &lt;blockquote&gt;
   &lt;p&gt;Although there are valid cases when the right solution is to use Ref and Out, from my experince I say you rarely need to use Out, and you need a really good reason for using Ref.&lt;/p&gt;
 &lt;/blockquote&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</guid><link>http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</link><title>The 4 stages of learning a design pattern</title><description>&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
-
-&lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
-
-&lt;h3&gt;Stage 1 - Awakening&lt;/h3&gt;
-
-&lt;p&gt;Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.&lt;/p&gt;
-
-&lt;h3&gt;Stage 2 - Overzealous&lt;/h3&gt;
-
-&lt;p&gt;I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!&lt;/p&gt;
-
-&lt;h3&gt;Stage 3 - Mastery&lt;/h3&gt;
-
-&lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
-
-&lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Fri, 09 Dec 2011 04:00:00 Z</pubDate><a10:updated>2011-12-09T04:00:00Z</a10:updated><a10:content type="text">&lt;h3&gt;Stage 0 - Ignorance&lt;/h3&gt;
-
-&lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
-
-&lt;h3&gt;Stage 1 - Awakening&lt;/h3&gt;
-
-&lt;p&gt;Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.&lt;/p&gt;
-
-&lt;h3&gt;Stage 2 - Overzealous&lt;/h3&gt;
-
-&lt;p&gt;I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!&lt;/p&gt;
-
-&lt;h3&gt;Stage 3 - Mastery&lt;/h3&gt;
-
-&lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
-
-&lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
 </a10:content></item></channel></rss>
