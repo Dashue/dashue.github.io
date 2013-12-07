@@ -5,19 +5,16 @@
 }
 
 <h1>Archives</h1>
+<div class="fancy-container lightblue">
+	@foreach(var year in Model.PostsGroupedByYearThenMonth)
+	{
 
-
-@foreach(var year in Model.PostsGroupedByYearThenMonth)
-{
-  @foreach(var month in year.Value)
-  {
-    <a id="@year.Key@Model.GetMonth(month.Key)"></a>
-    <h2>@Model.GetMonth(@month.Key), @year.Key</h2>
-    <ul class="archive fancy-container darkishred">
-    @foreach(var post in month.Value)
-    {
-      <li><a href="@post.Url">@post.Title</a> (<span>@post.Date.ToString("dd MMM yyyy")</span>)</li>
-    }
-    </ul>
-  }
-}
+		  @foreach(var month in year.Value)
+		  {
+			@foreach(var post in month.Value)
+			{
+			  <li><a href="@post.Url">@post.Title</a> (<span>@post.Date.ToString("dd MMM yyyy")</span>)</li>
+			}
+		  }
+	}
+</div>
