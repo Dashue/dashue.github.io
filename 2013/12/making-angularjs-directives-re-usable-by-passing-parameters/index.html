@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-12-06T21:45:43.4084995-04:00" />
+    <meta http-equiv="last-modified" content="2013-12-17T18:14:37.0315326-04:00" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/drafts/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -45,7 +45,7 @@
     <h1>Making angularjs directives re-usable by &quot;Passing parameters&quot;</h1>
 
     <div class="post-note">
-      posted on 05 dec 2013
+      posted on 17 dec 2013
        | <a href="/category/angularjs">AngularJS</a>
       
     </div>
@@ -65,7 +65,7 @@
 name: '@
 </code></pre>
 
-<p>I've created a menu directive which we will refactor into utilizing all of these binding techniques. The menu have some hard-coded values namely <em>a title, two menu items with a text and a url, and an action that triggers when clicking an item.</em> The example is structured into four components, a view, a controller, a directive and a template. We will only be modifying the view, controller and directive in this example. Starting out they look like the following:</p>
+<p>I've created a menu directive which we will refactor into utilizing all of these binding techniques. The menu has some hard-coded values namely <em>a title, two menu items with a text and a url, and an action that triggers when clicking an item.</em> The example is structured into four components, a view, a controller, a directive and a template. We will only be modifying the view, controller and directive in this example. Starting out they look like the following:</p>
 
 <p><strong>View:</strong></p>
 
@@ -176,7 +176,7 @@ module.controller('AngularMenuCtrl', function ($scope) {
 
 <p>With two out of three objectives achieved the only thing left in our example is the hard-coded click functionality. For the click functionality we want the selection of the active menu item (and any other core menu functionality) to be re-used and at the same time allow for some custom user specified functionality to be run (in our case: alerting which url we are transitioning to).</p>
 
-<p>Let's take the same approach we took for menu items: We first create an <em>AlertTransition</em> function on the controller scope and move the alert functionality over from the directive:</p>
+<p>Let's take the same approach we took for our menu items: We first create an <em>AlertTransition</em> function on the controller scope and move the alert functionality over from the directive:</p>
 
 <pre><code>module.controller('AngularMenuCtrl', function ($scope) {
 
@@ -246,6 +246,7 @@ module.controller('AngularMenuCtrl', function ($scope) {
 							<h1 class="widget-title"><a href="/categories">Categories</a></h1>
 							<ul class="category-list">
 								  <li><a href="/category/.net" title=".Net">.Net [11]</a></li>
+								  <li><a href="/category/angularjs" title="AngularJS">AngularJS [1]</a></li>
 								  <li><a href="/category/opensource" title="Opensource">Opensource [2]</a></li>
 								  <li><a href="/category/software-development" title="Software Development">Software Development [6]</a></li>
 							</ul>
@@ -253,7 +254,7 @@ module.controller('AngularMenuCtrl', function ($scope) {
 						<aside id="archives-4" class="widget widget_archive">
 							<h1 class="widget-title"><a href="/archive">Archive</a></h1>
 							<ul class="archive">
-								  <li><a href="/archive#2013december">december, 2013 [1]</a></li>
+								  <li><a href="/archive#2013december">december, 2013 [2]</a></li>
 								  <li><a href="/archive#2013november">november, 2013 [1]</a></li>
 								  <li><a href="/archive#2013oktober">oktober, 2013 [1]</a></li>
 								  <li><a href="/archive#2012februari">februari, 2012 [2]</a></li>

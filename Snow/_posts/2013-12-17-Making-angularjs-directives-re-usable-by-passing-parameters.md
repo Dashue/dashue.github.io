@@ -2,7 +2,7 @@
 layout: post
 title: Making angularjs directives re-usable by "Passing parameters"
 categories: AngularJS
-published: draft
+published: true
 ---
 To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:
     
@@ -15,7 +15,7 @@ If binding from and to the same name, the name can be omitted like so:
     name: '@name'
     name: '@
 
-I've created a menu directive which we will refactor into utilizing all of these binding techniques. The menu have some hard-coded values namely *a title, two menu items with a text and a url, and an action that triggers when clicking an item.* The example is structured into four components, a view, a controller, a directive and a template. We will only be modifying the view, controller and directive in this example. Starting out they look like the following:
+I've created a menu directive which we will refactor into utilizing all of these binding techniques. The menu has some hard-coded values namely *a title, two menu items with a text and a url, and an action that triggers when clicking an item.* The example is structured into four components, a view, a controller, a directive and a template. We will only be modifying the view, controller and directive in this example. Starting out they look like the following:
 
 **View:**
 
@@ -118,7 +118,7 @@ We then bind this new attribute to our directives' scope using **=**. And also r
 
 With two out of three objectives achieved the only thing left in our example is the hard-coded click functionality. For the click functionality we want the selection of the active menu item (and any other core menu functionality) to be re-used and at the same time allow for some custom user specified functionality to be run (in our case: alerting which url we are transitioning to).
 
-Let's take the same approach we took for menu items: We first create an *AlertTransition* function on the controller scope and move the alert functionality over from the directive:
+Let's take the same approach we took for our menu items: We first create an *AlertTransition* function on the controller scope and move the alert functionality over from the directive:
 
 	module.controller('AngularMenuCtrl', function ($scope) {
     
