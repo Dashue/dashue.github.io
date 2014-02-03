@@ -1,37 +1,35 @@
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2013-12-17T18:14:37.0315326-04:00" />
+    <meta http-equiv="last-modified" content="2014-02-02T22:06:28.7713687-04:00" />
+    <meta name="keywords" content=".Net,AngularJS,Opensource,Software Development" />
     <title>johanilsson.com</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
     <link rel="canonical" href="http://www.johanilsson.com/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
-        <header id="masthead" class="site-header fancy-container lightgreen" role="banner">
+        <header id="masthead" class="site-header" role="banner">
             <hgroup>
-                <h1 class="site-title"><a href="/" title="Random Ventures" rel="home">Random Ventures</a></h1>
-                <p class="site-description">Software developer residing in the Caribbean</p>
+                <h1 class="site-title"><a href="/" title="Random Ventures Into This And That" rel="home">Random Ventures Into This And That</a>
+                    <!-- <p><small>Software developer residing in the carribean</small></p> -->
+                </h1>
             </hgroup>
             <nav role="navigation" class="site-navigation main-navigation">
                 <h1 class="assistive-text">Menu</h1>
                 <div class="assistive-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
-                    <div class="textwidget logos">
-                        <a href="https://twitter.com/johanilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);"><img src="/stylesheets/images/twitter.png"></a>
-                        <a href="http://stackoverflow.com/users/651787/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://stackoverflow.com']);"><img src="/stylesheets/images/stackoverflow.png"></a>
-                        <a href="http://www.linkedin.com/in/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://www.linkedin.com']);"><img src="/stylesheets/images/linkedin.png"></a>
-                        <a href="https://plus.google.com/101140440944452538537/" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://plus.google.com']);"><img src="/stylesheets/images/googleplus.png"></a>
-                        <a href="https://github.com/dashue" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://github.com']);"><img src="/stylesheets/images/github.png"></a>
-						<a href="https://www.goodreads.com/user/show/18905539-johan-nilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','https://www.goodreads.com/user/show/18905539-johan-nilsson']);"><img src="/stylesheets/images/goodreads.png"></a>
-                    </div>
-				<div class="menu">
+                <div class="menu">
                     <ul>
-						<li><a href="/">Home</a></li>
+                        <li><a href="/" class="home"><i class="fa fa-home"></i></a></li>
                         <li><a href="/about">About</a></li>
-						<li><a href="/archive">Archive</a></li>
-                        <li><a href="/rss">RSS</a> / <a href="/feed">Atom</a></li>
+                        <li><a href="/category">Categories</a></li>
+                        <li><a href="/archive">Archive</a></li>
+                        <!-- <li><a href="/rss">RSS</a></li> -->
+                        <li><a href="/feed">Feed</a></li>
                     </ul>
                 </div>
             </nav>
@@ -42,14 +40,16 @@
                   
 
   <ul class="posts">
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/">Making angularjs directives re-usable by &quot;Passing parameters&quot;</a> 
-			<span>posted on 17 dec 2013</span>
-		</h1> 
-		
-		<p>To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:</p>
+    <li class="post">
+      <h1><a href="/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/">Making angularjs directives re-usable by &quot;Passing parameters&quot;</a></h1> 
+      <div class="meta">
+        <p class="posted">17 dec 2013</p>
+        <ul class="categories">
+          <li><a href="/category/AngularJS" title="AngularJS">AngularJS</a></li>
+        </ul>
+      </div>
+      
+      <p>To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:</p>
 
 <pre><code>@ : Binds to the value as a string
 = : Binds to a property
@@ -222,17 +222,19 @@ module.controller('AngularMenuCtrl', function ($scope) {
 <p>And with this last step we have a fully working Menu directive ready for re-use :)<br />
 <a href="https://github.com/Dashue/Blogging/tree/master/Making_angularjs_directives_re_usable_by_passing_parameters">Get the code for this sample</a></p>
 
-	  </div>
-      <a class="readMore" href="/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/">Read more...</a>
+      <!-- <p><a href="/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2013/12/locking-made-easy/">Locking made easy</a> 
-			<span>posted on 06 dec 2013</span>
-		</h1> 
-		
-		<p>With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2013/12/locking-made-easy/">Locking made easy</a></h1> 
+      <div class="meta">
+        <p class="posted">06 dec 2013</p>
+        <ul class="categories">
+          <li><a href="/category/.Net" title=".Net">.Net</a></li>
+        </ul>
+      </div>
+      
+      <p>With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.</p>
 
 <p>The most common issues I've seen with locking solutions are:</p>
 
@@ -302,17 +304,19 @@ module.controller('AngularMenuCtrl', function ($scope) {
 
 <p>Hope it helps</p>
 
-	  </div>
-      <a class="readMore" href="/2013/12/locking-made-easy/">Read more...</a>
+      <!-- <p><a href="/2013/12/locking-made-easy/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/">ConfigurationSection &quot;A testable, dependable configuration solution&quot;</a> 
-			<span>posted on 25 nov 2013</span>
-		</h1> 
-		
-		<p>I wanted to share a way of handling application configuration that have helped me alot. It leverages <a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx">ConfigurationSection</a> and gives you the possiblility to test-drive your application settings. Let's jump in!</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/">ConfigurationSection &quot;A testable, dependable configuration solution&quot;</a></h1> 
+      <div class="meta">
+        <p class="posted">25 nov 2013</p>
+        <ul class="categories">
+          <li><a href="/category/.Net" title=".Net">.Net</a></li>
+        </ul>
+      </div>
+      
+      <p>I wanted to share a way of handling application configuration that have helped me alot. It leverages <a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx">ConfigurationSection</a> and gives you the possiblility to test-drive your application settings. Let's jump in!</p>
 
 <h2>The basic scenario</h2>
 
@@ -480,17 +484,20 @@ public IEnumerable&lt;string&gt; MyStrings
 
 <p>Have fun!</p>
 
-	  </div>
-      <a class="readMore" href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/">Read more...</a>
+      <!-- <p><a href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2013/10/migrating-to-sandra-snow/">Migrating To Sandra.Snow</a> 
-			<span>posted on 21 okt 2013</span>
-		</h1> 
-		
-		<p>Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2013/10/migrating-to-sandra-snow/">Migrating To Sandra.Snow</a></h1> 
+      <div class="meta">
+        <p class="posted">21 okt 2013</p>
+        <ul class="categories">
+          <li><a href="/category/.Net" title=".Net">.Net</a></li>
+          <li><a href="/category/Opensource" title="Opensource">Opensource</a></li>
+        </ul>
+      </div>
+      
+      <p>Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!</p>
 
 <p>First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:</p>
 
@@ -501,17 +508,19 @@ public IEnumerable&lt;string&gt; MyStrings
 <a href="https://github.com/Sandra/Sandra.Snow">Fork from here</a><br />
 <a href="https://jabbr.net/#/rooms/SandraSnow">Questions goes here</a></p>
 
-	  </div>
-      <a class="readMore" href="/2013/10/migrating-to-sandra-snow/">Read more...</a>
+      <!-- <p><a href="/2013/10/migrating-to-sandra-snow/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2012/02/a-few-caveats-when-using-strings-in-net/">A few caveats when using Strings in .Net</a> 
-			<span>posted on 23 feb 2012</span>
-		</h1> 
-		
-		<p>Strings in .Net are class objects and unlike value types they are stored on the heap.</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2012/02/a-few-caveats-when-using-strings-in-net/">A few caveats when using Strings in .Net</a></h1> 
+      <div class="meta">
+        <p class="posted">23 feb 2012</p>
+        <ul class="categories">
+          <li><a href="/category/.Net" title=".Net">.Net</a></li>
+        </ul>
+      </div>
+      
+      <p>Strings in .Net are class objects and unlike value types they are stored on the heap.</p>
 
 <p>According to msdn: <a href="http://msdn.microsoft.com/en-us/library/ee787088.aspx">http://msdn.microsoft.com/en-us/library/ee787088.aspx</a></p>
 
@@ -529,17 +538,19 @@ public IEnumerable&lt;string&gt; MyStrings
 
 <p>I think it's good to have the knowledge about how things work and why even though it's considered an micro optimization.</p>
 
-	  </div>
-      <a class="readMore" href="/2012/02/a-few-caveats-when-using-strings-in-net/">Read more...</a>
+      <!-- <p><a href="/2012/02/a-few-caveats-when-using-strings-in-net/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/">Why you'd want to place a shared library in its own solution</a> 
-			<span>posted on 18 feb 2012</span>
-		</h1> 
-		
-		<p>A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/">Why you'd want to place a shared library in its own solution</a></h1> 
+      <div class="meta">
+        <p class="posted">18 feb 2012</p>
+        <ul class="categories">
+          <li><a href="/category/Software Development" title="Software Development">Software Development</a></li>
+        </ul>
+      </div>
+      
+      <p>A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.</p>
 
 <p>After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.</p>
 
@@ -570,17 +581,20 @@ public IEnumerable&lt;string&gt; MyStrings
 
 <p>YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.</p>
 
-	  </div>
-      <a class="readMore" href="/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/">Read more...</a>
+      <!-- <p><a href="/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/">PhotoUtil v1.0.0.1 aka Speeding up a c# project</a> 
-			<span>posted on 25 jan 2012</span>
-		</h1> 
-		
-		<p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
+    <hr/>
+    <li class="post">
+      <h1><a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/">PhotoUtil v1.0.0.1 aka Speeding up a c# project</a></h1> 
+      <div class="meta">
+        <p class="posted">25 jan 2012</p>
+        <ul class="categories">
+          <li><a href="/category/.Net" title=".Net">.Net</a></li>
+          <li><a href="/category/Opensource" title="Opensource">Opensource</a></li>
+        </ul>
+      </div>
+      
+      <p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.</p>
 
 <p>Following is a short recap of that procedure.</p>
@@ -616,33 +630,37 @@ After optimizations:    00:00:11:4034511
 Using ExifLib:          00:00:01.0714248
 </code></pre>
 
-	  </div>
-      <a class="readMore" href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/">Read more...</a>
+      <!-- <p><a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2012/01/code-that-is-hard-to-be-covered-by-tests-is/">Hard tested code</a> 
-			<span>posted on 14 jan 2012</span>
-		</h1> 
-		
-		<p>Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2012/01/code-that-is-hard-to-be-covered-by-tests-is/">Hard tested code</a></h1> 
+      <div class="meta">
+        <p class="posted">14 jan 2012</p>
+        <ul class="categories">
+          <li><a href="/category/Software Development" title="Software Development">Software Development</a></li>
+        </ul>
+      </div>
+      
+      <p>Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.</p>
 
 <p>Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.</p>
 
 <p><a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests">http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests</a></p>
 
-	  </div>
-      <a class="readMore" href="/2012/01/code-that-is-hard-to-be-covered-by-tests-is/">Read more...</a>
+      <!-- <p><a href="/2012/01/code-that-is-hard-to-be-covered-by-tests-is/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2012/01/review-tfs-11-the-things-i-look-forward-to/">Review TFS 11: The things I look forward to</a> 
-			<span>posted on 13 jan 2012</span>
-		</h1> 
-		
-		<p>With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2012/01/review-tfs-11-the-things-i-look-forward-to/">Review TFS 11: The things I look forward to</a></h1> 
+      <div class="meta">
+        <p class="posted">13 jan 2012</p>
+        <ul class="categories">
+          <li><a href="/category/Software Development" title="Software Development">Software Development</a></li>
+        </ul>
+      </div>
+      
+      <p>With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.</p>
 
 <h3>Automerge content changes (finally)</h3>
 
@@ -698,17 +716,19 @@ Using ExifLib:          00:00:01.0714248
 
 <p>Reference: <a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T">Developer collaboration with Team Foundation Server 11</a></p>
 
-	  </div>
-      <a class="readMore" href="/2012/01/review-tfs-11-the-things-i-look-forward-to/">Read more...</a>
+      <!-- <p><a href="/2012/01/review-tfs-11-the-things-i-look-forward-to/">Read more...</a></p> -->
     </li>
-    <li class="fancy-container lightblue">
-      <div class="postContent">
-		<h1>
-			<a href="/2012/01/enumerable-zip/">Enumerable.Zip</a> 
-			<span>posted on 12 jan 2012</span>
-		</h1> 
-		
-		<p>I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.</p>
+    <hr/>
+    <li class="post">
+      <h1><a href="/2012/01/enumerable-zip/">Enumerable.Zip</a></h1> 
+      <div class="meta">
+        <p class="posted">12 jan 2012</p>
+        <ul class="categories">
+          <li><a href="/category/.Net" title=".Net">.Net</a></li>
+        </ul>
+      </div>
+      
+      <p>I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.</p>
 
 <p>Signature is as follows:</p>
 
@@ -724,9 +744,9 @@ I've seen examples which print the greater number from two list of ints, which c
 <p>I have as of yet found a good real world example, and am incapable of thinking one up.<br />
 Anyone out there who have made good use of this added functionality?</p>
 
-	  </div>
-      <a class="readMore" href="/2012/01/enumerable-zip/">Read more...</a>
+      <!-- <p><a href="/2012/01/enumerable-zip/">Read more...</a></p> -->
     </li>
+    <hr/>
   </ul> 
 
   <!-- Pagination links -->
@@ -743,72 +763,63 @@ Anyone out there who have made good use of this added functionality?</p>
   </div>
 
 
-                </div>
-                <!-- #content -->
-            </div>
-            <!-- #primary .site-content -->
+              </div>
+              <!-- #content -->
+          </div>
+          <!-- #primary .site-content -->
+      </div>
+      <!-- #main -->
 
-			<div id="secondary" class="widget-area" role="complementary">
-				<div class="site-info">
-					Powered by <a href="https://github.com/Sandra/Sandra.Snow" rel="generator">Sandra.Snow</a>
-				</div>
-			</div>
-			
-			<!-- 
-				<div id="secondary" class="widget-area fancy-container" role="complementary">
-				<aside id="archives-4" class="widget widget_archive">
-							<h1 class="widget-title"><a href="/categories">Categories</a></h1>
-							<ul class="category-list">
-								  <li><a href="/category/.net" title=".Net">.Net [11]</a></li>
-								  <li><a href="/category/angularjs" title="AngularJS">AngularJS [1]</a></li>
-								  <li><a href="/category/opensource" title="Opensource">Opensource [2]</a></li>
-								  <li><a href="/category/software-development" title="Software Development">Software Development [6]</a></li>
-							</ul>
-						</aside>
-						<aside id="archives-4" class="widget widget_archive">
-							<h1 class="widget-title"><a href="/archive">Archive</a></h1>
-							<ul class="archive">
-								  <li><a href="/archive#2013december">december, 2013 [2]</a></li>
-								  <li><a href="/archive#2013november">november, 2013 [1]</a></li>
-								  <li><a href="/archive#2013oktober">oktober, 2013 [1]</a></li>
-								  <li><a href="/archive#2012februari">februari, 2012 [2]</a></li>
-								  <li><a href="/archive#2012januari">januari, 2012 [5]</a></li>
-								  <li><a href="/archive#2011december">december, 2011 [1]</a></li>
-								  <li><a href="/archive#2011november">november, 2011 [3]</a></li>
-								  <li><a href="/archive#2011oktober">oktober, 2011 [2]</a></li>
-							</ul>
-						</aside>
-				</div>
-			-->
+      <footer class="site-footer" role="contentinfo">
+        <a href="https://github.com/dashue" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://github.com']);">GitHub</a>
+        -
+        <a href="https://www.goodreads.com/user/show/18905539-johan-nilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','https://www.goodreads.com/user/show/18905539-johan-nilsson']);">Goodreads</a>
+        -
+        <a href="https://plus.google.com/101140440944452538537/" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://plus.google.com']);">Google Plus</a>
+        -
+        <a href="http://www.linkedin.com/in/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://www.linkedin.com']);">LinkedIn</a>
+        -
+        <a href="http://stackoverflow.com/users/651787/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://stackoverflow.com']);">Stack Overflow</a>
+        -
+        <a href="https://twitter.com/johanilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);">Twitter</a>
+        <div class="site-info">
+            Powered by <a href="https://github.com/Sandra/Sandra.Snow" rel="generator">Sandra.Snow</a>.	
+        </div>
+        <!-- .site-info -->
+    </footer>
+    <!-- #colophon .site-footer -->
+</div>
+<!-- #page .hfeed .site -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='/javascripts/prettify.js' type='text/javascript'></script>
 
-        </div>	
-        <!-- #colophon .site-footer -->
-    </div>
-    <!-- #page .hfeed .site -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src='/javascripts/prettify.js' type='text/javascript'></script>
-    <!--script src='http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js' type='text/javascript'></script-->
-    <script type='text/javascript'>
-      $(function () {
-        $("pre code").parent().each(function () {
-          if (!$(this).hasClass("prettyprint")) {
-            $(this).addClass("prettyprint");
-            a = true
-          }
-        });
+<script type="text/javascript">
+var _gaq = _gaq || [];
 
-        prettyPrint();
-      });
+_gaq.push(['_setAccount', 'UA-655975-13']);
+_gaq.push(['_trackPageview']);
+        
+(function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
+</script>
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-655975-13']);
-      _gaq.push(['_trackPageview']);
+<script type='text/javascript'>
+  $(function () {
+    $("pre code").parent().each(function () {
+      if (!$(this).hasClass("prettyprint")) {
+        $(this).addClass("prettyprint");
+        a = true
+    }
+});
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+    prettyPrint();
+});
+</script>
 </body>
 </html>
