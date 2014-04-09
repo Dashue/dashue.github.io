@@ -1,4 +1,126 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/</guid><link>http://www.johanilsson.com/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/</link><title>Making angularjs directives re-usable by "Passing parameters"</title><description>&lt;p&gt;To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;h4&gt;Background&lt;/h4&gt;
+
+&lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
+Messages can be passed between controllers with ease.
+There is currently two ways of passing messages: &lt;strong&gt;Broadcast&lt;/strong&gt; and &lt;strong&gt;Emit&lt;/strong&gt;.
+The difference between them is the direction the message takes in the scope hierarchy.&lt;/p&gt;
+
+&lt;h4&gt;Using BroadCast&lt;/h4&gt;
+
+&lt;p&gt;By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$scope.$on("EventName", function(event, data){});
+$rootScope.$broadcast("EventName", data);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Using Emit&lt;/h4&gt;
+
+&lt;p&gt;By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$rootScope.$$on("EventName", function(event, data){});
+$rootScope.$emit("EventName", data);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Example Using Emit&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;script src="http://code.angularjs.org/1.2.15/angular.js"&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body ng-app="MessageBusApp"&amp;gt;
+    &amp;lt;div ng-controller="MainCtrl"&amp;gt;
+        Name: &amp;lt;span&amp;gt;{{ConfiguredName}}&amp;lt;/span&amp;gt;
+        &amp;lt;br/&amp;gt;
+
+        &amp;lt;div ng-controller="ChildCtrl"&amp;gt;
+            Set Name: &amp;lt;input type="text" ng-model="Name"/&amp;gt; &amp;lt;button ng-click="Go(Name)"&amp;gt;Go!&amp;lt;/button&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;script type="text/javascript"&amp;gt;
+    angular.module("MessageBusApp", [])
+        .controller("MainCtrl", function ($rootScope, $scope) {
+            $rootScope.$on('SayHello', function (event, name) {
+                $scope.ConfiguredName=name;
+            });
+        })
+        .controller("ChildCtrl", function ($rootScope, $scope) {
+            $scope.Go = function (name) {
+                $rootScope.$emit('SayHello', name);
+            }
+        });
+    &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;Since a flat EventBus is faster than potential propagation through child scopes, &lt;strong&gt;Emit is the recommended way&lt;/strong&gt;.&lt;/p&gt;
+</description><pubDate>Wed, 09 Apr 2014 04:00:00 Z</pubDate><a10:updated>2014-04-09T04:00:00Z</a10:updated><a10:content type="text">&lt;h4&gt;Background&lt;/h4&gt;
+
+&lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
+Messages can be passed between controllers with ease.
+There is currently two ways of passing messages: &lt;strong&gt;Broadcast&lt;/strong&gt; and &lt;strong&gt;Emit&lt;/strong&gt;.
+The difference between them is the direction the message takes in the scope hierarchy.&lt;/p&gt;
+
+&lt;h4&gt;Using BroadCast&lt;/h4&gt;
+
+&lt;p&gt;By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$scope.$on("EventName", function(event, data){});
+$rootScope.$broadcast("EventName", data);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Using Emit&lt;/h4&gt;
+
+&lt;p&gt;By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$rootScope.$$on("EventName", function(event, data){});
+$rootScope.$emit("EventName", data);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Example Using Emit&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;script src="http://code.angularjs.org/1.2.15/angular.js"&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body ng-app="MessageBusApp"&amp;gt;
+    &amp;lt;div ng-controller="MainCtrl"&amp;gt;
+        Name: &amp;lt;span&amp;gt;{{ConfiguredName}}&amp;lt;/span&amp;gt;
+        &amp;lt;br/&amp;gt;
+
+        &amp;lt;div ng-controller="ChildCtrl"&amp;gt;
+            Set Name: &amp;lt;input type="text" ng-model="Name"/&amp;gt; &amp;lt;button ng-click="Go(Name)"&amp;gt;Go!&amp;lt;/button&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;script type="text/javascript"&amp;gt;
+    angular.module("MessageBusApp", [])
+        .controller("MainCtrl", function ($rootScope, $scope) {
+            $rootScope.$on('SayHello', function (event, name) {
+                $scope.ConfiguredName=name;
+            });
+        })
+        .controller("ChildCtrl", function ($rootScope, $scope) {
+            $scope.Go = function (name) {
+                $rootScope.$emit('SayHello', name);
+            }
+        });
+    &amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;Since a flat EventBus is faster than potential propagation through child scopes, &lt;strong&gt;Emit is the recommended way&lt;/strong&gt;.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/</guid><link>http://www.johanilsson.com/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/</link><title>Making angularjs directives re-usable by "Passing parameters"</title><description>&lt;p&gt;To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;@ : Binds to the value as a string
 = : Binds to a property
@@ -1118,34 +1240,4 @@ Using ExifLib:          00:00:01.0714248
 &lt;p&gt;I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.&lt;/p&gt;
 
 &lt;p&gt;Reference: &lt;a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T"&gt;Developer collaboration with Team Foundation Server 11&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/enumerable-zip/</guid><link>http://www.johanilsson.com/2012/01/enumerable-zip/</link><title>Enumerable.Zip</title><description>&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
-
-&lt;p&gt;Signature is as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static IEnumerable&amp;lt;TResult&amp;gt; Zip&amp;lt;TFirst, TSecond, TResult&amp;gt;(
-    this IEnumerable&amp;lt;TFirst&amp;gt; first,
-    IEnumerable&amp;lt;TSecond&amp;gt; second,
-    Func&amp;lt;TFirst, TSecond, TResult&amp;gt; func);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Much like a zipper it "zips" together two IEnumerables applying a specified function over each pair of elements.
-I've seen examples which print the greater number from two list of ints, which constructs addresses from four lists of city/street/number/flatnumber and one that prints name and age from name/age lists.&lt;/p&gt;
-
-&lt;p&gt;I have as of yet found a good real world example, and am incapable of thinking one up.&lt;br /&gt;
-Anyone out there who have made good use of this added functionality?&lt;/p&gt;
-</description><pubDate>Thu, 12 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-12T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
-
-&lt;p&gt;Signature is as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static IEnumerable&amp;lt;TResult&amp;gt; Zip&amp;lt;TFirst, TSecond, TResult&amp;gt;(
-    this IEnumerable&amp;lt;TFirst&amp;gt; first,
-    IEnumerable&amp;lt;TSecond&amp;gt; second,
-    Func&amp;lt;TFirst, TSecond, TResult&amp;gt; func);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Much like a zipper it "zips" together two IEnumerables applying a specified function over each pair of elements.
-I've seen examples which print the greater number from two list of ints, which constructs addresses from four lists of city/street/number/flatnumber and one that prints name and age from name/age lists.&lt;/p&gt;
-
-&lt;p&gt;I have as of yet found a good real world example, and am incapable of thinking one up.&lt;br /&gt;
-Anyone out there who have made good use of this added functionality?&lt;/p&gt;
 </a10:content></item></channel></rss>

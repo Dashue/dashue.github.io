@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-03-07T19:04:22.4411292-04:00" />
-    <meta name="keywords" content=".Net,AngularJS,Opensource,Software Development" />
+    <meta http-equiv="last-modified" content="2014-04-09T19:22:53.9815718-04:00" />
+    <meta name="keywords" content=".Net,AngularJs,Javascript,Opensource,Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
@@ -49,11 +49,87 @@
 
   <ul class="posts">
     <li class="post">
+      <h1><a href="/2014/04/angularjs-eventbus/">AngularJs EventBus</a></h1> 
+      <div class="meta">
+        <p class="posted">09 apr 2014</p>
+        <ul class="categories">
+          <li><a href="/category/Javascript" title="Javascript">Javascript</a></li>
+          <li><a href="/category/AngularJs" title="AngularJs">AngularJs</a></li>
+        </ul>
+      </div>
+      
+      <h4>Background</h4>
+
+<p>A hidden little gem of angularjs is its bultin <em>EventBus</em> functionality.
+Messages can be passed between controllers with ease.
+There is currently two ways of passing messages: <strong>Broadcast</strong> and <strong>Emit</strong>.
+The difference between them is the direction the message takes in the scope hierarchy.</p>
+
+<h4>Using BroadCast</h4>
+
+<p>By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.</p>
+
+<pre><code>$scope.$on("EventName", function(event, data){});
+$rootScope.$broadcast("EventName", data);
+</code></pre>
+
+<h4>Using Emit</h4>
+
+<p>By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.</p>
+
+<pre><code>$rootScope.$$on("EventName", function(event, data){});
+$rootScope.$emit("EventName", data);
+</code></pre>
+
+<h4>Example Using Emit</h4>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script src="http://code.angularjs.org/1.2.15/angular.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body ng-app="MessageBusApp"&gt;
+    &lt;div ng-controller="MainCtrl"&gt;
+        Name: &lt;span&gt;{{ConfiguredName}}&lt;/span&gt;
+        &lt;br/&gt;
+
+        &lt;div ng-controller="ChildCtrl"&gt;
+            Set Name: &lt;input type="text" ng-model="Name"/&gt; &lt;button ng-click="Go(Name)"&gt;Go!&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript"&gt;
+    angular.module("MessageBusApp", [])
+        .controller("MainCtrl", function ($rootScope, $scope) {
+            $rootScope.$on('SayHello', function (event, name) {
+                $scope.ConfiguredName=name;
+            });
+        })
+        .controller("ChildCtrl", function ($rootScope, $scope) {
+            $scope.Go = function (name) {
+                $rootScope.$emit('SayHello', name);
+            }
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4>Conclusion</h4>
+
+<p>Since a flat EventBus is faster than potential propagation through child scopes, <strong>Emit is the recommended way</strong>.</p>
+
+      <!-- <p><a href="/2014/04/angularjs-eventbus/">Read more...</a></p> -->
+    </li>
+    <hr/>
+    <li class="post">
       <h1><a href="/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/">Making angularjs directives re-usable by &quot;Passing parameters&quot;</a></h1> 
       <div class="meta">
         <p class="posted">17 dec 2013</p>
         <ul class="categories">
-          <li><a href="/category/AngularJS" title="AngularJS">AngularJS</a></li>
+          <li><a href="/category/AngularJs" title="AngularJs">AngularJs</a></li>
+          <li><a href="/category/Javascript" title="Javascript">Javascript</a></li>
         </ul>
       </div>
       
@@ -725,34 +801,6 @@ Using ExifLib:          00:00:01.0714248
 <p>Reference: <a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T">Developer collaboration with Team Foundation Server 11</a></p>
 
       <!-- <p><a href="/2012/01/review-tfs-11-the-things-i-look-forward-to/">Read more...</a></p> -->
-    </li>
-    <hr/>
-    <li class="post">
-      <h1><a href="/2012/01/enumerable-zip/">Enumerable.Zip</a></h1> 
-      <div class="meta">
-        <p class="posted">12 jan 2012</p>
-        <ul class="categories">
-          <li><a href="/category/.Net" title=".Net">.Net</a></li>
-        </ul>
-      </div>
-      
-      <p>I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.</p>
-
-<p>Signature is as follows:</p>
-
-<pre><code>public static IEnumerable&lt;TResult&gt; Zip&lt;TFirst, TSecond, TResult&gt;(
-    this IEnumerable&lt;TFirst&gt; first,
-    IEnumerable&lt;TSecond&gt; second,
-    Func&lt;TFirst, TSecond, TResult&gt; func);
-</code></pre>
-
-<p>Much like a zipper it "zips" together two IEnumerables applying a specified function over each pair of elements.
-I've seen examples which print the greater number from two list of ints, which constructs addresses from four lists of city/street/number/flatnumber and one that prints name and age from name/age lists.</p>
-
-<p>I have as of yet found a good real world example, and am incapable of thinking one up.<br />
-Anyone out there who have made good use of this added functionality?</p>
-
-      <!-- <p><a href="/2012/01/enumerable-zip/">Read more...</a></p> -->
     </li>
     <hr/>
   </ul> 
