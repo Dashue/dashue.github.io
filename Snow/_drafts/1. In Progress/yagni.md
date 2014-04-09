@@ -25,7 +25,9 @@ YAGNI shouldn&#8217;t be used for arguing that You Don&#8217;t Need It Right Now
 _**&#8220;**programmers should not add functionality until it is necessary &#8221;_ or  
 _"Always implement things when you actually need them, never when you just foresee that you need them."_
 
-Which doesn&#8217;t
+Which doesn&#8217;t say anything of keeping open for possiblity additions in the future.
 
 Don&#8217;t forget that per definition the term applies to features, not implementation details, architecture or anything else.
+
+Summary, never build yourself into a corner just because you don't need the functionality right now.
 
