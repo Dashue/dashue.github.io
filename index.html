@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:40:18.9156460-04:00" />
     <meta name="keywords" content=".Net,AngularJs,Javascript,Opensource,Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -50,12 +50,6 @@
   <ul class="posts">
     <li class="post">
       <h1><a href="/2014/05/a-little-gem-called-hashset/">A little gem called Hashset</a></h1> 
-      <div class="meta">
-        <p class="posted">01 maj 2014</p>
-        <ul class="categories">
-          <li><a href="/category/.Net" title=".Net">.Net</a></li>
-        </ul>
-      </div>
       
       <h2>Introduction</h2>
 
@@ -99,13 +93,6 @@ if(hashSet.Add(identifier)
     <hr/>
     <li class="post">
       <h1><a href="/2014/04/angularjs-eventbus/">AngularJs EventBus</a></h1> 
-      <div class="meta">
-        <p class="posted">09 apr 2014</p>
-        <ul class="categories">
-          <li><a href="/category/Javascript" title="Javascript">Javascript</a></li>
-          <li><a href="/category/AngularJs" title="AngularJs">AngularJs</a></li>
-        </ul>
-      </div>
       
       <h2>Background</h2>
 
@@ -174,13 +161,6 @@ $rootScope.$emit("EventName", data);
     <hr/>
     <li class="post">
       <h1><a href="/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/">Making angularjs directives re-usable by &quot;Passing parameters&quot;</a></h1> 
-      <div class="meta">
-        <p class="posted">17 dec 2013</p>
-        <ul class="categories">
-          <li><a href="/category/AngularJs" title="AngularJs">AngularJs</a></li>
-          <li><a href="/category/Javascript" title="Javascript">Javascript</a></li>
-        </ul>
-      </div>
       
       <p>To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:</p>
 
@@ -360,12 +340,6 @@ module.controller('AngularMenuCtrl', function ($scope) {
     <hr/>
     <li class="post">
       <h1><a href="/2013/12/locking-made-easy/">Locking made easy</a></h1> 
-      <div class="meta">
-        <p class="posted">06 dec 2013</p>
-        <ul class="categories">
-          <li><a href="/category/.Net" title=".Net">.Net</a></li>
-        </ul>
-      </div>
       
       <p>With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.</p>
 
@@ -442,12 +416,6 @@ module.controller('AngularMenuCtrl', function ($scope) {
     <hr/>
     <li class="post">
       <h1><a href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/">ConfigurationSection &quot;A testable, dependable configuration solution&quot;</a></h1> 
-      <div class="meta">
-        <p class="posted">25 nov 2013</p>
-        <ul class="categories">
-          <li><a href="/category/.Net" title=".Net">.Net</a></li>
-        </ul>
-      </div>
       
       <p>I wanted to share a way of handling application configuration that have helped me alot. It leverages <a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx">ConfigurationSection</a> and gives you the possiblility to test-drive your application settings. Let's jump in!</p>
 
@@ -622,13 +590,6 @@ public IEnumerable&lt;string&gt; MyStrings
     <hr/>
     <li class="post">
       <h1><a href="/2013/10/migrating-to-sandra-snow/">Migrating To Sandra.Snow</a></h1> 
-      <div class="meta">
-        <p class="posted">21 okt 2013</p>
-        <ul class="categories">
-          <li><a href="/category/.Net" title=".Net">.Net</a></li>
-          <li><a href="/category/Opensource" title="Opensource">Opensource</a></li>
-        </ul>
-      </div>
       
       <p>Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!</p>
 
@@ -646,12 +607,6 @@ public IEnumerable&lt;string&gt; MyStrings
     <hr/>
     <li class="post">
       <h1><a href="/2012/02/a-few-caveats-when-using-strings-in-net/">A few caveats when using Strings in .Net</a></h1> 
-      <div class="meta">
-        <p class="posted">23 feb 2012</p>
-        <ul class="categories">
-          <li><a href="/category/.Net" title=".Net">.Net</a></li>
-        </ul>
-      </div>
       
       <p>Strings in .Net are class objects and unlike value types they are stored on the heap.</p>
 
@@ -676,12 +631,6 @@ public IEnumerable&lt;string&gt; MyStrings
     <hr/>
     <li class="post">
       <h1><a href="/2012/02/why-youd-want-to-place-a-shared-library-in-its-own/">Why you'd want to place a shared library in its own solution</a></h1> 
-      <div class="meta">
-        <p class="posted">18 feb 2012</p>
-        <ul class="categories">
-          <li><a href="/category/Software Development" title="Software Development">Software Development</a></li>
-        </ul>
-      </div>
       
       <p>A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.</p>
 
@@ -719,13 +668,6 @@ public IEnumerable&lt;string&gt; MyStrings
     <hr/>
     <li class="post">
       <h1><a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/">PhotoUtil v1.0.0.1 aka Speeding up a c# project</a></h1> 
-      <div class="meta">
-        <p class="posted">25 jan 2012</p>
-        <ul class="categories">
-          <li><a href="/category/.Net" title=".Net">.Net</a></li>
-          <li><a href="/category/Opensource" title="Opensource">Opensource</a></li>
-        </ul>
-      </div>
       
       <p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.</p>
@@ -768,12 +710,6 @@ Using ExifLib:          00:00:01.0714248
     <hr/>
     <li class="post">
       <h1><a href="/2012/01/code-that-is-hard-to-be-covered-by-tests-is/">Hard tested code</a></h1> 
-      <div class="meta">
-        <p class="posted">14 jan 2012</p>
-        <ul class="categories">
-          <li><a href="/category/Software Development" title="Software Development">Software Development</a></li>
-        </ul>
-      </div>
       
       <p>Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.</p>
 
