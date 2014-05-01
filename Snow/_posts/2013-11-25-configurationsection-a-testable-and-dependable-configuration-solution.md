@@ -78,21 +78,21 @@ Heading back to the test we see that the only thing left to implement is the MyC
 
 We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.
 
-###Enums
+##Enums
 Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:
 
 	The value of the property 'DayOfBirth' cannot be parsed. 
 	The error is: The enumeration value must be one of the following: 
 	Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 
-###Required
+##Required
 We will also be given an exception for any missing properties that are marked as required.
 
 	Required attribute 'Age' not found.
 
 ##Moving on to the marginally more advanced stuff
 
-###Multiple Values
+##Multiple Values
 Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.
 
 The following is my preferred way of storing multiple values, it's quick and simple.
@@ -109,7 +109,7 @@ The following is my preferred way of storing multiple values, it's quick and sim
         }
 	}	
 
-###TypeConverters
+##TypeConverters
 Did you notice the use of the TypeConverter of type **CommaDelimitedStringCollectionConverter** in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.
 
 - ArrayConverter

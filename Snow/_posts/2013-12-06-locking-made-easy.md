@@ -64,4 +64,5 @@ I'm mostly using this to build specific caches. Something along the lines of thi
             return WithLock(() => _cache.ContainsKey(key));
         }
 	}
+
 Hope it helps

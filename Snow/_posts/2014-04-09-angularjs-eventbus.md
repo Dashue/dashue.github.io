@@ -4,25 +4,25 @@ title: AngularJs EventBus
 categories: Javascript, AngularJs
 published: true
 ---
-#### Background
+## Background
 A hidden little gem of angularjs is its bultin *EventBus* functionality.
 Messages can be passed between controllers with ease.
 There is currently two ways of passing messages: **Broadcast** and **Emit**.
 The difference between them is the direction the message takes in the scope hierarchy.
 
-#### Using BroadCast
+## Using BroadCast
 By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.
 	
 	$scope.$on("EventName", function(event, data){});
 	$rootScope.$broadcast("EventName", data);
 
-#### Using Emit
+## Using Emit
 By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.
 
 	$rootScope.$$on("EventName", function(event, data){});
 	$rootScope.$emit("EventName", data);
 
-#### Example Using Emit
+## Example Using Emit
 
 	<!DOCTYPE html>
 	<html>
@@ -56,5 +56,5 @@ By using Emit a nessage is transmitted upwards to parent scopes. When using root
 	</body>
 	</html>
 
-#### Conclusion
+## Conclusion
 Since a flat EventBus is faster than potential propagation through child scopes, **Emit is the recommended way**.

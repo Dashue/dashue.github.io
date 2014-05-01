@@ -4,7 +4,11 @@ title: Implicit Operators
 categories: .Net
 published: true
 ---
-Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.
+
+## Introduction
+Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. 
+
+Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.
 
 Like so:
 
@@ -30,8 +34,6 @@ What allows us to do this is something called an "Implicit Operator". Which are 
     		};
     	}
     }
-
-<!---->
  
     private class DomainModel
     {
