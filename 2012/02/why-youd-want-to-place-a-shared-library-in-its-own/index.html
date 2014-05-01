@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
     <meta name="keywords" content="Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -71,30 +71,30 @@
 
 <p>After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.</p>
 
-<h3>Presumptions</h3>
+<h2>Presumptions</h2>
 
 <ul>
 <li>We will use internal Nuget feed for the library.</li>
 <li>X could be placed in either A or B or separate library.</li>
 </ul>
 
-<h3>Consuming the Library</h3>
+<h2>Consuming the Library</h2>
 
 <p>Placing it in its own solution forces all projects consume it the same way, otherwise some projects would use nuget and one could use project reference. </p>
 
-<h3>Future Changes</h3>
+<h2>Future Changes</h2>
 
 <p>If placed in A it would be easy to change according to requirement or quick fix for A and not think about B or any future consumers. Placing it in its own solution forces it to behave more like an independent library and less like a project reference. It makes more sense to open the solution for the library when change is needed than to open an unrelated solution containing the library.</p>
 
-<h3>Unrelated Functionality</h3>
+<h2>Unrelated Functionality</h2>
 
 <p>Since the functionality is general and not related to neither A nor B, placing it in the same solution just because it's consumed by them is not a valid argument.</p>
 
-<h3>Versioning</h3>
+<h2>Versioning</h2>
 
 <p>The library has different release/deploy cycles than the consumers and using Nuget allows for choosing what version and if/when to upgrade. Different consumers can easily consume different versions of the library. </p>
 
-<h3>YAGNI</h3>
+<h2>YAGNI</h2>
 
 <p>YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.</p>
 

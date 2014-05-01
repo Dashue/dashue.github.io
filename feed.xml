@@ -1,4 +1,4 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</guid><link>http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</link><title>A little gem called Hashset</title><description>&lt;h4&gt;Introduction&lt;/h4&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</guid><link>http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</link><title>A little gem called Hashset</title><description>&lt;h2&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.&lt;/p&gt;
 
@@ -16,7 +16,7 @@ if(false == dictionary.ContainsKey(key))
 
 &lt;p&gt;In this case the Dictionary allows for an unnecessary extra dimension in the form of a &lt;strong&gt;Value&lt;/strong&gt;. If the key exists, we could assume it has been handled.&lt;/p&gt;
 
-&lt;h4&gt;HashSet&lt;/h4&gt;
+&lt;h2&gt;HashSet&lt;/h2&gt;
 
 &lt;p&gt;There there is an even more appropriate data structure, and a surprisingly large group of people haven't heard about it, called HashSet. A HashSet is like a Dictionary without the Value dimension, just the key/identifier portion.&lt;/p&gt;
 
@@ -31,10 +31,10 @@ if(hashSet.Add(identifier)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Conclusion&lt;/h4&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.&lt;/p&gt;
-</description><pubDate>Thu, 01 May 2014 04:00:00 Z</pubDate><a10:updated>2014-05-01T04:00:00Z</a10:updated><a10:content type="html">&lt;h4&gt;Introduction&lt;/h4&gt;
+</description><pubDate>Thu, 01 May 2014 04:00:00 Z</pubDate><a10:updated>2014-05-01T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.&lt;/p&gt;
 
@@ -52,7 +52,7 @@ if(false == dictionary.ContainsKey(key))
 
 &lt;p&gt;In this case the Dictionary allows for an unnecessary extra dimension in the form of a &lt;strong&gt;Value&lt;/strong&gt;. If the key exists, we could assume it has been handled.&lt;/p&gt;
 
-&lt;h4&gt;HashSet&lt;/h4&gt;
+&lt;h2&gt;HashSet&lt;/h2&gt;
 
 &lt;p&gt;There there is an even more appropriate data structure, and a surprisingly large group of people haven't heard about it, called HashSet. A HashSet is like a Dictionary without the Value dimension, just the key/identifier portion.&lt;/p&gt;
 
@@ -67,17 +67,17 @@ if(hashSet.Add(identifier)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Conclusion&lt;/h4&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;h4&gt;Background&lt;/h4&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;h2&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
 Messages can be passed between controllers with ease.
 There is currently two ways of passing messages: &lt;strong&gt;Broadcast&lt;/strong&gt; and &lt;strong&gt;Emit&lt;/strong&gt;.
 The difference between them is the direction the message takes in the scope hierarchy.&lt;/p&gt;
 
-&lt;h4&gt;Using BroadCast&lt;/h4&gt;
+&lt;h2&gt;Using BroadCast&lt;/h2&gt;
 
 &lt;p&gt;By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.&lt;/p&gt;
 
@@ -85,7 +85,7 @@ The difference between them is the direction the message takes in the scope hier
 $rootScope.$broadcast("EventName", data);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Using Emit&lt;/h4&gt;
+&lt;h2&gt;Using Emit&lt;/h2&gt;
 
 &lt;p&gt;By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.&lt;/p&gt;
 
@@ -93,7 +93,7 @@ $rootScope.$broadcast("EventName", data);
 $rootScope.$emit("EventName", data);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Example Using Emit&lt;/h4&gt;
+&lt;h2&gt;Example Using Emit&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html&amp;gt;
@@ -128,17 +128,17 @@ $rootScope.$emit("EventName", data);
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Conclusion&lt;/h4&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Since a flat EventBus is faster than potential propagation through child scopes, &lt;strong&gt;Emit is the recommended way&lt;/strong&gt;.&lt;/p&gt;
-</description><pubDate>Wed, 09 Apr 2014 04:00:00 Z</pubDate><a10:updated>2014-04-09T04:00:00Z</a10:updated><a10:content type="html">&lt;h4&gt;Background&lt;/h4&gt;
+</description><pubDate>Wed, 09 Apr 2014 04:00:00 Z</pubDate><a10:updated>2014-04-09T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
 Messages can be passed between controllers with ease.
 There is currently two ways of passing messages: &lt;strong&gt;Broadcast&lt;/strong&gt; and &lt;strong&gt;Emit&lt;/strong&gt;.
 The difference between them is the direction the message takes in the scope hierarchy.&lt;/p&gt;
 
-&lt;h4&gt;Using BroadCast&lt;/h4&gt;
+&lt;h2&gt;Using BroadCast&lt;/h2&gt;
 
 &lt;p&gt;By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.&lt;/p&gt;
 
@@ -146,7 +146,7 @@ The difference between them is the direction the message takes in the scope hier
 $rootScope.$broadcast("EventName", data);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Using Emit&lt;/h4&gt;
+&lt;h2&gt;Using Emit&lt;/h2&gt;
 
 &lt;p&gt;By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.&lt;/p&gt;
 
@@ -154,7 +154,7 @@ $rootScope.$broadcast("EventName", data);
 $rootScope.$emit("EventName", data);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Example Using Emit&lt;/h4&gt;
+&lt;h2&gt;Example Using Emit&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html&amp;gt;
@@ -189,7 +189,7 @@ $rootScope.$emit("EventName", data);
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;Conclusion&lt;/h4&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Since a flat EventBus is faster than potential propagation through child scopes, &lt;strong&gt;Emit is the recommended way&lt;/strong&gt;.&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/</guid><link>http://www.johanilsson.com/2013/12/making-angularjs-directives-re-usable-by-passing-parameters/</link><title>Making angularjs directives re-usable by "Passing parameters"</title><description>&lt;p&gt;To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:&lt;/p&gt;
@@ -754,7 +754,7 @@ public void ReadMyConfiguration()
 
 &lt;p&gt;We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.&lt;/p&gt;
 
-&lt;h3&gt;Enums&lt;/h3&gt;
+&lt;h2&gt;Enums&lt;/h2&gt;
 
 &lt;p&gt;Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:&lt;/p&gt;
 
@@ -763,7 +763,7 @@ The error is: The enumeration value must be one of the following:
 Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;Required&lt;/h3&gt;
+&lt;h2&gt;Required&lt;/h2&gt;
 
 &lt;p&gt;We will also be given an exception for any missing properties that are marked as required.&lt;/p&gt;
 
@@ -772,7 +772,7 @@ Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 
 &lt;h2&gt;Moving on to the marginally more advanced stuff&lt;/h2&gt;
 
-&lt;h3&gt;Multiple Values&lt;/h3&gt;
+&lt;h2&gt;Multiple Values&lt;/h2&gt;
 
 &lt;p&gt;Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.&lt;/p&gt;
 
@@ -791,7 +791,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 }   
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;TypeConverters&lt;/h3&gt;
+&lt;h2&gt;TypeConverters&lt;/h2&gt;
 
 &lt;p&gt;Did you notice the use of the TypeConverter of type &lt;strong&gt;CommaDelimitedStringCollectionConverter&lt;/strong&gt; in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.&lt;/p&gt;
 
@@ -921,7 +921,7 @@ public void ReadMyConfiguration()
 
 &lt;p&gt;We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.&lt;/p&gt;
 
-&lt;h3&gt;Enums&lt;/h3&gt;
+&lt;h2&gt;Enums&lt;/h2&gt;
 
 &lt;p&gt;Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:&lt;/p&gt;
 
@@ -930,7 +930,7 @@ The error is: The enumeration value must be one of the following:
 Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;Required&lt;/h3&gt;
+&lt;h2&gt;Required&lt;/h2&gt;
 
 &lt;p&gt;We will also be given an exception for any missing properties that are marked as required.&lt;/p&gt;
 
@@ -939,7 +939,7 @@ Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 
 &lt;h2&gt;Moving on to the marginally more advanced stuff&lt;/h2&gt;
 
-&lt;h3&gt;Multiple Values&lt;/h3&gt;
+&lt;h2&gt;Multiple Values&lt;/h2&gt;
 
 &lt;p&gt;Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.&lt;/p&gt;
 
@@ -958,7 +958,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 }   
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;TypeConverters&lt;/h3&gt;
+&lt;h2&gt;TypeConverters&lt;/h2&gt;
 
 &lt;p&gt;Did you notice the use of the TypeConverter of type &lt;strong&gt;CommaDelimitedStringCollectionConverter&lt;/strong&gt; in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.&lt;/p&gt;
 
@@ -1066,60 +1066,60 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 
 &lt;p&gt;After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.&lt;/p&gt;
 
-&lt;h3&gt;Presumptions&lt;/h3&gt;
+&lt;h2&gt;Presumptions&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We will use internal Nuget feed for the library.&lt;/li&gt;
 &lt;li&gt;X could be placed in either A or B or separate library.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;Consuming the Library&lt;/h3&gt;
+&lt;h2&gt;Consuming the Library&lt;/h2&gt;
 
 &lt;p&gt;Placing it in its own solution forces all projects consume it the same way, otherwise some projects would use nuget and one could use project reference. &lt;/p&gt;
 
-&lt;h3&gt;Future Changes&lt;/h3&gt;
+&lt;h2&gt;Future Changes&lt;/h2&gt;
 
 &lt;p&gt;If placed in A it would be easy to change according to requirement or quick fix for A and not think about B or any future consumers. Placing it in its own solution forces it to behave more like an independent library and less like a project reference. It makes more sense to open the solution for the library when change is needed than to open an unrelated solution containing the library.&lt;/p&gt;
 
-&lt;h3&gt;Unrelated Functionality&lt;/h3&gt;
+&lt;h2&gt;Unrelated Functionality&lt;/h2&gt;
 
 &lt;p&gt;Since the functionality is general and not related to neither A nor B, placing it in the same solution just because it's consumed by them is not a valid argument.&lt;/p&gt;
 
-&lt;h3&gt;Versioning&lt;/h3&gt;
+&lt;h2&gt;Versioning&lt;/h2&gt;
 
 &lt;p&gt;The library has different release/deploy cycles than the consumers and using Nuget allows for choosing what version and if/when to upgrade. Different consumers can easily consume different versions of the library. &lt;/p&gt;
 
-&lt;h3&gt;YAGNI&lt;/h3&gt;
+&lt;h2&gt;YAGNI&lt;/h2&gt;
 
 &lt;p&gt;YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.&lt;/p&gt;
 </description><pubDate>Sat, 18 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-18T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.&lt;/p&gt;
 
 &lt;p&gt;After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.&lt;/p&gt;
 
-&lt;h3&gt;Presumptions&lt;/h3&gt;
+&lt;h2&gt;Presumptions&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We will use internal Nuget feed for the library.&lt;/li&gt;
 &lt;li&gt;X could be placed in either A or B or separate library.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;Consuming the Library&lt;/h3&gt;
+&lt;h2&gt;Consuming the Library&lt;/h2&gt;
 
 &lt;p&gt;Placing it in its own solution forces all projects consume it the same way, otherwise some projects would use nuget and one could use project reference. &lt;/p&gt;
 
-&lt;h3&gt;Future Changes&lt;/h3&gt;
+&lt;h2&gt;Future Changes&lt;/h2&gt;
 
 &lt;p&gt;If placed in A it would be easy to change according to requirement or quick fix for A and not think about B or any future consumers. Placing it in its own solution forces it to behave more like an independent library and less like a project reference. It makes more sense to open the solution for the library when change is needed than to open an unrelated solution containing the library.&lt;/p&gt;
 
-&lt;h3&gt;Unrelated Functionality&lt;/h3&gt;
+&lt;h2&gt;Unrelated Functionality&lt;/h2&gt;
 
 &lt;p&gt;Since the functionality is general and not related to neither A nor B, placing it in the same solution just because it's consumed by them is not a valid argument.&lt;/p&gt;
 
-&lt;h3&gt;Versioning&lt;/h3&gt;
+&lt;h2&gt;Versioning&lt;/h2&gt;
 
 &lt;p&gt;The library has different release/deploy cycles than the consumers and using Nuget allows for choosing what version and if/when to upgrade. Different consumers can easily consume different versions of the library. &lt;/p&gt;
 
-&lt;h3&gt;YAGNI&lt;/h3&gt;
+&lt;h2&gt;YAGNI&lt;/h2&gt;
 
 &lt;p&gt;YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</guid><link>http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</link><title>PhotoUtil v1.0.0.1 aka Speeding up a c# project</title><description>&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
@@ -1127,11 +1127,11 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 
 &lt;p&gt;Following is a short recap of that procedure.&lt;/p&gt;
 
-&lt;h3&gt;Find out what's taking time 1: Analyze / Launch Performance Wizard&lt;/h3&gt;
+&lt;h2&gt;Find out what's taking time 1: Analyze / Launch Performance Wizard&lt;/h2&gt;
 
 &lt;p&gt;The first thing that popped out at me was a DateTime creation which took 100% of the CPU time (according to the performance report). I grab the DateTimeOriginal value from exif metadata of a photo and convert it into datetime, only because it allowed for cleaner code when accessing the date and time values later on in the code. Apparently parsing strings into datetime is slow, so instead I got it to work with some string manipulation.&lt;/p&gt;
 
-&lt;h3&gt;Find out what's taking time 2: Analyze / Launch Performance Wizard&lt;/h3&gt;
+&lt;h2&gt;Find out what's taking time 2: Analyze / Launch Performance Wizard&lt;/h2&gt;
 
 &lt;p&gt;When reading exif data using GDI+ from a file the whole image is read into memory using new Bitmap(Path); then the desired properties are fetched using GetProperty. This made me switch focus to increasing concurrent files being worked on (read parallelization) instead of minimizing process time of each file. With this in mind I rewrote my foreach loop into using the parallel library.&lt;/p&gt;
 
@@ -1145,11 +1145,11 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 &lt;pre&gt;&lt;code&gt;Parallel.ForEach(filePaths, oldFilePath); 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;Taking it one step further:&lt;/h3&gt;
+&lt;h2&gt;Taking it one step further:&lt;/h2&gt;
 
 &lt;p&gt;After finding out that the whole image is read into memory I set out to find an alternate approach of extracting EXIF data from a photo. It wasn't long before I found a sweet project called &lt;a href="http://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0"&gt;ExifLib&lt;/a&gt; on &lt;a href="https://www.nuget.org/packages/ExifLib/"&gt;Nuget&lt;/a&gt; which only reads the Exif data portion of an image. ExifLib is a wonderful lib created by Simon McKenzie only available as source code from codeproject.com but I'm hoping to convince him to put it up on NuGet so more people can find and make use of it.&lt;/p&gt;
 
-&lt;h3&gt;Results&lt;/h3&gt;
+&lt;h2&gt;Results&lt;/h2&gt;
 
 &lt;p&gt;100 images processed on an Intel Core 2 duo&lt;/p&gt;
 
@@ -1162,11 +1162,11 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 
 &lt;p&gt;Following is a short recap of that procedure.&lt;/p&gt;
 
-&lt;h3&gt;Find out what's taking time 1: Analyze / Launch Performance Wizard&lt;/h3&gt;
+&lt;h2&gt;Find out what's taking time 1: Analyze / Launch Performance Wizard&lt;/h2&gt;
 
 &lt;p&gt;The first thing that popped out at me was a DateTime creation which took 100% of the CPU time (according to the performance report). I grab the DateTimeOriginal value from exif metadata of a photo and convert it into datetime, only because it allowed for cleaner code when accessing the date and time values later on in the code. Apparently parsing strings into datetime is slow, so instead I got it to work with some string manipulation.&lt;/p&gt;
 
-&lt;h3&gt;Find out what's taking time 2: Analyze / Launch Performance Wizard&lt;/h3&gt;
+&lt;h2&gt;Find out what's taking time 2: Analyze / Launch Performance Wizard&lt;/h2&gt;
 
 &lt;p&gt;When reading exif data using GDI+ from a file the whole image is read into memory using new Bitmap(Path); then the desired properties are fetched using GetProperty. This made me switch focus to increasing concurrent files being worked on (read parallelization) instead of minimizing process time of each file. With this in mind I rewrote my foreach loop into using the parallel library.&lt;/p&gt;
 
@@ -1180,11 +1180,11 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 &lt;pre&gt;&lt;code&gt;Parallel.ForEach(filePaths, oldFilePath); 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;Taking it one step further:&lt;/h3&gt;
+&lt;h2&gt;Taking it one step further:&lt;/h2&gt;
 
 &lt;p&gt;After finding out that the whole image is read into memory I set out to find an alternate approach of extracting EXIF data from a photo. It wasn't long before I found a sweet project called &lt;a href="http://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0"&gt;ExifLib&lt;/a&gt; on &lt;a href="https://www.nuget.org/packages/ExifLib/"&gt;Nuget&lt;/a&gt; which only reads the Exif data portion of an image. ExifLib is a wonderful lib created by Simon McKenzie only available as source code from codeproject.com but I'm hoping to convince him to put it up on NuGet so more people can find and make use of it.&lt;/p&gt;
 
-&lt;h3&gt;Results&lt;/h3&gt;
+&lt;h2&gt;Results&lt;/h2&gt;
 
 &lt;p&gt;100 images processed on an Intel Core 2 duo&lt;/p&gt;
 

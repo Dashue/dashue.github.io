@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
     <meta name="keywords" content="Javascript,AngularJs" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -68,14 +68,14 @@
     
     
         
-    <h4>Background</h4>
+    <h2>Background</h2>
 
 <p>A hidden little gem of angularjs is its bultin <em>EventBus</em> functionality.
 Messages can be passed between controllers with ease.
 There is currently two ways of passing messages: <strong>Broadcast</strong> and <strong>Emit</strong>.
 The difference between them is the direction the message takes in the scope hierarchy.</p>
 
-<h4>Using BroadCast</h4>
+<h2>Using BroadCast</h2>
 
 <p>By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.</p>
 
@@ -83,7 +83,7 @@ The difference between them is the direction the message takes in the scope hier
 $rootScope.$broadcast("EventName", data);
 </code></pre>
 
-<h4>Using Emit</h4>
+<h2>Using Emit</h2>
 
 <p>By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.</p>
 
@@ -91,7 +91,7 @@ $rootScope.$broadcast("EventName", data);
 $rootScope.$emit("EventName", data);
 </code></pre>
 
-<h4>Example Using Emit</h4>
+<h2>Example Using Emit</h2>
 
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -126,7 +126,7 @@ $rootScope.$emit("EventName", data);
 &lt;/html&gt;
 </code></pre>
 
-<h4>Conclusion</h4>
+<h2>Conclusion</h2>
 
 <p>Since a flat EventBus is faster than potential propagation through child scopes, <strong>Emit is the recommended way</strong>.</p>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
     <meta name="keywords" content=".Net" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -67,7 +67,11 @@
     
     
         
-    <p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
+    <h2>Introduction</h2>
+
+<p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. </p>
+
+<p>Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
 
 <p>Like so:</p>
 
@@ -94,11 +98,8 @@ ViewModel viewModel = domainModel;
         };
     }
 }
-</code></pre>
 
-<!---->
-
-<pre><code>private class DomainModel
+private class DomainModel
 {
     public string Firstname { get; set; }
     public string Lastname { get; set; }

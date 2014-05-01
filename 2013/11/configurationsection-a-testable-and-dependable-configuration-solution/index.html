@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
     <meta name="keywords" content=".Net" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -147,7 +147,7 @@ public void ReadMyConfiguration()
 
 <p>We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.</p>
 
-<h3>Enums</h3>
+<h2>Enums</h2>
 
 <p>Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:</p>
 
@@ -156,7 +156,7 @@ The error is: The enumeration value must be one of the following:
 Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 </code></pre>
 
-<h3>Required</h3>
+<h2>Required</h2>
 
 <p>We will also be given an exception for any missing properties that are marked as required.</p>
 
@@ -165,7 +165,7 @@ Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 
 <h2>Moving on to the marginally more advanced stuff</h2>
 
-<h3>Multiple Values</h3>
+<h2>Multiple Values</h2>
 
 <p>Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.</p>
 
@@ -184,7 +184,7 @@ public IEnumerable&lt;string&gt; MyStrings
 }   
 </code></pre>
 
-<h3>TypeConverters</h3>
+<h2>TypeConverters</h2>
 
 <p>Did you notice the use of the TypeConverter of type <strong>CommaDelimitedStringCollectionConverter</strong> in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.</p>
 

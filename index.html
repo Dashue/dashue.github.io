@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
     <meta name="keywords" content=".Net,AngularJs,Javascript,Opensource,Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -57,7 +57,7 @@
         </ul>
       </div>
       
-      <h4>Introduction</h4>
+      <h2>Introduction</h2>
 
 <p>Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.</p>
 
@@ -75,7 +75,7 @@ if(false == dictionary.ContainsKey(key))
 
 <p>In this case the Dictionary allows for an unnecessary extra dimension in the form of a <strong>Value</strong>. If the key exists, we could assume it has been handled.</p>
 
-<h4>HashSet</h4>
+<h2>HashSet</h2>
 
 <p>There there is an even more appropriate data structure, and a surprisingly large group of people haven't heard about it, called HashSet. A HashSet is like a Dictionary without the Value dimension, just the key/identifier portion.</p>
 
@@ -90,7 +90,7 @@ if(hashSet.Add(identifier)
 }
 </code></pre>
 
-<h4>Conclusion</h4>
+<h2>Conclusion</h2>
 
 <p>Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.</p>
 
@@ -107,14 +107,14 @@ if(hashSet.Add(identifier)
         </ul>
       </div>
       
-      <h4>Background</h4>
+      <h2>Background</h2>
 
 <p>A hidden little gem of angularjs is its bultin <em>EventBus</em> functionality.
 Messages can be passed between controllers with ease.
 There is currently two ways of passing messages: <strong>Broadcast</strong> and <strong>Emit</strong>.
 The difference between them is the direction the message takes in the scope hierarchy.</p>
 
-<h4>Using BroadCast</h4>
+<h2>Using BroadCast</h2>
 
 <p>By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.</p>
 
@@ -122,7 +122,7 @@ The difference between them is the direction the message takes in the scope hier
 $rootScope.$broadcast("EventName", data);
 </code></pre>
 
-<h4>Using Emit</h4>
+<h2>Using Emit</h2>
 
 <p>By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.</p>
 
@@ -130,7 +130,7 @@ $rootScope.$broadcast("EventName", data);
 $rootScope.$emit("EventName", data);
 </code></pre>
 
-<h4>Example Using Emit</h4>
+<h2>Example Using Emit</h2>
 
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -165,7 +165,7 @@ $rootScope.$emit("EventName", data);
 &lt;/html&gt;
 </code></pre>
 
-<h4>Conclusion</h4>
+<h2>Conclusion</h2>
 
 <p>Since a flat EventBus is faster than potential propagation through child scopes, <strong>Emit is the recommended way</strong>.</p>
 
@@ -529,7 +529,7 @@ public void ReadMyConfiguration()
 
 <p>We make the default constructor private to expose only one way of instantiating the class. This step should leave you with a passing test.</p>
 
-<h3>Enums</h3>
+<h2>Enums</h2>
 
 <p>Did you notice how cleanly the enumeration was supplied to us, no explicit calls to TryParse needed. What's also nice is that we get descriptive feedback if we were to misstype the value of an enum. For example changing the DateOfBirth to be misspellt "Mnoday" gives the following exception:</p>
 
@@ -538,7 +538,7 @@ The error is: The enumeration value must be one of the following:
 Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 </code></pre>
 
-<h3>Required</h3>
+<h2>Required</h2>
 
 <p>We will also be given an exception for any missing properties that are marked as required.</p>
 
@@ -547,7 +547,7 @@ Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 
 <h2>Moving on to the marginally more advanced stuff</h2>
 
-<h3>Multiple Values</h3>
+<h2>Multiple Values</h2>
 
 <p>Sometimes storing and fetching individual values are not enough and the usage of lists of values are required. Leveraging the configuration section approach makes it really simple.</p>
 
@@ -566,7 +566,7 @@ public IEnumerable&lt;string&gt; MyStrings
 }   
 </code></pre>
 
-<h3>TypeConverters</h3>
+<h2>TypeConverters</h2>
 
 <p>Did you notice the use of the TypeConverter of type <strong>CommaDelimitedStringCollectionConverter</strong> in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.</p>
 
@@ -687,30 +687,30 @@ public IEnumerable&lt;string&gt; MyStrings
 
 <p>After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.</p>
 
-<h3>Presumptions</h3>
+<h2>Presumptions</h2>
 
 <ul>
 <li>We will use internal Nuget feed for the library.</li>
 <li>X could be placed in either A or B or separate library.</li>
 </ul>
 
-<h3>Consuming the Library</h3>
+<h2>Consuming the Library</h2>
 
 <p>Placing it in its own solution forces all projects consume it the same way, otherwise some projects would use nuget and one could use project reference. </p>
 
-<h3>Future Changes</h3>
+<h2>Future Changes</h2>
 
 <p>If placed in A it would be easy to change according to requirement or quick fix for A and not think about B or any future consumers. Placing it in its own solution forces it to behave more like an independent library and less like a project reference. It makes more sense to open the solution for the library when change is needed than to open an unrelated solution containing the library.</p>
 
-<h3>Unrelated Functionality</h3>
+<h2>Unrelated Functionality</h2>
 
 <p>Since the functionality is general and not related to neither A nor B, placing it in the same solution just because it's consumed by them is not a valid argument.</p>
 
-<h3>Versioning</h3>
+<h2>Versioning</h2>
 
 <p>The library has different release/deploy cycles than the consumers and using Nuget allows for choosing what version and if/when to upgrade. Different consumers can easily consume different versions of the library. </p>
 
-<h3>YAGNI</h3>
+<h2>YAGNI</h2>
 
 <p>YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.</p>
 
@@ -732,11 +732,11 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 
 <p>Following is a short recap of that procedure.</p>
 
-<h3>Find out what's taking time 1: Analyze / Launch Performance Wizard</h3>
+<h2>Find out what's taking time 1: Analyze / Launch Performance Wizard</h2>
 
 <p>The first thing that popped out at me was a DateTime creation which took 100% of the CPU time (according to the performance report). I grab the DateTimeOriginal value from exif metadata of a photo and convert it into datetime, only because it allowed for cleaner code when accessing the date and time values later on in the code. Apparently parsing strings into datetime is slow, so instead I got it to work with some string manipulation.</p>
 
-<h3>Find out what's taking time 2: Analyze / Launch Performance Wizard</h3>
+<h2>Find out what's taking time 2: Analyze / Launch Performance Wizard</h2>
 
 <p>When reading exif data using GDI+ from a file the whole image is read into memory using new Bitmap(Path); then the desired properties are fetched using GetProperty. This made me switch focus to increasing concurrent files being worked on (read parallelization) instead of minimizing process time of each file. With this in mind I rewrote my foreach loop into using the parallel library.</p>
 
@@ -750,11 +750,11 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 <pre><code>Parallel.ForEach(filePaths, oldFilePath); 
 </code></pre>
 
-<h3>Taking it one step further:</h3>
+<h2>Taking it one step further:</h2>
 
 <p>After finding out that the whole image is read into memory I set out to find an alternate approach of extracting EXIF data from a photo. It wasn't long before I found a sweet project called <a href="http://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0">ExifLib</a> on <a href="https://www.nuget.org/packages/ExifLib/">Nuget</a> which only reads the Exif data portion of an image. ExifLib is a wonderful lib created by Simon McKenzie only available as source code from codeproject.com but I'm hoping to convince him to put it up on NuGet so more people can find and make use of it.</p>
 
-<h3>Results</h3>
+<h2>Results</h2>
 
 <p>100 images processed on an Intel Core 2 duo</p>
 

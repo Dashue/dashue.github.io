@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
     <meta name="keywords" content="Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -69,7 +69,7 @@
         
     <p>I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. </p>
 
-<h3>Interest:</h3>
+<h2>Interest:</h2>
 
 <blockquote>
   <p>Every minute spent on not-quite-right code counts as interest on that debt - Wikipedia</p>
@@ -82,7 +82,7 @@
 <li><p>Increase in complexity - New functionality will be designed and implemented on top and according to existing technical debt, writing more code to get around code, with more code you need more tests and this code and tests needs review. Hence technical debt will increase technical debt.</p></li>
 </ul>
 
-<h3>How to spot debt:</h3>
+<h2>How to spot debt:</h2>
 
 <p>There are some signs to look for when you go "debt spotting&amp;" to make it easier to point technical debt.</p>
 
@@ -96,7 +96,7 @@
 
 <p>In my experience test driven development and tests in general protect you from some technical debt because you've had to go through the steps of "red", "green", "refactor"; and thereby paid a little of the debt up front.</p>
 
-<h3>Paying debt:</h3>
+<h2>Paying debt:</h2>
 
 <p>Like with any debt there is always an enforcer, a collector that will <em>make</em> you pay that debt. With technical debt, this collector is usually time, or new requirements.  </p>
 
@@ -104,7 +104,7 @@
 
 <p>Often project managers don't allow developers to pay technical debt, or don't prioritise it since its sometimes hard to motivate a sprint that starts with 12 tasks and ends with 12 tasks still to do, with the only thing the developers salary has paid is the debt.</p>
 
-<h3>Types of Technical Debt:</h3>
+<h2>Types of Technical Debt:</h2>
 
 <ul>
 <li><p>Bugs are not technical debt until someone decides to not fix them.</p></li>
@@ -112,7 +112,7 @@
 <li><p>Unmanaged is the worst, this is only fixed when the pain is felt</p></li>
 </ul>
 
-<h3>Monitoring Technical Debt:</h3>
+<h2>Monitoring Technical Debt:</h2>
 
 <p>In order to be able to monitor the debt, you must keep track of it. This involves keeping track of both the managed debt introduced on purpose using shortcuts, quick solutions and the "not-quite-right" solutions, and the unmanaged ones whenever they are encountered and grade them in some way that gives them a relational size difference. My personal view is that for every day that goes by of coding, it's very unlikely that the technical debt remains the same but instead rather if you don't pay some you gain some. Taking time into consideration, just a small daily increase will eventually become very expensive to pay off, leave it too long and a rewrite may end up being your only solution. </p>
 

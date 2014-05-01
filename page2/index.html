@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
     <meta name="keywords" content=".Net,AngularJs,Javascript,Opensource,Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -59,55 +59,55 @@
       
       <p>With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.</p>
 
-<h3>Automerge content changes (finally)</h3>
+<h2>Automerge content changes (finally)</h2>
 
 <p>Finally TFS has come to it&#8217;s senses and allows for automerge of non-conflicting content changes. </p>
 
-<h3>My work pane and Search work items</h3>
+<h2>My work pane and Search work items</h2>
 
 <p>No need for custom work item queries, work related to you will be easily available in the work item pane. Searching for items is also available here.</p>
 
-<h3>Easier to transition between work items states</h3>
+<h2>Easier to transition between work items states</h2>
 
 <p>No more open work item and changing state to in progress, just right-click item in my work pane and click start.</p>
 
-<h3>Suspending</h3>
+<h2>Suspending</h2>
 
 <p>Easier task switching by using suspend/resume. Saves visual studio state, open files and position in currently open file. Suspended tasks are listed in you work pane.</p>
 
-<h3>New Pending changes page</h3>
+<h2>New Pending changes page</h2>
 
 <p>Shows tree of pending changes. Allows or leaving files in excluded state without having to exclude changes every check-in (good for personalized web.config etc.).</p>
 
-<h3>New built-in diff tool</h3>
+<h2>New built-in diff tool</h2>
 
 <p>TFS team has finally gotten around to fix the built in diff tool, which now supports more view modes and reflects live changes. Which means diff will update if you make changes to your version when showing base/yours. The merge tool has also gotten some love.</p>
 
-<h3>Local workspaces</h3>
+<h2>Local workspaces</h2>
 
 <p>Removes offline mode, and the time out method require to go offline. Doesn&#8217;t handle modified files by reading the read-only bit on the file (Took them until 2012 to fix it). File system watcher watch for change made outside of VS, and lists them nicely in the pending changes pane.</p>
 
-<h3>Shelving</h3>
+<h2>Shelving</h2>
 
 <p>Shelveset merge (with current and baseless) and searching of shelvesets.</p>
 
-<h3>Code Review workflow</h3>
+<h2>Code Review workflow</h2>
 
 <p>Request code-review workflow on suspended changeset or checked in changeset as well as code reviewing functionality with the ability to comment on specific changes and even alter the changeset.</p>
 
-<h3>Rollback changesets</h3>
+<h2>Rollback changesets</h2>
 
 <p>Awesome</p>
 
-<h3>Async operations</h3>
+<h2>Async operations</h2>
 
 <p>Modality and blocking operations has now been removed, no more waiting on visual studio to complete retrieving things (search items etc.).</p>
 
-<h3>New Builds page</h3>
+<h2>New Builds page</h2>
 
 <p>Shows builds associated to me (started by me etc.). Extensible</p>
 
-<h3>Summary:</h3>
+<h2>Summary:</h2>
 
 <p>I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.</p>
 
@@ -193,19 +193,19 @@ Assert.AreEqual(4, a);
         </ul>
       </div>
       
-      <h3>Stage 0 - Ignorance</h3>
+      <h2>Stage 0 - Ignorance</h2>
 
 <p>You used what? Never heard of it.</p>
 
-<h3>Stage 1 - Awakening</h3>
+<h2>Stage 1 - Awakening</h2>
 
 <p>Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.</p>
 
-<h3>Stage 2 - Overzealous</h3>
+<h2>Stage 2 - Overzealous</h2>
 
 <p>I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!</p>
 
-<h3>Stage 3 - Mastery</h3>
+<h2>Stage 3 - Mastery</h2>
 
 <p>After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   </p>
 
@@ -256,7 +256,7 @@ MyHelper.MyBool = true;
       
       <p>I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. </p>
 
-<h3>Interest:</h3>
+<h2>Interest:</h2>
 
 <blockquote>
   <p>Every minute spent on not-quite-right code counts as interest on that debt - Wikipedia</p>
@@ -269,7 +269,7 @@ MyHelper.MyBool = true;
 <li><p>Increase in complexity - New functionality will be designed and implemented on top and according to existing technical debt, writing more code to get around code, with more code you need more tests and this code and tests needs review. Hence technical debt will increase technical debt.</p></li>
 </ul>
 
-<h3>How to spot debt:</h3>
+<h2>How to spot debt:</h2>
 
 <p>There are some signs to look for when you go "debt spotting&amp;" to make it easier to point technical debt.</p>
 
@@ -283,7 +283,7 @@ MyHelper.MyBool = true;
 
 <p>In my experience test driven development and tests in general protect you from some technical debt because you've had to go through the steps of "red", "green", "refactor"; and thereby paid a little of the debt up front.</p>
 
-<h3>Paying debt:</h3>
+<h2>Paying debt:</h2>
 
 <p>Like with any debt there is always an enforcer, a collector that will <em>make</em> you pay that debt. With technical debt, this collector is usually time, or new requirements.  </p>
 
@@ -291,7 +291,7 @@ MyHelper.MyBool = true;
 
 <p>Often project managers don't allow developers to pay technical debt, or don't prioritise it since its sometimes hard to motivate a sprint that starts with 12 tasks and ends with 12 tasks still to do, with the only thing the developers salary has paid is the debt.</p>
 
-<h3>Types of Technical Debt:</h3>
+<h2>Types of Technical Debt:</h2>
 
 <ul>
 <li><p>Bugs are not technical debt until someone decides to not fix them.</p></li>
@@ -299,7 +299,7 @@ MyHelper.MyBool = true;
 <li><p>Unmanaged is the worst, this is only fixed when the pain is felt</p></li>
 </ul>
 
-<h3>Monitoring Technical Debt:</h3>
+<h2>Monitoring Technical Debt:</h2>
 
 <p>In order to be able to monitor the debt, you must keep track of it. This involves keeping track of both the managed debt introduced on purpose using shortcuts, quick solutions and the "not-quite-right" solutions, and the unmanaged ones whenever they are encountered and grade them in some way that gives them a relational size difference. My personal view is that for every day that goes by of coding, it's very unlikely that the technical debt remains the same but instead rather if you don't pay some you gain some. Taking time into consideration, just a small daily increase will eventually become very expensive to pay off, leave it too long and a rewrite may end up being your only solution. </p>
 
@@ -352,7 +352,11 @@ else
         </ul>
       </div>
       
-      <p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
+      <h2>Introduction</h2>
+
+<p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. </p>
+
+<p>Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
 
 <p>Like so:</p>
 
@@ -379,11 +383,8 @@ ViewModel viewModel = domainModel;
         };
     }
 }
-</code></pre>
 
-<!---->
-
-<pre><code>private class DomainModel
+private class DomainModel
 {
     public string Firstname { get; set; }
     public string Lastname { get; set; }
