@@ -1,4 +1,76 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;h4&gt;Background&lt;/h4&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</guid><link>http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</link><title>A little gem called Hashset</title><description>&lt;h4&gt;Introduction&lt;/h4&gt;
+
+&lt;p&gt;Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.&lt;/p&gt;
+
+&lt;p&gt;An example of how this would look using Dictionary:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var dictionary = new Dictionary&amp;lt;TKey, bool&amp;gt;();
+if(false == dictionary.ContainsKey(key))
+{
+    // Mark identifier as handled
+    dictionary.Add(key, true);
+
+    // Do stuff
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this case the Dictionary allows for an unnecessary extra dimension in the form of a &lt;strong&gt;Value&lt;/strong&gt;. If the key exists, we could assume it has been handled.&lt;/p&gt;
+
+&lt;h4&gt;HashSet&lt;/h4&gt;
+
+&lt;p&gt;There there is an even more appropriate data structure, and a surprisingly large group of people haven't heard about it, called HashSet. A HashSet is like a Dictionary without the Value dimension, just the key/identifier portion.&lt;/p&gt;
+
+&lt;p&gt;HashSet has a method with the signature of bool Add(TKey), which will try to add the identifier and return a boolean wether it already existed or not.&lt;/p&gt;
+
+&lt;p&gt;An example of how this would look:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var hashSet = new HashSet&amp;lt;TIdentifier&amp;gt;();
+if(hashSet.Add(identifier)
+{
+    // Actions to take on identifier not yet handled
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.&lt;/p&gt;
+</description><pubDate>Thu, 01 May 2014 04:00:00 Z</pubDate><a10:updated>2014-05-01T04:00:00Z</a10:updated><a10:content type="html">&lt;h4&gt;Introduction&lt;/h4&gt;
+
+&lt;p&gt;Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.&lt;/p&gt;
+
+&lt;p&gt;An example of how this would look using Dictionary:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var dictionary = new Dictionary&amp;lt;TKey, bool&amp;gt;();
+if(false == dictionary.ContainsKey(key))
+{
+    // Mark identifier as handled
+    dictionary.Add(key, true);
+
+    // Do stuff
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this case the Dictionary allows for an unnecessary extra dimension in the form of a &lt;strong&gt;Value&lt;/strong&gt;. If the key exists, we could assume it has been handled.&lt;/p&gt;
+
+&lt;h4&gt;HashSet&lt;/h4&gt;
+
+&lt;p&gt;There there is an even more appropriate data structure, and a surprisingly large group of people haven't heard about it, called HashSet. A HashSet is like a Dictionary without the Value dimension, just the key/identifier portion.&lt;/p&gt;
+
+&lt;p&gt;HashSet has a method with the signature of bool Add(TKey), which will try to add the identifier and return a boolean wether it already existed or not.&lt;/p&gt;
+
+&lt;p&gt;An example of how this would look:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var hashSet = new HashSet&amp;lt;TIdentifier&amp;gt;();
+if(hashSet.Add(identifier)
+{
+    // Actions to take on identifier not yet handled
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;h4&gt;Background&lt;/h4&gt;
 
 &lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
 Messages can be passed between controllers with ease.
@@ -59,7 +131,7 @@ $rootScope.$emit("EventName", data);
 &lt;h4&gt;Conclusion&lt;/h4&gt;
 
 &lt;p&gt;Since a flat EventBus is faster than potential propagation through child scopes, &lt;strong&gt;Emit is the recommended way&lt;/strong&gt;.&lt;/p&gt;
-</description><pubDate>Wed, 09 Apr 2014 04:00:00 Z</pubDate><a10:updated>2014-04-09T04:00:00Z</a10:updated><a10:content type="text">&lt;h4&gt;Background&lt;/h4&gt;
+</description><pubDate>Wed, 09 Apr 2014 04:00:00 Z</pubDate><a10:updated>2014-04-09T04:00:00Z</a10:updated><a10:content type="html">&lt;h4&gt;Background&lt;/h4&gt;
 
 &lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
 Messages can be passed between controllers with ease.
@@ -292,7 +364,7 @@ module.controller('AngularMenuCtrl', function ($scope) {
 
 &lt;p&gt;And with this last step we have a fully working Menu directive ready for re-use :)&lt;br /&gt;
 &lt;a href="https://github.com/Dashue/Blogging/tree/master/Making_angularjs_directives_re_usable_by_passing_parameters"&gt;Get the code for this sample&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Tue, 17 Dec 2013 04:00:00 Z</pubDate><a10:updated>2013-12-17T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:&lt;/p&gt;
+</description><pubDate>Tue, 17 Dec 2013 04:00:00 Z</pubDate><a10:updated>2013-12-17T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;@ : Binds to the value as a string
 = : Binds to a property
@@ -533,7 +605,7 @@ module.controller('AngularMenuCtrl', function ($scope) {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Hope it helps&lt;/p&gt;
-</description><pubDate>Fri, 06 Dec 2013 04:00:00 Z</pubDate><a10:updated>2013-12-06T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.&lt;/p&gt;
+</description><pubDate>Fri, 06 Dec 2013 04:00:00 Z</pubDate><a10:updated>2013-12-06T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.&lt;/p&gt;
 
 &lt;p&gt;The most common issues I've seen with locking solutions are:&lt;/p&gt;
 
@@ -769,7 +841,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;p&gt;&lt;a href="https://github.com/Dashue/Blogging/tree/master/ConfigurationSection_Testable_and_Maintainable"&gt;Source for this blog post can be found here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Have fun!&lt;/p&gt;
-</description><pubDate>Mon, 25 Nov 2013 04:00:00 Z</pubDate><a10:updated>2013-11-25T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I wanted to share a way of handling application configuration that have helped me alot. It leverages &lt;a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx"&gt;ConfigurationSection&lt;/a&gt; and gives you the possiblility to test-drive your application settings. Let's jump in!&lt;/p&gt;
+</description><pubDate>Mon, 25 Nov 2013 04:00:00 Z</pubDate><a10:updated>2013-11-25T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;I wanted to share a way of handling application configuration that have helped me alot. It leverages &lt;a href="http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx"&gt;ConfigurationSection&lt;/a&gt; and gives you the possiblility to test-drive your application settings. Let's jump in!&lt;/p&gt;
 
 &lt;h2&gt;The basic scenario&lt;/h2&gt;
 
@@ -946,7 +1018,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
 &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Mon, 21 Oct 2013 04:00:00 Z</pubDate><a10:updated>2013-10-21T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
+</description><pubDate>Mon, 21 Oct 2013 04:00:00 Z</pubDate><a10:updated>2013-10-21T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
 
 &lt;p&gt;First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:&lt;/p&gt;
 
@@ -973,7 +1045,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;p&gt;Due to the second condition creating a string object can trigger garbage collection, which is costly in terms of performance. As developers we want to keep the string creation to a minimum. Since strings in .Net are immutable (manipulation results in a the creation of a new instance) means that combining two strings "string1" + "string2" results in the creation of three strings and editing a string results in creating a new one with the modification.&lt;/p&gt;
 
 &lt;p&gt;I think it's good to have the knowledge about how things work and why even though it's considered an micro optimization.&lt;/p&gt;
-</description><pubDate>Thu, 23 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-23T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Strings in .Net are class objects and unlike value types they are stored on the heap.&lt;/p&gt;
+</description><pubDate>Thu, 23 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-23T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Strings in .Net are class objects and unlike value types they are stored on the heap.&lt;/p&gt;
 
 &lt;p&gt;According to msdn: &lt;a href="http://msdn.microsoft.com/en-us/library/ee787088.aspx"&gt;http://msdn.microsoft.com/en-us/library/ee787088.aspx&lt;/a&gt;&lt;/p&gt;
 
@@ -1020,7 +1092,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;h3&gt;YAGNI&lt;/h3&gt;
 
 &lt;p&gt;YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand, but this is material for a future post.&lt;/p&gt;
-</description><pubDate>Sat, 18 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-18T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.&lt;/p&gt;
+</description><pubDate>Sat, 18 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-18T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;A situation occurred on work where we decided to refactor duplicated funtionality from two project (A and B) into a new shared library (X) DRYing things up. During this process the question of where to put X came up. I quickly answered "It's own solution" whereupon my colleague countered with the very simple yet valid question "Why" and I answered "Because" thinking it was really obvious and at the time couldn't understand why he'd even ask.&lt;/p&gt;
 
 &lt;p&gt;After work I realized this was a childish and not a very helpful answer caused by me just knowing it was a good thing to do and have never reflected upon the reason for it. So I decided to gather my thoughts and write this blog giving a better answer to his valid question.&lt;/p&gt;
 
@@ -1085,7 +1157,7 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 After optimizations:    00:00:11:4034511
 Using ExifLib:          00:00:01.0714248
 &lt;/code&gt;&lt;/pre&gt;
-</description><pubDate>Wed, 25 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-25T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
+</description><pubDate>Wed, 25 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-25T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.&lt;/p&gt;
 
 &lt;p&gt;Following is a short recap of that procedure.&lt;/p&gt;
@@ -1125,119 +1197,9 @@ Using ExifLib:          00:00:01.0714248
 &lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Sat, 14 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-14T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
+</description><pubDate>Sat, 14 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-14T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
 
 &lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</guid><link>http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</link><title>Review TFS 11: The things I look forward to</title><description>&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
-
-&lt;h3&gt;Automerge content changes (finally)&lt;/h3&gt;
-
-&lt;p&gt;Finally TFS has come to it&amp;#8217;s senses and allows for automerge of non-conflicting content changes. &lt;/p&gt;
-
-&lt;h3&gt;My work pane and Search work items&lt;/h3&gt;
-
-&lt;p&gt;No need for custom work item queries, work related to you will be easily available in the work item pane. Searching for items is also available here.&lt;/p&gt;
-
-&lt;h3&gt;Easier to transition between work items states&lt;/h3&gt;
-
-&lt;p&gt;No more open work item and changing state to in progress, just right-click item in my work pane and click start.&lt;/p&gt;
-
-&lt;h3&gt;Suspending&lt;/h3&gt;
-
-&lt;p&gt;Easier task switching by using suspend/resume. Saves visual studio state, open files and position in currently open file. Suspended tasks are listed in you work pane.&lt;/p&gt;
-
-&lt;h3&gt;New Pending changes page&lt;/h3&gt;
-
-&lt;p&gt;Shows tree of pending changes. Allows or leaving files in excluded state without having to exclude changes every check-in (good for personalized web.config etc.).&lt;/p&gt;
-
-&lt;h3&gt;New built-in diff tool&lt;/h3&gt;
-
-&lt;p&gt;TFS team has finally gotten around to fix the built in diff tool, which now supports more view modes and reflects live changes. Which means diff will update if you make changes to your version when showing base/yours. The merge tool has also gotten some love.&lt;/p&gt;
-
-&lt;h3&gt;Local workspaces&lt;/h3&gt;
-
-&lt;p&gt;Removes offline mode, and the time out method require to go offline. Doesn&amp;#8217;t handle modified files by reading the read-only bit on the file (Took them until 2012 to fix it). File system watcher watch for change made outside of VS, and lists them nicely in the pending changes pane.&lt;/p&gt;
-
-&lt;h3&gt;Shelving&lt;/h3&gt;
-
-&lt;p&gt;Shelveset merge (with current and baseless) and searching of shelvesets.&lt;/p&gt;
-
-&lt;h3&gt;Code Review workflow&lt;/h3&gt;
-
-&lt;p&gt;Request code-review workflow on suspended changeset or checked in changeset as well as code reviewing functionality with the ability to comment on specific changes and even alter the changeset.&lt;/p&gt;
-
-&lt;h3&gt;Rollback changesets&lt;/h3&gt;
-
-&lt;p&gt;Awesome&lt;/p&gt;
-
-&lt;h3&gt;Async operations&lt;/h3&gt;
-
-&lt;p&gt;Modality and blocking operations has now been removed, no more waiting on visual studio to complete retrieving things (search items etc.).&lt;/p&gt;
-
-&lt;h3&gt;New Builds page&lt;/h3&gt;
-
-&lt;p&gt;Shows builds associated to me (started by me etc.). Extensible&lt;/p&gt;
-
-&lt;h3&gt;Summary:&lt;/h3&gt;
-
-&lt;p&gt;I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.&lt;/p&gt;
-
-&lt;p&gt;Reference: &lt;a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T"&gt;Developer collaboration with Team Foundation Server 11&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Fri, 13 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-13T04:00:00Z</a10:updated><a10:content type="text">&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
-
-&lt;h3&gt;Automerge content changes (finally)&lt;/h3&gt;
-
-&lt;p&gt;Finally TFS has come to it&amp;#8217;s senses and allows for automerge of non-conflicting content changes. &lt;/p&gt;
-
-&lt;h3&gt;My work pane and Search work items&lt;/h3&gt;
-
-&lt;p&gt;No need for custom work item queries, work related to you will be easily available in the work item pane. Searching for items is also available here.&lt;/p&gt;
-
-&lt;h3&gt;Easier to transition between work items states&lt;/h3&gt;
-
-&lt;p&gt;No more open work item and changing state to in progress, just right-click item in my work pane and click start.&lt;/p&gt;
-
-&lt;h3&gt;Suspending&lt;/h3&gt;
-
-&lt;p&gt;Easier task switching by using suspend/resume. Saves visual studio state, open files and position in currently open file. Suspended tasks are listed in you work pane.&lt;/p&gt;
-
-&lt;h3&gt;New Pending changes page&lt;/h3&gt;
-
-&lt;p&gt;Shows tree of pending changes. Allows or leaving files in excluded state without having to exclude changes every check-in (good for personalized web.config etc.).&lt;/p&gt;
-
-&lt;h3&gt;New built-in diff tool&lt;/h3&gt;
-
-&lt;p&gt;TFS team has finally gotten around to fix the built in diff tool, which now supports more view modes and reflects live changes. Which means diff will update if you make changes to your version when showing base/yours. The merge tool has also gotten some love.&lt;/p&gt;
-
-&lt;h3&gt;Local workspaces&lt;/h3&gt;
-
-&lt;p&gt;Removes offline mode, and the time out method require to go offline. Doesn&amp;#8217;t handle modified files by reading the read-only bit on the file (Took them until 2012 to fix it). File system watcher watch for change made outside of VS, and lists them nicely in the pending changes pane.&lt;/p&gt;
-
-&lt;h3&gt;Shelving&lt;/h3&gt;
-
-&lt;p&gt;Shelveset merge (with current and baseless) and searching of shelvesets.&lt;/p&gt;
-
-&lt;h3&gt;Code Review workflow&lt;/h3&gt;
-
-&lt;p&gt;Request code-review workflow on suspended changeset or checked in changeset as well as code reviewing functionality with the ability to comment on specific changes and even alter the changeset.&lt;/p&gt;
-
-&lt;h3&gt;Rollback changesets&lt;/h3&gt;
-
-&lt;p&gt;Awesome&lt;/p&gt;
-
-&lt;h3&gt;Async operations&lt;/h3&gt;
-
-&lt;p&gt;Modality and blocking operations has now been removed, no more waiting on visual studio to complete retrieving things (search items etc.).&lt;/p&gt;
-
-&lt;h3&gt;New Builds page&lt;/h3&gt;
-
-&lt;p&gt;Shows builds associated to me (started by me etc.). Extensible&lt;/p&gt;
-
-&lt;h3&gt;Summary:&lt;/h3&gt;
-
-&lt;p&gt;I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.&lt;/p&gt;
-
-&lt;p&gt;Reference: &lt;a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T"&gt;Developer collaboration with Team Foundation Server 11&lt;/a&gt;&lt;/p&gt;
 </a10:content></item></channel></rss>

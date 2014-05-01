@@ -5,11 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="last-modified" content="2014-05-01T19:03:09.0631057-04:00" />
-    <meta name="keywords" content="Software Development" />
+    <meta name="keywords" content=".Net" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -48,11 +48,11 @@
                   
 
 <div class="post">
-    <h1>The 4 stages of learning a design pattern</h1> 
+    <h1>A little gem called Hashset</h1> 
       <div class="meta">
-        <p class="posted">09 dec 2011</p>
+        <p class="posted">01 maj 2014</p>
         <ul class="categories">
-          <li><a href="/category/software-development" title="Snow.Models.Category">Software Development</a></li>
+          <li><a href="/category/.net" title="Snow.Models.Category">.Net</a></li>
         </ul>
       </div>
 
@@ -67,23 +67,42 @@
     
     
         
-    <h3>Stage 0 - Ignorance</h3>
+    <h4>Introduction</h4>
 
-<p>You used what? Never heard of it.</p>
+<p>Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.</p>
 
-<h3>Stage 1 - Awakening</h3>
+<p>An example of how this would look using Dictionary:</p>
 
-<p>Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.</p>
+<pre><code>var dictionary = new Dictionary&lt;TKey, bool&gt;();
+if(false == dictionary.ContainsKey(key))
+{
+    // Mark identifier as handled
+    dictionary.Add(key, true);
 
-<h3>Stage 2 - Overzealous</h3>
+    // Do stuff
+}
+</code></pre>
 
-<p>I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!</p>
+<p>In this case the Dictionary allows for an unnecessary extra dimension in the form of a <strong>Value</strong>. If the key exists, we could assume it has been handled.</p>
 
-<h3>Stage 3 - Mastery</h3>
+<h4>HashSet</h4>
 
-<p>After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   </p>
+<p>There there is an even more appropriate data structure, and a surprisingly large group of people haven't heard about it, called HashSet. A HashSet is like a Dictionary without the Value dimension, just the key/identifier portion.</p>
 
-<p>Heard on <a href="http://www.dnrtv.com/default.aspx?showNum=194">dnrTV 194 Steve Smith on Commonly Used Design Patterns</a></p>
+<p>HashSet has a method with the signature of bool Add(TKey), which will try to add the identifier and return a boolean wether it already existed or not.</p>
+
+<p>An example of how this would look:</p>
+
+<pre><code>var hashSet = new HashSet&lt;TIdentifier&gt;();
+if(hashSet.Add(identifier)
+{
+    // Actions to take on identifier not yet handled
+}
+</code></pre>
+
+<h4>Conclusion</h4>
+
+<p>Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.</p>
 
 
     <!-- <div id="disqus_thread"></div>
@@ -93,14 +112,14 @@
             reload: true,
             config: function () {
                 //this.page.identifier = '';
-                this.page.url = 'http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/';
+                this.page.url = 'http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/';
                 //this.page.title = '';
             }
         });
     };
 
     var disqus_shortname = '*disqus id*';
-    var disqus_url = 'http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/';
+    var disqus_url = 'http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
