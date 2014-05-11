@@ -1,6 +1,14 @@
 ---
 layout: post
-title: Migrating To Sandra.Snow
-categories: .Net, Opensource
+title: 
+categories:
 published: draft
 ---
+
+## Purpose
+
+## Background
+
+## Content
+
+## Summary
