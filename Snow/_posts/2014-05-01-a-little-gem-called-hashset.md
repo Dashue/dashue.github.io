@@ -5,7 +5,11 @@ categories: .Net
 published: true
 ---
 
-## Introduction
+---excerpt
+Showing one scenario where Hashset is more appropriate than Dictionary
+---end
+
+## Background
 Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.
 
 An example of how this would look using Dictionary:
@@ -35,5 +39,5 @@ An example of how this would look:
 	}
 
 
-## Conclusion
+## Summary
 Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.

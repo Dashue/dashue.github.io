@@ -1,4 +1,5 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</guid><link>http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</link><title>A little gem called Hashset</title><description>&lt;h2&gt;Introduction&lt;/h2&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</guid><link>http://www.johanilsson.com/2014/05/a-little-gem-called-hashset/</link><title>A little gem called Hashset</title><description>&lt;p&gt;Showing one scenario where Hashset is more appropriate than Dictionary&lt;/p&gt;
+</description><pubDate>Thu, 01 May 2014 04:00:00 Z</pubDate><a10:updated>2014-05-01T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.&lt;/p&gt;
 
@@ -31,43 +32,7 @@ if(hashSet.Add(identifier)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.&lt;/p&gt;
-</description><pubDate>Thu, 01 May 2014 04:00:00 Z</pubDate><a10:updated>2014-05-01T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;Every know and then I stumble upon the Dictionary being used for keeping track of uniqueness. One example usage I recently encountered was keeping identifying weather a message had been published already, alternatively had been received by the subscriber.&lt;/p&gt;
-
-&lt;p&gt;An example of how this would look using Dictionary:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var dictionary = new Dictionary&amp;lt;TKey, bool&amp;gt;();
-if(false == dictionary.ContainsKey(key))
-{
-    // Mark identifier as handled
-    dictionary.Add(key, true);
-
-    // Do stuff
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this case the Dictionary allows for an unnecessary extra dimension in the form of a &lt;strong&gt;Value&lt;/strong&gt;. If the key exists, we could assume it has been handled.&lt;/p&gt;
-
-&lt;h2&gt;HashSet&lt;/h2&gt;
-
-&lt;p&gt;There there is an even more appropriate data structure, and a surprisingly large group of people haven't heard about it, called HashSet. A HashSet is like a Dictionary without the Value dimension, just the key/identifier portion.&lt;/p&gt;
-
-&lt;p&gt;HashSet has a method with the signature of bool Add(TKey), which will try to add the identifier and return a boolean wether it already existed or not.&lt;/p&gt;
-
-&lt;p&gt;An example of how this would look:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var hashSet = new HashSet&amp;lt;TIdentifier&amp;gt;();
-if(hashSet.Add(identifier)
-{
-    // Actions to take on identifier not yet handled
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;h2&gt;Background&lt;/h2&gt;
