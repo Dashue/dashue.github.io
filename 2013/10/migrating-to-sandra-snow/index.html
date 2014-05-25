@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-01T19:11:28.1736532-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-25T13:54:34.5491630-04:00" />
     <meta name="keywords" content=".Net,Opensource" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -16,7 +16,6 @@
         <header id="masthead" class="site-header" role="banner">
             <hgroup>
                 <h1 class="site-title"><a href="/" title="Random Ventures Into This And That" rel="home">Random Ventures Into This And That</a>
-                    <!-- <p><small>Software developer residing in the carribean</small></p> -->
                 </h1>
             </hgroup>
             <nav role="navigation" class="site-navigation main-navigation">
@@ -46,29 +45,22 @@
             <div id="primary" class="site-content">
                 <div id="content" role="main">
                   
-
 <div class="post">
-    <h1>Migrating To Sandra.Snow</h1> 
-      <div class="meta">
-        <p class="posted">21 okt 2013</p>
-        <ul class="categories">
-          <li><a href="/category/.net" title="Snow.Models.Category">.Net</a></li>
-          <li><a href="/category/opensource" title="Snow.Models.Category">Opensource</a></li>
-        </ul>
-      </div>
+    <h1 itemprop="name">Migrating To Sandra.Snow <div class="kindleWidget" style="display:inline-block;padding:3px;cursor:pointer;font-size:11px;font-family:Arial;white-space:nowrap;line-height:1;">
+        <img src="https://d1xnn692s7u6t6.cloudfront.net/white-15.png" />
+    </div></h1>
+    <div class="meta">
+        <span itemprop="author" style="display:none;">Johan Nilsson</span>
 
-      <!--div class="addthis_toolbox addthis_default_style" style="float:right;">
-        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-        <a class="addthis_button_tweet"></a>
-        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-        <a class="addthis_button_linkedin_counter"></a>
-        <a class="addthis_counter addthis_pill_style"></a>
-      </div-->
+        <p class="posted" itemprop="datePublished">21 okt 2013</p>
+        <ul class="categories">
+            <li><a href="/category/.net" title="Snow.Models.Category">.Net</a></li>
+            <li><a href="/category/opensource" title="Snow.Models.Category">Opensource</a></li>
+        </ul>
     </div>
-    
-    
+    <div itemprop="articleBody">
         
-    <p>Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!</p>
+        <p>Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!</p>
 
 <p>First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:</p>
 
@@ -79,33 +71,7 @@
 <a href="https://github.com/Sandra/Sandra.Snow">Fork from here</a><br />
 <a href="https://jabbr.net/#/rooms/SandraSnow">Questions goes here</a></p>
 
-
-    <!-- <div id="disqus_thread"></div>
-<script>
-    var reset_disqus = function(){
-        DISQUS.reset({
-            reload: true,
-            config: function () {
-                //this.page.identifier = '';
-                this.page.url = 'http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/';
-                //this.page.title = '';
-            }
-        });
-    };
-
-    var disqus_shortname = '*disqus id*';
-    var disqus_url = 'http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/';
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-
-    window.addEventListener('orientationchange', reset_disqus);
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+    </div>
 </div>
               </div>
               <!-- #content -->
@@ -144,15 +110,17 @@ _gaq.push(['_trackPageview']);
 
 <script type='text/javascript'>
   $(function () {
-    $("pre code").parent().each(function () {
-      if (!$(this).hasClass("prettyprint")) {
-        $(this).addClass("prettyprint");
-        a = true
-    }
-});
+	    $("pre code").parent().each(function () {
+	      if (!$(this).hasClass("prettyprint")) {
+	        $(this).addClass("prettyprint");
+	        a = true
+	    }
+		});
 
-    prettyPrint();
-});
+	    prettyPrint();
+	});
 </script>
+<script type="text/javascript" src="https://d1xnn692s7u6t6.cloudfront.net/widget.js"></script>
+<script type="text/javascript">(function k(){window.$SendToKindle&&window.$SendToKindle.Widget?$SendToKindle.Widget.init({}):setTimeout(k,500);})();</script>
 </body>
 </html>
