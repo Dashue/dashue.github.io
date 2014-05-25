@@ -5,7 +5,9 @@ categories:
 published: draft
 ---
 
-## Purpose
+---excerpt
+
+---end
 
 ## Background
 
