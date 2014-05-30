@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-05-25T15:24:01.8971578-04:00" />
+    <meta http-equiv="last-modified" content="2014-05-30T18:04:25.3389191-04:00" />
     <meta name="keywords" content=".Net,AngularJs,Javascript,Opensource,Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -62,67 +62,7 @@
           <span style="float:right">AngularJs | Javascript</span>
           <p>
             
-            <h2>Background</h2>
-
-<p>A hidden little gem of angularjs is its bultin <em>EventBus</em> functionality.
-Messages can be passed between controllers with ease.
-There is currently two ways of passing messages: <strong>Broadcast</strong> and <strong>Emit</strong>.
-The difference between them is the direction the message takes in the scope hierarchy.</p>
-
-<h2>Using BroadCast</h2>
-
-<p>By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.</p>
-
-<pre><code>$scope.$on("EventName", function(event, data){});
-$rootScope.$broadcast("EventName", data);
-</code></pre>
-
-<h2>Using Emit</h2>
-
-<p>By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.</p>
-
-<pre><code>$rootScope.$$on("EventName", function(event, data){});
-$rootScope.$emit("EventName", data);
-</code></pre>
-
-<h2>Example Using Emit</h2>
-
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;script src="http://code.angularjs.org/1.2.15/angular.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-
-&lt;body ng-app="MessageBusApp"&gt;
-    &lt;div ng-controller="MainCtrl"&gt;
-        Name: &lt;span&gt;{{ConfiguredName}}&lt;/span&gt;
-        &lt;br/&gt;
-
-        &lt;div ng-controller="ChildCtrl"&gt;
-            Set Name: &lt;input type="text" ng-model="Name"/&gt; &lt;button ng-click="Go(Name)"&gt;Go!&lt;/button&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;script type="text/javascript"&gt;
-    angular.module("MessageBusApp", [])
-        .controller("MainCtrl", function ($rootScope, $scope) {
-            $rootScope.$on('SayHello', function (event, name) {
-                $scope.ConfiguredName=name;
-            });
-        })
-        .controller("ChildCtrl", function ($rootScope, $scope) {
-            $scope.Go = function (name) {
-                $rootScope.$emit('SayHello', name);
-            }
-        });
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<h2>Conclusion</h2>
-
-<p>Since a flat EventBus is faster than potential propagation through child scopes, <strong>Emit is the recommended way</strong>.</p>
+            <p>This post introduces the EventBus functionality of angularjs and explains two ways of using it.</p>
 
           </p>
         </a>

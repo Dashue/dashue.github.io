@@ -4,6 +4,11 @@ title: AngularJs EventBus
 categories: Javascript, AngularJs
 published: true
 ---
+
+---excerpt
+This post introduces the EventBus functionality of angularjs and explains two ways of using it.
+---end
+
 ## Background
 A hidden little gem of angularjs is its bultin *EventBus* functionality.
 Messages can be passed between controllers with ease.

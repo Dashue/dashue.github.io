@@ -35,67 +35,7 @@ if(hashSet.Add(identifier)
 &lt;h2&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;Even though Dictionary solved the problem, it added unnecessary code and computation in the form of a check for existence and an unnecessary memory comsumption for storing an extra unused value for every entry. Whereas a HashSet saves us both memory and computation. Using the right type for the problem at hand is always a good thing and becomes even more important and possibly even critical as the number of elements increase.&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;h2&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
-Messages can be passed between controllers with ease.
-There is currently two ways of passing messages: &lt;strong&gt;Broadcast&lt;/strong&gt; and &lt;strong&gt;Emit&lt;/strong&gt;.
-The difference between them is the direction the message takes in the scope hierarchy.&lt;/p&gt;
-
-&lt;h2&gt;Using BroadCast&lt;/h2&gt;
-
-&lt;p&gt;By using BroadCast a message is transmitted downwards to all child scopes. Every scope is a child scope of root scope and because of this, performance quickly takes a hit.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$scope.$on("EventName", function(event, data){});
-$rootScope.$broadcast("EventName", data);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Using Emit&lt;/h2&gt;
-
-&lt;p&gt;By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$rootScope.$$on("EventName", function(event, data){});
-$rootScope.$emit("EventName", data);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Example Using Emit&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-    &amp;lt;script src="http://code.angularjs.org/1.2.15/angular.js"&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;/head&amp;gt;
-
-&amp;lt;body ng-app="MessageBusApp"&amp;gt;
-    &amp;lt;div ng-controller="MainCtrl"&amp;gt;
-        Name: &amp;lt;span&amp;gt;{{ConfiguredName}}&amp;lt;/span&amp;gt;
-        &amp;lt;br/&amp;gt;
-
-        &amp;lt;div ng-controller="ChildCtrl"&amp;gt;
-            Set Name: &amp;lt;input type="text" ng-model="Name"/&amp;gt; &amp;lt;button ng-click="Go(Name)"&amp;gt;Go!&amp;lt;/button&amp;gt;
-        &amp;lt;/div&amp;gt;
-    &amp;lt;/div&amp;gt;
-
-    &amp;lt;script type="text/javascript"&amp;gt;
-    angular.module("MessageBusApp", [])
-        .controller("MainCtrl", function ($rootScope, $scope) {
-            $rootScope.$on('SayHello', function (event, name) {
-                $scope.ConfiguredName=name;
-            });
-        })
-        .controller("ChildCtrl", function ($rootScope, $scope) {
-            $scope.Go = function (name) {
-                $rootScope.$emit('SayHello', name);
-            }
-        });
-    &amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Since a flat EventBus is faster than potential propagation through child scopes, &lt;strong&gt;Emit is the recommended way&lt;/strong&gt;.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/04/angularjs-eventbus/</guid><link>http://www.johanilsson.com/2014/04/angularjs-eventbus/</link><title>AngularJs EventBus</title><description>&lt;p&gt;This post introduces the EventBus functionality of angularjs and explains two ways of using it.&lt;/p&gt;
 </description><pubDate>Wed, 09 Apr 2014 04:00:00 Z</pubDate><a10:updated>2014-04-09T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;A hidden little gem of angularjs is its bultin &lt;em&gt;EventBus&lt;/em&gt; functionality.
