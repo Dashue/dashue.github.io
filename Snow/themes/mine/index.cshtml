@@ -10,13 +10,10 @@
         <a href="@postPaged.Url">
           <i>@postPaged.Title</i>
           <span style="float:right">@string.Join(" | ", postPaged.Categories)</span>
-          <p>
             @Html.RenderSeries(postPaged)
             @Html.Raw(postPaged.ContentExcerpt)
-          </p>
         </a>
       </li>
-    <hr/>
     }
   </ul> 
 

@@ -1153,16 +1153,26 @@ ul.posts {
     padding:0;
 }
 
+    .post:first-child {
+        border:none;
+    }
+
     .post {
         padding: 0 5px;
+        border-top: 1px solid #ccc;
     }
 	
-	a {
+	.post > a {
 		display:block;
 	}
-	a:hover{
+
+	.post > a:hover{
 		background: rgba(0,0,0,.05);
 	}
+
+    .post p{
+        margin: 0;
+    }
 
   .post > h1 {
     text-align: center;
