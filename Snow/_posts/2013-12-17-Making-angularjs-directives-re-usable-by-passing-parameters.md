@@ -4,6 +4,11 @@ title: Making angularjs directives re-usable by "Passing parameters"
 categories: AngularJs, Javascript
 published: true
 ---
+
+---excerpt
+A look at the techniques available for building re-usable angularjs directives.
+---end
+
 To make software components re-usable, it's required that no data be hard-coded. This can be achieved by passing parameters. There are different ways to do this and in angularjs directives one way is by binding variables to the scope. There are three different ways to bind, so called "Binding strategies". They are the following:
     
     @ : Binds to the value as a string

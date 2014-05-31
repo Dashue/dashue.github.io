@@ -5,6 +5,10 @@ categories: .Net
 published: true
 ---
 
+---excerpt
+Locking is hard, here is one solution to making it less so.
+---end
+
 With todays increase in multithreaded solutions locking are more and more often becoming a requirement. Without a clear seperation between business code and locking code it's very easy to get locking wrong and end up with an tangled mess of code.
 
 The most common issues I've seen with locking solutions are:
