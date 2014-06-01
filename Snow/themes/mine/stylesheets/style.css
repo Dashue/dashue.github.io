@@ -54,6 +54,7 @@ a:focus {
 }
 
 a:hover, a:active {
+    background: rgba(0,0,0,.05);
     outline: 0;
 }
 
@@ -1162,15 +1163,16 @@ ul.posts {
         border-top: 1px solid #ccc;
     }
 	
-	.post > a {
-		display:block;
+    ul.posts a{
+        text-decoration: none;
+        display:block;
+    }
+
+	.post a {
+        text-decoration: underline;
 	}
 
-	.post > a:hover{
-		background: rgba(0,0,0,.05);
-	}
-
-    .post p{
+	.post p{
         margin: 0;
     }
 
@@ -1381,4 +1383,8 @@ kbd {
 .snow-series a:hover {
     color: #222;
     text-decoration: underline;
+}
+
+.subscribe{
+    text-align: center;
 }
