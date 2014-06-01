@@ -4,6 +4,11 @@ title: ConfigurationSection "A testable, dependable configuration solution"
 categories: .Net
 published: true
 ---
+
+---excerpt
+Most every application and service needs configuration of some sort. This post explains an approach that offers testability.
+---end
+
 I wanted to share a way of handling application configuration that have helped me alot. It leverages [ConfigurationSection](http://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx) and gives you the possiblility to test-drive your application settings. Let's jump in!
 ## The basic scenario
 Given an App.Config file with the following contents. (**Make sure you align the type property to your solution**)
