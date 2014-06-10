@@ -518,23 +518,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
 Sandra.Snow: &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Github&lt;/a&gt; &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Jabbr&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/02/a-few-caveats-when-using-strings-in-net/</guid><link>http://www.johanilsson.com/2012/02/a-few-caveats-when-using-strings-in-net/</link><title>A few caveats when using Strings in .Net</title><description>&lt;p&gt;Strings in .Net are class objects and unlike value types they are stored on the heap.&lt;/p&gt;
-
-&lt;p&gt;According to msdn: &lt;a href="http://msdn.microsoft.com/en-us/library/ee787088.aspx"&gt;http://msdn.microsoft.com/en-us/library/ee787088.aspx&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Garbage collection occurs when one of the following conditions is true:&lt;/p&gt;
-  
-  &lt;ul&gt;
-  &lt;li&gt;The system has low physical memory.&lt;/li&gt;
-  &lt;li&gt;The memory that is used by allocated objects on the managed heap surpasses an acceptable threshold. This means that a threshold of acceptable memory usage has been exceeded on the managed heap. This threshold is continuously adjusted as the process runs.&lt;/li&gt;
-  &lt;li&gt;The GC.Collect  method is called. In almost all cases, you do not have to call this method, because the garbage collector runs continuously. This method is primarily used for unique situations and testing.&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Due to the second condition creating a string object can trigger garbage collection, which is costly in terms of performance. As developers we want to keep the string creation to a minimum. Since strings in .Net are immutable (manipulation results in a the creation of a new instance) means that combining two strings "string1" + "string2" results in the creation of three strings and editing a string results in creating a new one with the modification.&lt;/p&gt;
-
-&lt;p&gt;I think it's good to have the knowledge about how things work and why even though it's considered an micro optimization.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/02/a-few-caveats-when-using-strings-in-net/</guid><link>http://www.johanilsson.com/2012/02/a-few-caveats-when-using-strings-in-net/</link><title>A few caveats when using Strings in .Net</title><description>&lt;p&gt;String induced garbage collection&lt;/p&gt;
 </description><pubDate>Thu, 23 Feb 2012 04:00:00 Z</pubDate><a10:updated>2012-02-23T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Strings in .Net are class objects and unlike value types they are stored on the heap.&lt;/p&gt;
 
 &lt;p&gt;According to msdn: &lt;a href="http://msdn.microsoft.com/en-us/library/ee787088.aspx"&gt;http://msdn.microsoft.com/en-us/library/ee787088.aspx&lt;/a&gt;&lt;/p&gt;

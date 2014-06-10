@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-06-10T19:04:49.9973817-04:00" />
+    <meta http-equiv="last-modified" content="2014-06-10T19:17:36.0901997-04:00" />
     <meta name="keywords" content=".Net,AngularJs,Javascript,Opensource,Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -96,23 +96,7 @@
           <i>A few caveats when using Strings in .Net</i>
           <span style="float:right">.Net</span>
             
-            <p>Strings in .Net are class objects and unlike value types they are stored on the heap.</p>
-
-<p>According to msdn: <a href="http://msdn.microsoft.com/en-us/library/ee787088.aspx">http://msdn.microsoft.com/en-us/library/ee787088.aspx</a></p>
-
-<blockquote>
-  <p>Garbage collection occurs when one of the following conditions is true:</p>
-  
-  <ul>
-  <li>The system has low physical memory.</li>
-  <li>The memory that is used by allocated objects on the managed heap surpasses an acceptable threshold. This means that a threshold of acceptable memory usage has been exceeded on the managed heap. This threshold is continuously adjusted as the process runs.</li>
-  <li>The GC.Collect  method is called. In almost all cases, you do not have to call this method, because the garbage collector runs continuously. This method is primarily used for unique situations and testing.</li>
-  </ul>
-</blockquote>
-
-<p>Due to the second condition creating a string object can trigger garbage collection, which is costly in terms of performance. As developers we want to keep the string creation to a minimum. Since strings in .Net are immutable (manipulation results in a the creation of a new instance) means that combining two strings "string1" + "string2" results in the creation of three strings and editing a string results in creating a new one with the modification.</p>
-
-<p>I think it's good to have the knowledge about how things work and why even though it's considered an micro optimization.</p>
+            <p>String induced garbage collection</p>
 
         </a>
       </li>

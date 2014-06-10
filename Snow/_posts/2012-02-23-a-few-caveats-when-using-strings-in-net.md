@@ -4,6 +4,11 @@ title: A few caveats when using Strings in .Net
 categories: .Net
 published: true
 ---
+
+---excerpt
+String induced garbage collection
+---end
+
 Strings in .Net are class objects and unlike value types they are stored on the heap.
 
 According to msdn: [http://msdn.microsoft.com/en-us/library/ee787088.aspx](http://msdn.microsoft.com/en-us/library/ee787088.aspx)
