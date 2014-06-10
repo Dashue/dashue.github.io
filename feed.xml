@@ -508,16 +508,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;p&gt;&lt;a href="https://github.com/Dashue/Blogging/tree/master/ConfigurationSection_Testable_and_Maintainable"&gt;Source for this blog post can be found here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Have fun!&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</guid><link>http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</link><title>Migrating To Sandra.Snow</title><description>&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
-
-&lt;p&gt;First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://www.nuget.org/packages/HtmlToMarkdown.Net/"&gt;Html To Markdown.Net&lt;/a&gt;  &lt;em&gt;(Apparently this didn´t exist already)&lt;/em&gt;&lt;br /&gt;
-&lt;a href="https://github.com/Dashue/FromWordpressToSandraSnow"&gt;From Wordpress To Sandra.Snow&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
-&lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</guid><link>http://www.johanilsson.com/2013/10/migrating-to-sandra-snow/</link><title>Migrating To Sandra.Snow</title><description>&lt;p&gt;&lt;/p&gt;
 </description><pubDate>Mon, 21 Oct 2013 04:00:00 Z</pubDate><a10:updated>2013-10-21T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Having tried hosting my blog on tumblr, my own wordpress instance and wordpress online I've never been really happy. To me, writing should be simple and easy, so when I first heard of Sandra.Snow: A solution to freely host your blog on github pages with full control over everything, I jumped on it!&lt;/p&gt;
 
 &lt;p&gt;First thing I had to do was migrate my original posts (html) off of wordpress. The other people using Sandra.Snow that I know of created a Wordpress export file and manually started to migrate posts over. I on the other hand claimed "Why spend 2 hours of manual labour when I can spend two weeks to automate the process". In hindsight not the best approach :) , but from it were two open source solutions born:&lt;/p&gt;
@@ -526,8 +517,7 @@ public IEnumerable&amp;lt;string&amp;gt; MyStrings
 &lt;a href="https://github.com/Dashue/FromWordpressToSandraSnow"&gt;From Wordpress To Sandra.Snow&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;So in the following days I will continue to sanity-check old posts and publish them here.&lt;br /&gt;
-&lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Fork from here&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Questions goes here&lt;/a&gt;&lt;/p&gt;
+Sandra.Snow: &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Github&lt;/a&gt; &lt;a href="https://jabbr.net/#/rooms/SandraSnow"&gt;Jabbr&lt;/a&gt;&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/02/a-few-caveats-when-using-strings-in-net/</guid><link>http://www.johanilsson.com/2012/02/a-few-caveats-when-using-strings-in-net/</link><title>A few caveats when using Strings in .Net</title><description>&lt;p&gt;Strings in .Net are class objects and unlike value types they are stored on the heap.&lt;/p&gt;
 
 &lt;p&gt;According to msdn: &lt;a href="http://msdn.microsoft.com/en-us/library/ee787088.aspx"&gt;http://msdn.microsoft.com/en-us/library/ee787088.aspx&lt;/a&gt;&lt;/p&gt;
