@@ -5,11 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="last-modified" content="2014-06-19T10:19:02.2449389-04:00" />
-    <meta name="keywords" content=".Net,Opensource,Pet Project" />
+    <meta name="keywords" content=".Net,AngularJs,Javascript,Json.Net,NancyFx,Opensource,Pet Project,Software Development" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/" />
+    <link rel="canonical" href="http://www.johanilsson.com/category/.net/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -36,60 +36,69 @@
             <div id="primary" class="site-content">
                 <div id="content" role="main">
                   
-<div class="post">
-    <h1 itemprop="name">PhotoUtil v1.0.0.1 aka Speeding up a c# project <div class="kindleWidget" style="display:inline-block;padding:3px;cursor:pointer;font-size:11px;font-family:Arial;white-space:nowrap;line-height:1;">
-        <img src="https://d1xnn692s7u6t6.cloudfront.net/white-15.png" />
-    </div></h1>
-    <div class="meta">
-        <span itemprop="author" style="display:none;">Johan Nilsson</span>
 
-        <p class="posted" itemprop="datePublished">2012-01-25</p>
-        <ul class="categories">
-            <li><a href="/category/.net" title="Snow.Models.Category">.Net</a></li>
-            <li><a href="/category/opensource" title="Snow.Models.Category">Opensource</a></li>
-            <li><a href="/category/pet-project" title="Snow.Models.Category">Pet Project</a></li>
-        </ul>
-    </div>
-    <div itemprop="articleBody">
-        
-        <p>I was investigating why my hobby project <a href="https://github.com/Dashue/MediaOrganizer">"PhotoUtil"</a> was being slow.
-A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.</p>
+  <header>
+  <div class="head-inner">
+    <h1>Category: .Net</h1>
+  </div>
+  </header>
 
-<p>Following is a short recap of that procedure.</p>
+  <ul class="category-list">
+      <li>
+        <a href="/2014/06/camelcase-when-json-serializing-from-propercase/" title="camelCase when json serializing from ProperCase">camelCase when json serializing from ProperCase</a> 
+        <small>(14 jun 2014)</small>
+      </li>
+      <li>
+        <a href="/2014/05/a-little-gem-called-hashset/" title="A little gem called Hashset">A little gem called Hashset</a> 
+        <small>(01 maj 2014)</small>
+      </li>
+      <li>
+        <a href="/2013/12/locking-made-easy/" title="Locking made easy">Locking made easy</a> 
+        <small>(06 dec 2013)</small>
+      </li>
+      <li>
+        <a href="/2013/11/configurationsection-a-testable-and-dependable-configuration-solution/" title="ConfigurationSection "A testable, dependable configuration solution"">ConfigurationSection &quot;A testable, dependable configuration solution&quot;</a> 
+        <small>(25 nov 2013)</small>
+      </li>
+      <li>
+        <a href="/2013/10/migrating-to-sandra-snow/" title="Migrating To Sandra.Snow">Migrating To Sandra.Snow</a> 
+        <small>(21 okt 2013)</small>
+      </li>
+      <li>
+        <a href="/2012/02/a-few-caveats-when-using-strings-in-net/" title="A few caveats when using Strings in .Net">A few caveats when using Strings in .Net</a> 
+        <small>(23 feb 2012)</small>
+      </li>
+      <li>
+        <a href="/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/" title="PhotoUtil v1.0.0.1 aka Speeding up a c# project">PhotoUtil v1.0.0.1 aka Speeding up a c# project</a> 
+        <small>(25 jan 2012)</small>
+      </li>
+      <li>
+        <a href="/2012/01/enumerable-zip/" title="Enumerable.Zip">Enumerable.Zip</a> 
+        <small>(12 jan 2012)</small>
+      </li>
+      <li>
+        <a href="/2012/01/my-take-on-ref/" title="My take on Ref">My take on Ref</a> 
+        <small>(11 jan 2012)</small>
+      </li>
+      <li>
+        <a href="/2011/11/daily-refactoring/" title="Daily refactoring">Daily refactoring</a> 
+        <small>(22 nov 2011)</small>
+      </li>
+      <li>
+        <a href="/2011/11/todays-refactoring-dictionary-usage/" title="Todays Refactoring: Dictionary usage">Todays Refactoring: Dictionary usage</a> 
+        <small>(01 nov 2011)</small>
+      </li>
+      <li>
+        <a href="/2011/10/implicit-operators/" title="Implicit Operators">Implicit Operators</a> 
+        <small>(26 okt 2011)</small>
+      </li>
+      <li>
+        <a href="/2011/10/brainfart-when-sorting-lists/" title="Brainfart when sorting Lists">Brainfart when sorting Lists</a> 
+        <small>(24 okt 2011)</small>
+      </li>
+  </ul>
+  
 
-<h2>Find out what's taking time 1: Analyze / Launch Performance Wizard</h2>
-
-<p>The first thing that popped out at me was a DateTime creation which took 100% of the CPU time (according to the performance report). I grab the DateTimeOriginal value from exif metadata of a photo and convert it into datetime, only because it allowed for cleaner code when accessing the date and time values later on in the code. Apparently parsing strings into datetime is slow, so instead I got it to work with some string manipulation.</p>
-
-<h2>Find out what's taking time 2: Analyze / Launch Performance Wizard</h2>
-
-<p>When reading exif data using GDI+ from a file the whole image is read into memory using new Bitmap(Path); then the desired properties are fetched using GetProperty. This made me switch focus to increasing concurrent files being worked on (read parallelization) instead of minimizing process time of each file. With this in mind I rewrote my foreach loop into using the parallel library.</p>
-
-<p>from</p>
-
-<pre><code>foreach(var filepath in filepaths)
-</code></pre>
-
-<p>into</p>
-
-<pre><code>Parallel.ForEach(filePaths, oldFilePath); 
-</code></pre>
-
-<h2>Taking it one step further:</h2>
-
-<p>After finding out that the whole image is read into memory I set out to find an alternate approach of extracting EXIF data from a photo. It wasn't long before I found a sweet project called <a href="http://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0">ExifLib</a> on <a href="https://www.nuget.org/packages/ExifLib/">Nuget</a> which only reads the Exif data portion of an image. ExifLib is a wonderful lib created by Simon McKenzie only available as source code from codeproject.com but I'm hoping to convince him to put it up on NuGet so more people can find and make use of it.</p>
-
-<h2>Results</h2>
-
-<p>100 images processed on an Intel Core 2 duo</p>
-
-<pre><code>Before optimizations:   00:00:20.8059121  
-After optimizations:    00:00:11:4034511
-Using ExifLib:          00:00:01.0714248
-</code></pre>
-
-    </div>
-</div>
               </div>
               <!-- #content -->
           </div>

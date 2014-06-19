@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PhotoUtil v1.0.0.1 aka Speeding up a c# project
-categories: .Net, Opensource
+categories: .Net, Opensource, Pet Project
 published: true
 ---
 I was investigating why my hobby project ["PhotoUtil"](https://github.com/Dashue/MediaOrganizer) was being slow.

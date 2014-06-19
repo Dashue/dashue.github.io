@@ -1,7 +1,7 @@
 ---
 layout: post
 title: camelCase when json serializing from ProperCase
-categories: .Net Json.Net NancyFx
+categories: .Net, Json.Net, NancyFx
 published: true
 ---
 
