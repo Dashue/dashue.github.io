@@ -1123,10 +1123,10 @@ pre {
     color: #2b91af;
 }
 
-div#post {
+div.post {
     border: 1px #d4d4d4 solid;
     border-top: 3px #84d74d solid;
-    margin: 15px 0;
+    margin: 0;
     padding: 15px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -1134,11 +1134,16 @@ div#post {
     background: #fff;
     box-shadow: 0 2px 6px rgba(100,100,100,.2);
 }
-  div#post h1 {
+
+  div.post h1 {
     margin: 0;
   }
 
-    div#post h1 span,
+  div.post h2 {
+    margin: 10px 0;
+  }
+
+    div.post h1 span,
     ul.posts > li > h1 span {
       font-size: 8pt;
       font-weight: normal;
