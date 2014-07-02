@@ -1,4 +1,16 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/06/camelcase-when-json-serializing-from-propercase/</guid><link>http://www.johanilsson.com/2014/06/camelcase-when-json-serializing-from-propercase/</link><a10:author><a10:name /></a10:author><category>.Net</category><category>Json.Net</category><category>NancyFx</category><title>camelCase when json serializing from ProperCase</title><description>&lt;p&gt;Follow naming conventions by &lt;em&gt;camelCasing&lt;/em&gt; when serializing &lt;em&gt;ProperCase&lt;/em&gt;&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/07/typescript-not-compiling-on-build/</guid><link>http://www.johanilsson.com/2014/07/typescript-not-compiling-on-build/</link><a10:author><a10:name /></a10:author><category>Typescript</category><title>Typescript not compiling on build</title><description>&lt;p&gt;The solution for an issue where typescript was not compiling on build.&lt;/p&gt;
+</description><pubDate>Wed, 02 Jul 2014 04:00:00 Z</pubDate><a10:updated>2014-07-02T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;I encountered an issue where typescript was not compiling during the build phase of a project. Typescript was however compiling when files where saved, and although errors when saving wouldn't fail the build, they would show up in the "Error List".&lt;/p&gt;
+
+&lt;h2&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;It turns out that the order of how you import build targets matters. The import of &lt;em&gt;Microsoft.TypeScript.targets&lt;/em&gt; must come after &lt;em&gt;Microsoft.CSharp.targets&lt;/em&gt; and the following resolved the issue.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://www.johanilsson.com/images/2014-07-02.png" alt="Solution" /&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/06/camelcase-when-json-serializing-from-propercase/</guid><link>http://www.johanilsson.com/2014/06/camelcase-when-json-serializing-from-propercase/</link><a10:author><a10:name /></a10:author><category>.Net</category><category>Json.Net</category><category>NancyFx</category><title>camelCase when json serializing from ProperCase</title><description>&lt;p&gt;Follow naming conventions by &lt;em&gt;camelCasing&lt;/em&gt; when serializing &lt;em&gt;ProperCase&lt;/em&gt;&lt;/p&gt;
 </description><pubDate>Sat, 14 Jun 2014 04:00:00 Z</pubDate><a10:updated>2014-06-14T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;To set the scene: I have a backend written in C# and a front-end written in Javascript. C# proposes &lt;em&gt;ProperCase&lt;/em&gt; and Javascript propses &lt;em&gt;camelCase&lt;/em&gt; naming convention. Now the issue is that by default Json.Net serializes the data using the same casing as the type being serialized from, leaving us in a situation where we return &lt;em&gt;ProperCase&lt;/em&gt; serialized data to a solution that throughout uses a different casing. To avoid having a solution mixing conventions and to avoid having to remember which portion uses which convention, we want to serialize to the expected one.&lt;/p&gt;
