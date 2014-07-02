@@ -1159,11 +1159,12 @@ ul.posts {
     }
 
     .post {
-        padding: 0 5px;
+        padding: 0;
         border-top: 1px solid #ccc;
     }
 	
     ul.posts a{
+        padding-bottom: 20px;
         text-decoration: none;
         display:block;
     }
