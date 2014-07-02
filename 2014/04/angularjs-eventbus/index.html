@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-06-10T18:59:55.5495402-04:00" />
+    <meta http-equiv="last-modified" content="2014-07-02T17:20:33.7289465-04:00" />
     <meta name="keywords" content="AngularJs,Javascript" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
@@ -70,7 +70,7 @@ $rootScope.$broadcast("EventName", data);
 
 <p>By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.</p>
 
-<pre><code>$rootScope.$$on("EventName", function(event, data){});
+<pre><code>$rootScope.$on("EventName", function(event, data){});
 $rootScope.$emit("EventName", data);
 </code></pre>
 

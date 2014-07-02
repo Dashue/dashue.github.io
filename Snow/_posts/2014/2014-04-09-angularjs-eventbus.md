@@ -24,7 +24,7 @@ By using BroadCast a message is transmitted downwards to all child scopes. Every
 ## Using Emit
 By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.
 
-	$rootScope.$$on("EventName", function(event, data){});
+	$rootScope.$on("EventName", function(event, data){});
 	$rootScope.$emit("EventName", data);
 
 ## Example Using Emit

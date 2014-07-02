@@ -84,7 +84,7 @@ $rootScope.$broadcast("EventName", data);
 
 &lt;p&gt;By using Emit a nessage is transmitted upwards to parent scopes. When using rootscope there is no parent scope, hence no bubbling and the standard functionality of a flat EventBus is achieved.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$rootScope.$$on("EventName", function(event, data){});
+&lt;pre&gt;&lt;code&gt;$rootScope.$on("EventName", function(event, data){});
 $rootScope.$emit("EventName", data);
 &lt;/code&gt;&lt;/pre&gt;
 
