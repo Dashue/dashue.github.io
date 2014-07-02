@@ -9,8 +9,6 @@ Layout = "default.cshtml";
     </div></h1>
     <div class="meta">
         <span itemprop="author" style="display:none;">Johan Nilsson</span>
-
-        <p class="posted" itemprop="datePublished">@Model.PostDate.ToShortDateString()</p>
         <ul class="categories">
             @foreach(var category in Model.Categories) {
             <li><span>@category.Name</span></li>
