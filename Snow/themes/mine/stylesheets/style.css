@@ -1228,15 +1228,9 @@ ul.posts {
             border-left: none;
         }
 
-        .post .meta .categories li a {
-            color: #222;
-            text-decoration: none;
+        .post .meta .categories li span {
             padding: 2px 5px;
         }
-
-            .post .meta .categories li a:hover {
-                background: rgba(0,0,0,.05);
-            }
 
 .archives h2 {
     font-weight: normal;

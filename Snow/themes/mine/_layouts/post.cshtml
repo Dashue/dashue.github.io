@@ -13,7 +13,7 @@ Layout = "default.cshtml";
         <p class="posted" itemprop="datePublished">@Model.PostDate.ToShortDateString()</p>
         <ul class="categories">
             @foreach(var category in Model.Categories) {
-            <li><a href="/category/@category.Url" title="@category">@category.Name</a></li>
+            <li><span>@category.Name</span></li>
             }
         </ul>
     </div>
