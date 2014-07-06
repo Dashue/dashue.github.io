@@ -1389,3 +1389,8 @@ kbd {
     text-align: center;
     text-decoration: underline;
 }
+
+.prettyprint{
+    word-break: break-word;
+}
+}
