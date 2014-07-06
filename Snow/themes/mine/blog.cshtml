@@ -10,7 +10,9 @@
           <i>@postPaged.Title</i>
           <span style="float:right">@string.Join(" | ", postPaged.Categories)</span>
             @Html.RenderSeries(postPaged)
-            @Html.Raw(postPaged.ContentExcerpt)
+            <div class=excerpt>
+              @Html.Raw(postPaged.ContentExcerpt)
+            </div>
         </a>
       </li>
     }

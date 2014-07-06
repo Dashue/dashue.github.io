@@ -1159,6 +1159,10 @@ ul.posts {
     padding:0;
 }
 
+    .posts .post .excerpt p{
+        margin: 0;
+    }
+
     .post:first-child {
         border:none;
     }
@@ -1168,8 +1172,8 @@ ul.posts {
         border-top: 1px solid #ccc;
     }
 	
-    ul.posts a{
-        padding-bottom: 15px;
+    .posts .post a{
+        padding-bottom: 10px;
         text-decoration: none;
         display:block;
     }
