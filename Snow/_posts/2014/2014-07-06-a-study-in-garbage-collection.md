@@ -10,7 +10,7 @@ My notes from Johanathan Worthington's GC talk at "Build Stuff 13"
 ---end
 
 ## Background
-For some time I've been meaning to further my understanding of Garbage Collection and the .Net CLR Garbage Collector. The recording of Jonathan Worthington's presentation ["The Secret Lives of Garbage Collectors"] [0] at BuildStuff 13, provided the perfect opportunity. If you haven't seen or listened to it, I highly recommend to do so.
+For some time I've been meaning to further my understanding of Garbage Collection and the .Net CLR Garbage Collector. The recording of Jonathan Worthington's presentation ["The Secret Lives of Garbage Collectors"] [0] at BuildStuff 13, provided the perfect opportunity. Jonathan is knowledgeable and a fun to listen to, so if you haven't checked this presentation out, I recommend you to do so.
 
 These are my notes, intended for my future self. 
 
