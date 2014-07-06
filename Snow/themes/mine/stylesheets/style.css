@@ -1178,10 +1178,6 @@ ul.posts {
         text-decoration: underline;
 	}
 
-	.post p{
-        margin: 0;
-    }
-
   .post > h1 {
     text-align: center;
     font-weight: 300;
