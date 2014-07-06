@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="last-modified" content="2014-07-02T20:20:27.9053381-04:00" />
-    <meta name="keywords" content=".Net,AngularJs,Javascript,Json.Net,NancyFx,Opensource,Pet Project,Software Development,Typescript" />
+    <meta http-equiv="last-modified" content="2014-07-06T12:02:03.1335447-04:00" />
+    <meta name="keywords" content=".Net,AngularJs,GC,Javascript,Json.Net,NancyFx,Opensource,Pet Project,Software Development,Study,Typescript" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
@@ -37,6 +37,52 @@
                 <div id="content" role="main">
                   
   <ul class="posts">
+      <li class="post">
+        <a href="/2011/10/implicit-operators/">
+          <i>Implicit Operators</i>
+          <span style="float:right">.Net</span>
+            
+            <h2>Introduction</h2>
+
+<p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. </p>
+
+<p>Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
+
+<p>Like so:</p>
+
+<pre><code>var domainModel = new DomainModel
+{
+    Firstname = "Firstname",
+    Lastname = "Lastname"
+};
+
+ViewModel viewModel = domainModel;
+</code></pre>
+
+<p>What allows us to do this is something called an "Implicit Operator". Which are defined like below.</p>
+
+<pre><code>private class ViewModel
+{
+    public string Name { get; set; }
+
+    public static implicit operator ViewModel(DomainModel model)
+    {
+        return new ViewModel
+        {
+            Name = model.Firstname + " " + model.Lastname
+        };
+    }
+}
+
+private class DomainModel
+{
+    public string Firstname { get; set; }
+    public string Lastname { get; set; }
+}
+</code></pre>
+
+        </a>
+      </li>
       <li class="post">
         <a href="/2011/10/brainfart-when-sorting-lists/">
           <i>Brainfart when sorting Lists</i>

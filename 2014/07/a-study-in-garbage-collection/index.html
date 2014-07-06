@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="last-modified" content="2014-07-06T12:02:03.1335447-04:00" />
+    <meta name="keywords" content=".Net,GC,Study" />
+    <title>johanilsson.com</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="canonical" href="http://www.johanilsson.com/2014/07/a-study-in-garbage-collection/" />
+</head>
+<body class="home blog">
+    <div id="page" class="hfeed site">
+        <header id="masthead" class="site-header" role="banner">
+            <hgroup>
+            </hgroup>
+            <nav role="navigation" class="site-navigation main-navigation">
+                <h1 class="assistive-text">Menu</h1>
+                <div class="assistive-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+                <div class="menu">
+                    <small>
+                        <a href="/">Home</a>
+                        <a href="https://github.com/dashue" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://github.com']);">GitHub</a>
+                        <a href="https://www.goodreads.com/user/show/18905539-johan-nilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','https://www.goodreads.com/user/show/18905539-johan-nilsson']);">Goodreads</a>
+                        <a href="http://www.linkedin.com/in/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://www.linkedin.com']);">LinkedIn</a>
+                        <a href="http://stackoverflow.com/users/651787/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://stackoverflow.com']);">Stack Overflow</a>
+                        <a href="https://twitter.com/johanilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);">Twitter</a>
+                        <a href="http://feeds.feedburner.com/johanilsson">Subscribe</a>
+                    </small>
+                </div>
+            </nav>
+        </header>
+        <div id="main">
+            <div id="primary" class="site-content">
+                <div id="content" role="main">
+                  
+<div class="post">
+    <h1 itemprop="name">A study in garbage collection <div class="kindleWidget" style="display:inline-block;padding:3px;cursor:pointer;font-size:11px;font-family:Arial;white-space:nowrap;line-height:1;">
+        <img src="https://d1xnn692s7u6t6.cloudfront.net/white-15.png" />
+    </div></h1>
+    <div class="meta">
+        <span itemprop="author" style="display:none;">Johan Nilsson</span>
+        <ul class="categories">
+            <li><span>.Net</span></li>
+            <li><span>GC</span></li>
+            <li><span>Study</span></li>
+        </ul>
+    </div>
+    <div itemprop="articleBody">
+        
+        <h2>Background</h2>
+
+<p>For some time I've been meaning to further my understanding of Garbage Collection and the .Net CLR Garbage Collector. The recording of Jonathan Worthington's presentation <a href="http://www.infoq.com/presentations/terminology-garbage-collector">"The Secret Lives of Garbage Collectors"</a> at BuildStuff 13, provided the perfect opportunity. If you haven't seen or listened to it, I highly recommend to do so.</p>
+
+<p>These are my notes, intended for my future self. </p>
+
+<h2>Terminology</h2>
+
+<h3>GC Roots</h3>
+
+<p>Active Roots kept track of by JIT. </p>
+
+<ul>
+<li>Static variables</li>
+<li>Local variables.</li>
+</ul>
+
+<h3>Reachability Analysis</h3>
+
+<p>Produces a slight overestimate of what objects are available</p>
+
+<ul>
+<li>Start at roots</li>
+<li>Traverse everything reachable from the roots 
+<ul>
+<li>Local variables</li>
+<li>Static variables</li>
+</ul></li>
+</ul>
+
+<p>We know that everything that isn't reachable, cannot be used by the progam and can be collected.</p>
+
+<h3>Write barrier</h3>
+
+<ul>
+<li>Triggered everytime you write a pointer into an object</li>
+<li>Takes the object about to be updated, inspects the pointer its about to write, checks wether the object exist in an older generation.</li>
+</ul>
+
+<p>If the object exists in an older generation</p>
+
+<ul>
+<li>It's stored into a "remembered set" (objects in a younger generation referenced from an older generation)</li>
+<li>Eventually objects in the younger generation will be moved to an older generation and will then be removed from the remembered set.</li>
+</ul>
+
+<p><em>Leveraging a remembered set is cheaper than checking the older generations on every collection</em></p>
+
+<h2>Collectors</h2>
+
+<h3>Conservative GC</h3>
+
+<ul>
+<li>Walks through the stack and looks at everything.</li>
+<li>False positives</li>
+<li>Performs awfully</li>
+</ul>
+
+<h3>Precise GC</h3>
+
+<ul>
+<li>Knows where everything is, objects and pointers to them</li>
+<li>Makes stack maps when jitting</li>
+<li>Allows to move objects around (alot of GC do this)</li>
+</ul>
+
+<p>Two versions of collectors</p>
+
+<ul>
+<li>Compaction
+Used my most collector </li>
+<li>Copying</li>
+</ul>
+
+<h2>Implementations</h2>
+
+<h3>Generational Collectors</h3>
+
+<p>A generationl collector divides objects into generations 2-3 normally. Objects are segregated by age. This works because hypotehtis. </p>
+
+<pre><code>"The Generational Hyphotesis": 
+The majority of objects in a program, live for a very very short time, or for the whole application.
+</code></pre>
+
+<ul>
+<li>Starts by allocating objects into the young generation Gen 0</li>
+<li>If an object survives certain amounts of gc, the object has a longer life time becomes promoted to old generation
+<ul>
+<li>Allows us to only consider young generations in the majority of garbage collections. </li>
+<li>It ignores any pointed to an object in the older generation</li>
+<li>The young generation stays fairly small, megabytes at each time</li>
+<li>Full collects happen less often, it then considers all of the generations.</li>
+</ul></li>
+</ul>
+
+<p><strong>Comes with a problem:</strong> What happens if the only way an object in the young generation is reachable, is through a pointer from and object in an older generation? If the garbage collecton only considers the young generation, it will think this new object is not referenced, and will free it. This happends when a new item is added to an older list.</p>
+
+<p>This is solved using what is called a <em>"Write barrier"</em>, every time an assignment ( = ) is made, objects need to be inspected and any relations in pointers inbetween generations is stored.</p>
+
+<p><strong>Benefits:</strong> Can use different algorithms for different generations.</p>
+
+<h2>Noteworthy</h2>
+
+<ul>
+<li>Garbage collection can be triggered by anything that can allocate</li>
+<li>GC is moving objects in memory around as your program run</li>
+<li>C# structs are good to know (does not allow stack location)</li>
+<li>Lots ot LOB can hurt (triggering garbage collection)</li>
+<li>Precise lists (prevents resize and performs better)</li>
+<li>Finalizers 
+<ul>
+<li>might bring the object alive</li>
+<li>always make object live longer than necessary</li>
+</ul></li>
+<li>The CLR Has two different Garbage Collectors
+<ul>
+<li>Client - Concurrent (keeps pause times down)</li>
+<li>Server - (keeps Throughput rate high)</li>
+</ul></li>
+</ul>
+
+    </div>
+</div>
+              </div>
+              <!-- #content -->
+          </div>
+          <!-- #primary .site-content -->
+      </div>
+      <!-- #main -->
+
+      <footer class="site-footer" role="contentinfo">
+        <div class="site-info">
+            Powered by <a href="https://github.com/Sandra/Sandra.Snow" rel="generator">Sandra.Snow</a>.	
+        </div>
+        <!-- .site-info -->
+    </footer>
+    <!-- #colophon .site-footer -->
+</div>
+<!-- #page .hfeed .site -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='/javascripts/prettify.js' type='text/javascript'></script>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+
+_gaq.push(['_setAccount', 'UA-655975-13']);
+_gaq.push(['_trackPageview']);
+        
+(function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type='text/javascript'>
+  $(function () {
+	    $("pre code").parent().each(function () {
+	      if (!$(this).hasClass("prettyprint")) {
+	        $(this).addClass("prettyprint");
+	        a = true
+	    }
+		});
+
+	    prettyPrint();
+	});
+</script>
+<script type="text/javascript" src="https://d1xnn692s7u6t6.cloudfront.net/widget.js"></script>
+<script type="text/javascript">(function k(){window.$SendToKindle&&window.$SendToKindle.Widget?$SendToKindle.Widget.init({}):setTimeout(k,500);})();</script>
+</body>
+</html>

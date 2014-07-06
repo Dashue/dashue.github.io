@@ -1,4 +1,125 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/07/typescript-not-compiling-on-build/</guid><link>http://www.johanilsson.com/2014/07/typescript-not-compiling-on-build/</link><a10:author><a10:name /></a10:author><category>Typescript</category><title>Typescript not compiling on build</title><description>&lt;p&gt;The solution for an issue where typescript was not compiling on build.&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/07/a-study-in-garbage-collection/</guid><link>http://www.johanilsson.com/2014/07/a-study-in-garbage-collection/</link><a10:author><a10:name /></a10:author><category>.Net</category><category>GC</category><category>Study</category><title>A study in garbage collection</title><description>&lt;p&gt;My notes from Johanathan Worthington's GC talk at "Build Stuff 13"&lt;/p&gt;
+</description><pubDate>Sun, 06 Jul 2014 04:00:00 Z</pubDate><a10:updated>2014-07-06T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;For some time I've been meaning to further my understanding of Garbage Collection and the .Net CLR Garbage Collector. The recording of Jonathan Worthington's presentation &lt;a href="http://www.infoq.com/presentations/terminology-garbage-collector"&gt;"The Secret Lives of Garbage Collectors"&lt;/a&gt; at BuildStuff 13, provided the perfect opportunity. If you haven't seen or listened to it, I highly recommend to do so.&lt;/p&gt;
+
+&lt;p&gt;These are my notes, intended for my future self. &lt;/p&gt;
+
+&lt;h2&gt;Terminology&lt;/h2&gt;
+
+&lt;h3&gt;GC Roots&lt;/h3&gt;
+
+&lt;p&gt;Active Roots kept track of by JIT. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Static variables&lt;/li&gt;
+&lt;li&gt;Local variables.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Reachability Analysis&lt;/h3&gt;
+
+&lt;p&gt;Produces a slight overestimate of what objects are available&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Start at roots&lt;/li&gt;
+&lt;li&gt;Traverse everything reachable from the roots 
+&lt;ul&gt;
+&lt;li&gt;Local variables&lt;/li&gt;
+&lt;li&gt;Static variables&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We know that everything that isn't reachable, cannot be used by the progam and can be collected.&lt;/p&gt;
+
+&lt;h3&gt;Write barrier&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Triggered everytime you write a pointer into an object&lt;/li&gt;
+&lt;li&gt;Takes the object about to be updated, inspects the pointer its about to write, checks wether the object exist in an older generation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If the object exists in an older generation&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It's stored into a "remembered set" (objects in a younger generation referenced from an older generation)&lt;/li&gt;
+&lt;li&gt;Eventually objects in the younger generation will be moved to an older generation and will then be removed from the remembered set.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Leveraging a remembered set is cheaper than checking the older generations on every collection&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Collectors&lt;/h2&gt;
+
+&lt;h3&gt;Conservative GC&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Walks through the stack and looks at everything.&lt;/li&gt;
+&lt;li&gt;False positives&lt;/li&gt;
+&lt;li&gt;Performs awfully&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Precise GC&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Knows where everything is, objects and pointers to them&lt;/li&gt;
+&lt;li&gt;Makes stack maps when jitting&lt;/li&gt;
+&lt;li&gt;Allows to move objects around (alot of GC do this)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Two versions of collectors&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Compaction
+Used my most collector &lt;/li&gt;
+&lt;li&gt;Copying&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Implementations&lt;/h2&gt;
+
+&lt;h3&gt;Generational Collectors&lt;/h3&gt;
+
+&lt;p&gt;A generationl collector divides objects into generations 2-3 normally. Objects are segregated by age. This works because hypotehtis. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;"The Generational Hyphotesis": 
+The majority of objects in a program, live for a very very short time, or for the whole application.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Starts by allocating objects into the young generation Gen 0&lt;/li&gt;
+&lt;li&gt;If an object survives certain amounts of gc, the object has a longer life time becomes promoted to old generation
+&lt;ul&gt;
+&lt;li&gt;Allows us to only consider young generations in the majority of garbage collections. &lt;/li&gt;
+&lt;li&gt;It ignores any pointed to an object in the older generation&lt;/li&gt;
+&lt;li&gt;The young generation stays fairly small, megabytes at each time&lt;/li&gt;
+&lt;li&gt;Full collects happen less often, it then considers all of the generations.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Comes with a problem:&lt;/strong&gt; What happens if the only way an object in the young generation is reachable, is through a pointer from and object in an older generation? If the garbage collecton only considers the young generation, it will think this new object is not referenced, and will free it. This happends when a new item is added to an older list.&lt;/p&gt;
+
+&lt;p&gt;This is solved using what is called a &lt;em&gt;"Write barrier"&lt;/em&gt;, every time an assignment ( = ) is made, objects need to be inspected and any relations in pointers inbetween generations is stored.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Benefits:&lt;/strong&gt; Can use different algorithms for different generations.&lt;/p&gt;
+
+&lt;h2&gt;Noteworthy&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Garbage collection can be triggered by anything that can allocate&lt;/li&gt;
+&lt;li&gt;GC is moving objects in memory around as your program run&lt;/li&gt;
+&lt;li&gt;C# structs are good to know (does not allow stack location)&lt;/li&gt;
+&lt;li&gt;Lots ot LOB can hurt (triggering garbage collection)&lt;/li&gt;
+&lt;li&gt;Precise lists (prevents resize and performs better)&lt;/li&gt;
+&lt;li&gt;Finalizers 
+&lt;ul&gt;
+&lt;li&gt;might bring the object alive&lt;/li&gt;
+&lt;li&gt;always make object live longer than necessary&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The CLR Has two different Garbage Collectors
+&lt;ul&gt;
+&lt;li&gt;Client - Concurrent (keeps pause times down)&lt;/li&gt;
+&lt;li&gt;Server - (keeps Throughput rate high)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/07/typescript-not-compiling-on-build/</guid><link>http://www.johanilsson.com/2014/07/typescript-not-compiling-on-build/</link><a10:author><a10:name /></a10:author><category>Typescript</category><title>Typescript not compiling on build</title><description>&lt;p&gt;The solution for an issue where typescript was not compiling on build.&lt;/p&gt;
 </description><pubDate>Wed, 02 Jul 2014 04:00:00 Z</pubDate><a10:updated>2014-07-02T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;I encountered an issue where typescript was not compiling during the build phase of a project. Typescript was however compiling when files where saved, and although errors when saving wouldn't fail the build, they would show up in the "Error List".&lt;/p&gt;
