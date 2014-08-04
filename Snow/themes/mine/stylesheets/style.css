@@ -1161,6 +1161,7 @@ ul.posts {
 
     .posts .post .excerpt p{
         margin: 0;
+        font-size: smaller;
         font-style: italic;
     }
 
@@ -1381,7 +1382,7 @@ kbd {
     text-decoration: none;
 }
 
-.snow-series a:hover {
+.snow-series a:hover {e
     color: #222;
     text-decoration: underline;
 }
