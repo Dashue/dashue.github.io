@@ -4,6 +4,11 @@ title: PhotoUtil v1.0.0.1 aka Speeding up a c# project
 categories: .Net, Opensource, Pet Project
 published: true
 ---
+
+---excerpt
+My media organizing pet project was running a bit slow. This is how I was able to analyze, identify and solve the biggest bottleneck using visual studios performance wizard.
+---end
+
 I was investigating why my hobby project ["PhotoUtil"](https://github.com/Dashue/MediaOrganizer) was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.
 

@@ -731,41 +731,7 @@ Sandra.Snow: &lt;a href="https://github.com/Sandra/Sandra.Snow"&gt;Github&lt;/a&
 &lt;h2&gt;YAGNI&lt;/h2&gt;
 
 &lt;p&gt;YAGNI was mentioned as an argument against placing X in its own library. I think developers are to fast to throw abbreviations as arguments thinking they are valid without actually considering the situation at hand.&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</guid><link>http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</link><a10:author><a10:name /></a10:author><category>.Net</category><category>Opensource</category><category>Pet Project</category><title>PhotoUtil v1.0.0.1 aka Speeding up a c# project</title><description>&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
-A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.&lt;/p&gt;
-
-&lt;p&gt;Following is a short recap of that procedure.&lt;/p&gt;
-
-&lt;h2&gt;Find out what's taking time 1: Analyze / Launch Performance Wizard&lt;/h2&gt;
-
-&lt;p&gt;The first thing that popped out at me was a DateTime creation which took 100% of the CPU time (according to the performance report). I grab the DateTimeOriginal value from exif metadata of a photo and convert it into datetime, only because it allowed for cleaner code when accessing the date and time values later on in the code. Apparently parsing strings into datetime is slow, so instead I got it to work with some string manipulation.&lt;/p&gt;
-
-&lt;h2&gt;Find out what's taking time 2: Analyze / Launch Performance Wizard&lt;/h2&gt;
-
-&lt;p&gt;When reading exif data using GDI+ from a file the whole image is read into memory using new Bitmap(Path); then the desired properties are fetched using GetProperty. This made me switch focus to increasing concurrent files being worked on (read parallelization) instead of minimizing process time of each file. With this in mind I rewrote my foreach loop into using the parallel library.&lt;/p&gt;
-
-&lt;p&gt;from&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;foreach(var filepath in filepaths)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;into&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Parallel.ForEach(filePaths, oldFilePath); 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Taking it one step further:&lt;/h2&gt;
-
-&lt;p&gt;After finding out that the whole image is read into memory I set out to find an alternate approach of extracting EXIF data from a photo. It wasn't long before I found a sweet project called &lt;a href="http://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0"&gt;ExifLib&lt;/a&gt; on &lt;a href="https://www.nuget.org/packages/ExifLib/"&gt;Nuget&lt;/a&gt; which only reads the Exif data portion of an image. ExifLib is a wonderful lib created by Simon McKenzie only available as source code from codeproject.com but I'm hoping to convince him to put it up on NuGet so more people can find and make use of it.&lt;/p&gt;
-
-&lt;h2&gt;Results&lt;/h2&gt;
-
-&lt;p&gt;100 images processed on an Intel Core 2 duo&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Before optimizations:   00:00:20.8059121  
-After optimizations:    00:00:11:4034511
-Using ExifLib:          00:00:01.0714248
-&lt;/code&gt;&lt;/pre&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</guid><link>http://www.johanilsson.com/2012/01/photoutil-v1-0-0-1-aka-speeding-up-a-c-project/</link><a10:author><a10:name /></a10:author><category>.Net</category><category>Opensource</category><category>Pet Project</category><title>PhotoUtil v1.0.0.1 aka Speeding up a c# project</title><description>&lt;p&gt;My media organizing pet project was running a bit slow. This is how I was able to analyze, identify and solve the biggest bottleneck using visual studios performance wizard.&lt;/p&gt;
 </description><pubDate>Wed, 25 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-25T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;I was investigating why my hobby project &lt;a href="https://github.com/Dashue/MediaOrganizer"&gt;"PhotoUtil"&lt;/a&gt; was being slow.
 A program that takes a folder with a bunch of photos as inputs, processes the metadata from them, more specifically the date the picture was taken and then organizes them in folders based on this.&lt;/p&gt;
 

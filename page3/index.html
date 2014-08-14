@@ -37,54 +37,6 @@
                   
   <ul class="posts">
       <li class="post">
-        <a href="/2011/10/implicit-operators/">
-          Implicit Operators
-          <span style="float:right">.Net</span>
-            
-            <div class=excerpt>
-              <h2>Introduction</h2>
-
-<p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. </p>
-
-<p>Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
-
-<p>Like so:</p>
-
-<pre><code>var domainModel = new DomainModel
-{
-    Firstname = "Firstname",
-    Lastname = "Lastname"
-};
-
-ViewModel viewModel = domainModel;
-</code></pre>
-
-<p>What allows us to do this is something called an "Implicit Operator". Which are defined like below.</p>
-
-<pre><code>private class ViewModel
-{
-    public string Name { get; set; }
-
-    public static implicit operator ViewModel(DomainModel model)
-    {
-        return new ViewModel
-        {
-            Name = model.Firstname + " " + model.Lastname
-        };
-    }
-}
-
-private class DomainModel
-{
-    public string Firstname { get; set; }
-    public string Lastname { get; set; }
-}
-</code></pre>
-
-            </div>
-        </a>
-      </li>
-      <li class="post">
         <a href="/2011/10/brainfart-when-sorting-lists/">
           Brainfart when sorting Lists
           <span style="float:right">.Net</span>
