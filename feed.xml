@@ -877,21 +877,7 @@ Using ExifLib:          00:00:01.0714248
 &lt;p&gt;I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.&lt;/p&gt;
 
 &lt;p&gt;Reference: &lt;a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T"&gt;Developer collaboration with Team Foundation Server 11&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/enumerable-zip/</guid><link>http://www.johanilsson.com/2012/01/enumerable-zip/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Enumerable.Zip</title><description>&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
-
-&lt;p&gt;Signature is as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;public static IEnumerable&amp;lt;TResult&amp;gt; Zip&amp;lt;TFirst, TSecond, TResult&amp;gt;(
-    this IEnumerable&amp;lt;TFirst&amp;gt; first,
-    IEnumerable&amp;lt;TSecond&amp;gt; second,
-    Func&amp;lt;TFirst, TSecond, TResult&amp;gt; func);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Much like a zipper it "zips" together two IEnumerables applying a specified function over each pair of elements.
-I've seen examples which print the greater number from two list of ints, which constructs addresses from four lists of city/street/number/flatnumber and one that prints name and age from name/age lists.&lt;/p&gt;
-
-&lt;p&gt;I have as of yet found a good real world example, and am incapable of thinking one up.&lt;br /&gt;
-Anyone out there who have made good use of this added functionality?&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/enumerable-zip/</guid><link>http://www.johanilsson.com/2012/01/enumerable-zip/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Enumerable.Zip</title><description>&lt;p&gt;Found an Linq operator that I cannot understand the need for.&lt;/p&gt;
 </description><pubDate>Thu, 12 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-12T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.&lt;/p&gt;
 
 &lt;p&gt;Signature is as follows:&lt;/p&gt;

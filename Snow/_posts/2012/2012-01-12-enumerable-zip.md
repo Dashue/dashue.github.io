@@ -4,6 +4,11 @@ title: Enumerable.Zip
 categories: .Net
 published: true
 ---
+
+---excerpt
+Found an Linq operator that I cannot understand the need for.
+---end
+
 I just stumbled upon Enumerable.Zip which is a newly added Linq operator since .NET Framework 4.
 
 Signature is as follows:
