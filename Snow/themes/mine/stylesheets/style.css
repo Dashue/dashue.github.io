@@ -1382,7 +1382,7 @@ kbd {
     text-decoration: none;
 }
 
-.snow-series a:hover {e
+.snow-series a:hover {
     color: #222;
     text-decoration: underline;
 }
