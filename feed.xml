@@ -801,16 +801,6 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 After optimizations:    00:00:11:4034511
 Using ExifLib:          00:00:01.0714248
 &lt;/code&gt;&lt;/pre&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</guid><link>http://www.johanilsson.com/2012/01/code-that-is-hard-to-be-covered-by-tests-is/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>Hard tested code</title><description>&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
-
-&lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Sat, 14 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-14T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Code that is hard to be covered by tests is bug-prone and need to be redesigned to be easily coverable by easy tests.&lt;/p&gt;
-
-&lt;p&gt;Writing a complete test suite naturally leads to good design, enforcing low coupling and high cohesion.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests"&gt;http://codebetter.com/patricksmacchia/2012/01/10/non-trivial-and-real-world-feedbacks-on-writing-unit-tests&lt;/a&gt;&lt;/p&gt;
 </a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</guid><link>http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>Review TFS 11: The things I look forward to</title><description>&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
 
 &lt;h2&gt;Automerge content changes (finally)&lt;/h2&gt;
