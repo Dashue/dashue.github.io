@@ -5,6 +5,10 @@ categories: Software Development
 published: true
 ---
 
+---excerpt
+An introduction to technical debt, what it is, why you care, how to find it, remove it and prevent it from growing out of control.
+---end
+
 I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. 
 
 ##Interest:

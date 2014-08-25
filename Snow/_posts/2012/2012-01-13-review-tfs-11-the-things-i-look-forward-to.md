@@ -4,7 +4,14 @@ title: Review TFS 11: The things I look forward to
 categories: Software Development
 published: true
 ---
-With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.
+
+---excerpt
+With TFS 11 around the corner I compiled this list of featuers that will solve my biggest issues with the previous versions.
+---end
+
+TFS 11 (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience 
+
+These are the features I look forward to the most.
 
 ##Automerge content changes (finally)
 Finally TFS has come to it&#8217;s senses and allows for automerge of non-conflicting content changes. 

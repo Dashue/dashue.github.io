@@ -5,6 +5,10 @@ categories: .Net
 published: true
 ---
 
+---excerpt
+Implicit operators can be used for a lot of differnet things. One usage is explained in this post: Implicit mapping between types.
+---end
+
 ## Introduction
 Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. 
 

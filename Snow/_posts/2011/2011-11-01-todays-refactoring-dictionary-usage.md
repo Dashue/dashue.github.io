@@ -5,6 +5,10 @@ categories: .Net
 published: true
 ---
 
+---excerpt
+Optimizing unoptimized dictionary insertions
+---end
+
 Code like the following:
 
     if (dictionary.ContainsKey(key))

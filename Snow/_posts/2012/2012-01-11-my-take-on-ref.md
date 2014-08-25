@@ -8,6 +8,7 @@ published: true
 ---excerpt
 A good friend of mine asked me to share my thoughts on the ref keyword
 ---end
+
 A good friend of mine asked me to share my thoughts on the ref keyword so here goes.
 
 To give it some context: To me a good method is a function taking a variable amount of parameters, making some processing and possibly returning the result. Furthermore the method should do one thing and one thing only and never change input parameter values.

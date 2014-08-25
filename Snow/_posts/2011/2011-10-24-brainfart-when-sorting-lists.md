@@ -4,6 +4,11 @@ title: Brainfart when sorting Lists
 categories: .Net
 published: true
 ---
+
+---excerpt
+Optimizing unoptimized sorting of a list.
+---end
+
 Just encountered this piece of code today:
     
     Array.Sort(myList.ToArray());

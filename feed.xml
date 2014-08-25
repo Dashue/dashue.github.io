@@ -767,62 +767,10 @@ A program that takes a folder with a bunch of photos as inputs, processes the me
 After optimizations:    00:00:11:4034511
 Using ExifLib:          00:00:01.0714248
 &lt;/code&gt;&lt;/pre&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</guid><link>http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>Review TFS 11: The things I look forward to</title><description>&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</guid><link>http://www.johanilsson.com/2012/01/review-tfs-11-the-things-i-look-forward-to/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>Review TFS 11: The things I look forward to</title><description>&lt;p&gt;With TFS 11 around the corner I compiled this list of featuers that will solve my biggest issues with the previous versions.&lt;/p&gt;
+</description><pubDate>Fri, 13 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-13T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;TFS 11 (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience &lt;/p&gt;
 
-&lt;h2&gt;Automerge content changes (finally)&lt;/h2&gt;
-
-&lt;p&gt;Finally TFS has come to it&amp;#8217;s senses and allows for automerge of non-conflicting content changes. &lt;/p&gt;
-
-&lt;h2&gt;My work pane and Search work items&lt;/h2&gt;
-
-&lt;p&gt;No need for custom work item queries, work related to you will be easily available in the work item pane. Searching for items is also available here.&lt;/p&gt;
-
-&lt;h2&gt;Easier to transition between work items states&lt;/h2&gt;
-
-&lt;p&gt;No more open work item and changing state to in progress, just right-click item in my work pane and click start.&lt;/p&gt;
-
-&lt;h2&gt;Suspending&lt;/h2&gt;
-
-&lt;p&gt;Easier task switching by using suspend/resume. Saves visual studio state, open files and position in currently open file. Suspended tasks are listed in you work pane.&lt;/p&gt;
-
-&lt;h2&gt;New Pending changes page&lt;/h2&gt;
-
-&lt;p&gt;Shows tree of pending changes. Allows or leaving files in excluded state without having to exclude changes every check-in (good for personalized web.config etc.).&lt;/p&gt;
-
-&lt;h2&gt;New built-in diff tool&lt;/h2&gt;
-
-&lt;p&gt;TFS team has finally gotten around to fix the built in diff tool, which now supports more view modes and reflects live changes. Which means diff will update if you make changes to your version when showing base/yours. The merge tool has also gotten some love.&lt;/p&gt;
-
-&lt;h2&gt;Local workspaces&lt;/h2&gt;
-
-&lt;p&gt;Removes offline mode, and the time out method require to go offline. Doesn&amp;#8217;t handle modified files by reading the read-only bit on the file (Took them until 2012 to fix it). File system watcher watch for change made outside of VS, and lists them nicely in the pending changes pane.&lt;/p&gt;
-
-&lt;h2&gt;Shelving&lt;/h2&gt;
-
-&lt;p&gt;Shelveset merge (with current and baseless) and searching of shelvesets.&lt;/p&gt;
-
-&lt;h2&gt;Code Review workflow&lt;/h2&gt;
-
-&lt;p&gt;Request code-review workflow on suspended changeset or checked in changeset as well as code reviewing functionality with the ability to comment on specific changes and even alter the changeset.&lt;/p&gt;
-
-&lt;h2&gt;Rollback changesets&lt;/h2&gt;
-
-&lt;p&gt;Awesome&lt;/p&gt;
-
-&lt;h2&gt;Async operations&lt;/h2&gt;
-
-&lt;p&gt;Modality and blocking operations has now been removed, no more waiting on visual studio to complete retrieving things (search items etc.).&lt;/p&gt;
-
-&lt;h2&gt;New Builds page&lt;/h2&gt;
-
-&lt;p&gt;Shows builds associated to me (started by me etc.). Extensible&lt;/p&gt;
-
-&lt;h2&gt;Summary:&lt;/h2&gt;
-
-&lt;p&gt;I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.&lt;/p&gt;
-
-&lt;p&gt;Reference: &lt;a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T"&gt;Developer collaboration with Team Foundation Server 11&lt;/a&gt;&lt;/p&gt;
-</description><pubDate>Fri, 13 Jan 2012 04:00:00 Z</pubDate><a10:updated>2012-01-13T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.&lt;/p&gt;
+&lt;p&gt;These are the features I look forward to the most.&lt;/p&gt;
 
 &lt;h2&gt;Automerge content changes (finally)&lt;/h2&gt;
 
@@ -920,23 +868,7 @@ Assert.AreEqual(4, a);
 &lt;blockquote&gt;
   &lt;p&gt;Although there are valid cases when the right solution is to use Ref and Out, from my experince I say you rarely need to use Out, and you need a really good reason for using Ref.&lt;/p&gt;
 &lt;/blockquote&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</guid><link>http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>The 4 stages of learning a design pattern</title><description>&lt;h2&gt;Stage 0 - Ignorance&lt;/h2&gt;
-
-&lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
-
-&lt;h2&gt;Stage 1 - Awakening&lt;/h2&gt;
-
-&lt;p&gt;Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.&lt;/p&gt;
-
-&lt;h2&gt;Stage 2 - Overzealous&lt;/h2&gt;
-
-&lt;p&gt;I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!&lt;/p&gt;
-
-&lt;h2&gt;Stage 3 - Mastery&lt;/h2&gt;
-
-&lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
-
-&lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</guid><link>http://www.johanilsson.com/2011/12/learning-steps-for-design-patterns-from-dnrtv-194/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>The 4 stages of learning a design pattern</title><description>&lt;p&gt;Was watching dnrTV:194 the other day with Steve Smith on Commonly Used Design Patterns. He explained the 4 stages of learning a design pattern and I would like to share that here.&lt;/p&gt;
 </description><pubDate>Fri, 09 Dec 2011 04:00:00 Z</pubDate><a10:updated>2011-12-09T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Stage 0 - Ignorance&lt;/h2&gt;
 
 &lt;p&gt;You used what? Never heard of it.&lt;/p&gt;
@@ -951,99 +883,10 @@ Assert.AreEqual(4, a);
 
 &lt;h2&gt;Stage 3 - Mastery&lt;/h2&gt;
 
-&lt;p&gt;After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
+&lt;p&gt;After allowing the design to evolve through interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   &lt;/p&gt;
 
 &lt;p&gt;Heard on &lt;a href="http://www.dnrtv.com/default.aspx?showNum=194"&gt;dnrTV 194 Steve Smith on Commonly Used Design Patterns&lt;/a&gt;&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/daily-refactoring/</guid><link>http://www.johanilsson.com/2011/11/daily-refactoring/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Daily refactoring</title><description>&lt;p&gt;#region MyRegion
-        if (!MyHelper.MyBool)
-        {
-            myclass.Method(int, false, string, enum);
-            MyHelper.MyBool = true;
-        }
-        else
-        {
-            myclass.Method(int, true, string, enum);
-        }&lt;br /&gt;
-    #endregion&lt;br /&gt;
-Is semantically the same as:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;myClass.Method(int, MyHelper.MyBool, string, enum);
-MyHelper.MyBool = true;      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tidier and faster : )&lt;/p&gt;
-</description><pubDate>Tue, 22 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-22T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;#region MyRegion
-        if (!MyHelper.MyBool)
-        {
-            myclass.Method(int, false, string, enum);
-            MyHelper.MyBool = true;
-        }
-        else
-        {
-            myclass.Method(int, true, string, enum);
-        }&lt;br /&gt;
-    #endregion&lt;br /&gt;
-Is semantically the same as:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;myClass.Method(int, MyHelper.MyBool, string, enum);
-MyHelper.MyBool = true;      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tidier and faster : )&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/technical-debt-101/</guid><link>http://www.johanilsson.com/2011/11/technical-debt-101/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>Technical debt 101</title><description>&lt;p&gt;I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. &lt;/p&gt;
-
-&lt;h2&gt;Interest:&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Every minute spent on not-quite-right code counts as interest on that debt - Wikipedia&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The amount of interest is based on a number of things, among others:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Lack of knowledge - Either from time passing and people forget stuff, or from people changing jobs, leave of absence, death etc.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Increase in complexity - New functionality will be designed and implemented on top and according to existing technical debt, writing more code to get around code, with more code you need more tests and this code and tests needs review. Hence technical debt will increase technical debt.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;How to spot debt:&lt;/h2&gt;
-
-&lt;p&gt;There are some signs to look for when you go "debt spotting&amp;amp;" to make it easier to point technical debt.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The code areas where you as a developer when assigned bugs or to extend this code feel your heart sink, your moral drop e.g spaghetti code, or unnecessary complexity, or if the intent of the code isn't clear enough so it has to use comments or regions as a crutch for relaying what it does&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The average amounts of tasks per sprint decreases&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The number of tests increases at the same time as "average amount of tasks/sprint decreases"&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;With an agile project methodology you don&amp;#8217;t necessarily have a lower technical debt but because of its support for rapid changes the debt will be highlighted at an earlier stage allowing you to decide if to pay this debt or not.&lt;/p&gt;
-
-&lt;p&gt;In my experience test driven development and tests in general protect you from some technical debt because you've had to go through the steps of "red", "green", "refactor"; and thereby paid a little of the debt up front.&lt;/p&gt;
-
-&lt;h2&gt;Paying debt:&lt;/h2&gt;
-
-&lt;p&gt;Like with any debt there is always an enforcer, a collector that will &lt;em&gt;make&lt;/em&gt; you pay that debt. With technical debt, this collector is usually time, or new requirements.  &lt;/p&gt;
-
-&lt;p&gt;Because of the interest, paying the debt will be more and more expensive as time goes, until you are forced by time to pay, at its most latest stage. This is when its the most expensive to pay the debt because you are most prone to the interests of people with skills have moved on, system have changed, a lot of technical debt has been built and made dependent on underlying technical debt. The debt may even be so large so for you to be able to pay it your feature development will stagnate and may even lead to loss of market pieces.&lt;/p&gt;
-
-&lt;p&gt;Often project managers don't allow developers to pay technical debt, or don't prioritise it since its sometimes hard to motivate a sprint that starts with 12 tasks and ends with 12 tasks still to do, with the only thing the developers salary has paid is the debt.&lt;/p&gt;
-
-&lt;h2&gt;Types of Technical Debt:&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Bugs are not technical debt until someone decides to not fix them.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Manage technical debt = planned technical debt&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Unmanaged is the worst, this is only fixed when the pain is felt&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Monitoring Technical Debt:&lt;/h2&gt;
-
-&lt;p&gt;In order to be able to monitor the debt, you must keep track of it. This involves keeping track of both the managed debt introduced on purpose using shortcuts, quick solutions and the "not-quite-right" solutions, and the unmanaged ones whenever they are encountered and grade them in some way that gives them a relational size difference. My personal view is that for every day that goes by of coding, it's very unlikely that the technical debt remains the same but instead rather if you don't pay some you gain some. Taking time into consideration, just a small daily increase will eventually become very expensive to pay off, leave it too long and a rewrite may end up being your only solution. &lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Technical debt is like an iceberg with only 10 percent visible.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Until next time, keep track of that 10 percent for all your life's worth : )&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/technical-debt-101/</guid><link>http://www.johanilsson.com/2011/11/technical-debt-101/</link><a10:author><a10:name /></a10:author><category>Software Development</category><title>Technical debt 101</title><description>&lt;p&gt;An introduction to technical debt, what it is, why you care, how to find it, remove it and prevent it from growing out of control.&lt;/p&gt;
 </description><pubDate>Thu, 10 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-10T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. &lt;/p&gt;
 
 &lt;h2&gt;Interest:&lt;/h2&gt;
@@ -1098,24 +941,7 @@ MyHelper.MyBool = true;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Until next time, keep track of that 10 percent for all your life's worth : )&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</guid><link>http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Todays Refactoring: Dictionary usage</title><description>&lt;p&gt;Code like the following:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if (dictionary.ContainsKey(key))
-{
-  dictionary[key] = value;  
-}
-else
-{
-  dictionary.Add(key, value);  
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Can be substituted with the following with the same functionality:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;dictionary[key] = value;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The code will be cleaner, functionality will be the same and a few operations faster :P&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</guid><link>http://www.johanilsson.com/2011/11/todays-refactoring-dictionary-usage/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Todays Refactoring: Dictionary usage</title><description>&lt;p&gt;Optimizing unoptimized dictionary insertions&lt;/p&gt;
 </description><pubDate>Tue, 01 Nov 2011 04:00:00 Z</pubDate><a10:updated>2011-11-01T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Code like the following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;if (dictionary.ContainsKey(key))
@@ -1134,44 +960,7 @@ else
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The code will be cleaner, functionality will be the same and a few operations faster :P&lt;/p&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/implicit-operators/</guid><link>http://www.johanilsson.com/2011/10/implicit-operators/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Implicit Operators</title><description>&lt;h2&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. &lt;/p&gt;
-
-&lt;p&gt;Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.&lt;/p&gt;
-
-&lt;p&gt;Like so:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var domainModel = new DomainModel
-{
-    Firstname = "Firstname",
-    Lastname = "Lastname"
-};
-
-ViewModel viewModel = domainModel;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;What allows us to do this is something called an "Implicit Operator". Which are defined like below.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;private class ViewModel
-{
-    public string Name { get; set; }
-
-    public static implicit operator ViewModel(DomainModel model)
-    {
-        return new ViewModel
-        {
-            Name = model.Firstname + " " + model.Lastname
-        };
-    }
-}
-
-private class DomainModel
-{
-    public string Firstname { get; set; }
-    public string Lastname { get; set; }
-}
-&lt;/code&gt;&lt;/pre&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/implicit-operators/</guid><link>http://www.johanilsson.com/2011/10/implicit-operators/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Implicit Operators</title><description>&lt;p&gt;Implicit operators can be used for a lot of differnet things. One usage is explained in this post: Implicit mapping between types.&lt;/p&gt;
 </description><pubDate>Wed, 26 Oct 2011 04:00:00 Z</pubDate><a10:updated>2011-10-26T04:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. &lt;/p&gt;
@@ -1210,31 +999,7 @@ private class DomainModel
     public string Lastname { get; set; }
 }
 &lt;/code&gt;&lt;/pre&gt;
-</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</guid><link>http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Brainfart when sorting Lists</title><description>&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Array.Sort(myList.ToArray());
-foreach(var i in myList)
-{ // Do something with i }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;My first though was “Wait what?” Is there some hidden functionality of List.ToArray() that I have missed which only is passed onto jedi masters? Does this way of sorting perform better than just List.Sort?&lt;/p&gt;
-
-&lt;p&gt;I had to investigate, so I wrote up this little code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var list = new List&amp;lt;int&amp;amp;gt; {9, 4, 7, 1, 2};
-
-Array.Sort(list.ToArray());
-foreach (var i in list)
-{
-   Console.WriteLine(i);
-}
-
-Console.ReadKey();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Lo and behold the printed sequence is: 9 4 7 1 2, hence we are creating an array, sorting it then throwing it away, only to use our list in the foreach.&lt;/p&gt;
-
-&lt;p&gt;List.Sort uses Array.Sort internally so I would dare go out on a limb and say that speed for sorting should be the same&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</guid><link>http://www.johanilsson.com/2011/10/brainfart-when-sorting-lists/</link><a10:author><a10:name /></a10:author><category>.Net</category><title>Brainfart when sorting Lists</title><description>&lt;p&gt;Optimizing unoptimized sorting of a list.&lt;/p&gt;
 </description><pubDate>Mon, 24 Oct 2011 04:00:00 Z</pubDate><a10:updated>2011-10-24T04:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;Just encountered this piece of code today:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Array.Sort(myList.ToArray());

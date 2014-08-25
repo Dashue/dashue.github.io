@@ -64,61 +64,7 @@
           <span style="float:right">Software Development</span>
             
             <div class=excerpt>
-              <p>With TFS 11 around the corner (with in-place upgrade from 2010), having been rewritten with the promise of a faster and smarter experience I felt like compiling a list of the features I look forward to the most. Ordered by pain factor solving desc.</p>
-
-<h2>Automerge content changes (finally)</h2>
-
-<p>Finally TFS has come to it&#8217;s senses and allows for automerge of non-conflicting content changes. </p>
-
-<h2>My work pane and Search work items</h2>
-
-<p>No need for custom work item queries, work related to you will be easily available in the work item pane. Searching for items is also available here.</p>
-
-<h2>Easier to transition between work items states</h2>
-
-<p>No more open work item and changing state to in progress, just right-click item in my work pane and click start.</p>
-
-<h2>Suspending</h2>
-
-<p>Easier task switching by using suspend/resume. Saves visual studio state, open files and position in currently open file. Suspended tasks are listed in you work pane.</p>
-
-<h2>New Pending changes page</h2>
-
-<p>Shows tree of pending changes. Allows or leaving files in excluded state without having to exclude changes every check-in (good for personalized web.config etc.).</p>
-
-<h2>New built-in diff tool</h2>
-
-<p>TFS team has finally gotten around to fix the built in diff tool, which now supports more view modes and reflects live changes. Which means diff will update if you make changes to your version when showing base/yours. The merge tool has also gotten some love.</p>
-
-<h2>Local workspaces</h2>
-
-<p>Removes offline mode, and the time out method require to go offline. Doesn&#8217;t handle modified files by reading the read-only bit on the file (Took them until 2012 to fix it). File system watcher watch for change made outside of VS, and lists them nicely in the pending changes pane.</p>
-
-<h2>Shelving</h2>
-
-<p>Shelveset merge (with current and baseless) and searching of shelvesets.</p>
-
-<h2>Code Review workflow</h2>
-
-<p>Request code-review workflow on suspended changeset or checked in changeset as well as code reviewing functionality with the ability to comment on specific changes and even alter the changeset.</p>
-
-<h2>Rollback changesets</h2>
-
-<p>Awesome</p>
-
-<h2>Async operations</h2>
-
-<p>Modality and blocking operations has now been removed, no more waiting on visual studio to complete retrieving things (search items etc.).</p>
-
-<h2>New Builds page</h2>
-
-<p>Shows builds associated to me (started by me etc.). Extensible</p>
-
-<h2>Summary:</h2>
-
-<p>I really like the new way that TFS 11 shows data; putting the concept of "My work" in focus, showing my work items and my builds etc. This combined with the new functionalities provided, working in TFS 11 will be much more smother and faster than it's predecessors and I am really looking forward til it's released and part of my development environment.</p>
-
-<p>Reference: <a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/TOOL-811T">Developer collaboration with Team Foundation Server 11</a></p>
+              <p>With TFS 11 around the corner I compiled this list of featuers that will solve my biggest issues with the previous versions.</p>
 
             </div>
         </a>
@@ -151,51 +97,7 @@
           <span style="float:right">Software Development</span>
             
             <div class=excerpt>
-              <h2>Stage 0 - Ignorance</h2>
-
-<p>You used what? Never heard of it.</p>
-
-<h2>Stage 1 - Awakening</h2>
-
-<p>Wow, I just learned how XYZ pattern can improve my design. I'm not really sure where it would work in my code, but I'm definitely looking.</p>
-
-<h2>Stage 2 - Overzealous</h2>
-
-<p>I totally "get" the XYZ pattern; I'm adding it everywhere I can shoehorn it into m code. My design's gonna be better now, for sure!</p>
-
-<h2>Stage 3 - Mastery</h2>
-
-<p>After allowing the design to evolve throuhg interaction with the users and the addition of tests, it started to exhibit ABC negative characteristics, but the XYZ pattern was a logical next step and was achieved through a simple refactoring.   </p>
-
-<p>Heard on <a href="http://www.dnrtv.com/default.aspx?showNum=194">dnrTV 194 Steve Smith on Commonly Used Design Patterns</a></p>
-
-            </div>
-        </a>
-      </li>
-      <li class="post">
-        <a href="/2011/11/daily-refactoring/">
-          Daily refactoring
-          <span style="float:right">.Net</span>
-            
-            <div class=excerpt>
-              <p>#region MyRegion
-        if (!MyHelper.MyBool)
-        {
-            myclass.Method(int, false, string, enum);
-            MyHelper.MyBool = true;
-        }
-        else
-        {
-            myclass.Method(int, true, string, enum);
-        }<br />
-    #endregion<br />
-Is semantically the same as:</p>
-
-<pre><code>myClass.Method(int, MyHelper.MyBool, string, enum);
-MyHelper.MyBool = true;      
-</code></pre>
-
-<p>Tidier and faster : )</p>
+              <p>Was watching dnrTV:194 the other day with Steve Smith on Commonly Used Design Patterns. He explained the 4 stages of learning a design pattern and I would like to share that here.</p>
 
             </div>
         </a>
@@ -206,60 +108,7 @@ MyHelper.MyBool = true;
           <span style="float:right">Software Development</span>
             
             <div class=excerpt>
-              <p>I would like to start this article with the definition of what technical debt is. Technical debt is taking shortcuts for good or bad, for known or unknown reasons. The technical debt grows exponentially over time because of interest. </p>
-
-<h2>Interest:</h2>
-
-<blockquote>
-  <p>Every minute spent on not-quite-right code counts as interest on that debt - Wikipedia</p>
-</blockquote>
-
-<p>The amount of interest is based on a number of things, among others:</p>
-
-<ul>
-<li><p>Lack of knowledge - Either from time passing and people forget stuff, or from people changing jobs, leave of absence, death etc.</p></li>
-<li><p>Increase in complexity - New functionality will be designed and implemented on top and according to existing technical debt, writing more code to get around code, with more code you need more tests and this code and tests needs review. Hence technical debt will increase technical debt.</p></li>
-</ul>
-
-<h2>How to spot debt:</h2>
-
-<p>There are some signs to look for when you go "debt spotting&amp;" to make it easier to point technical debt.</p>
-
-<ul>
-<li><p>The code areas where you as a developer when assigned bugs or to extend this code feel your heart sink, your moral drop e.g spaghetti code, or unnecessary complexity, or if the intent of the code isn't clear enough so it has to use comments or regions as a crutch for relaying what it does</p></li>
-<li><p>The average amounts of tasks per sprint decreases</p></li>
-<li><p>The number of tests increases at the same time as "average amount of tasks/sprint decreases"</p></li>
-</ul>
-
-<p>With an agile project methodology you don&#8217;t necessarily have a lower technical debt but because of its support for rapid changes the debt will be highlighted at an earlier stage allowing you to decide if to pay this debt or not.</p>
-
-<p>In my experience test driven development and tests in general protect you from some technical debt because you've had to go through the steps of "red", "green", "refactor"; and thereby paid a little of the debt up front.</p>
-
-<h2>Paying debt:</h2>
-
-<p>Like with any debt there is always an enforcer, a collector that will <em>make</em> you pay that debt. With technical debt, this collector is usually time, or new requirements.  </p>
-
-<p>Because of the interest, paying the debt will be more and more expensive as time goes, until you are forced by time to pay, at its most latest stage. This is when its the most expensive to pay the debt because you are most prone to the interests of people with skills have moved on, system have changed, a lot of technical debt has been built and made dependent on underlying technical debt. The debt may even be so large so for you to be able to pay it your feature development will stagnate and may even lead to loss of market pieces.</p>
-
-<p>Often project managers don't allow developers to pay technical debt, or don't prioritise it since its sometimes hard to motivate a sprint that starts with 12 tasks and ends with 12 tasks still to do, with the only thing the developers salary has paid is the debt.</p>
-
-<h2>Types of Technical Debt:</h2>
-
-<ul>
-<li><p>Bugs are not technical debt until someone decides to not fix them.</p></li>
-<li><p>Manage technical debt = planned technical debt</p></li>
-<li><p>Unmanaged is the worst, this is only fixed when the pain is felt</p></li>
-</ul>
-
-<h2>Monitoring Technical Debt:</h2>
-
-<p>In order to be able to monitor the debt, you must keep track of it. This involves keeping track of both the managed debt introduced on purpose using shortcuts, quick solutions and the "not-quite-right" solutions, and the unmanaged ones whenever they are encountered and grade them in some way that gives them a relational size difference. My personal view is that for every day that goes by of coding, it's very unlikely that the technical debt remains the same but instead rather if you don't pay some you gain some. Taking time into consideration, just a small daily increase will eventually become very expensive to pay off, leave it too long and a rewrite may end up being your only solution. </p>
-
-<blockquote>
-  <p>Technical debt is like an iceberg with only 10 percent visible.</p>
-</blockquote>
-
-<p>Until next time, keep track of that 10 percent for all your life's worth : )</p>
+              <p>An introduction to technical debt, what it is, why you care, how to find it, remove it and prevent it from growing out of control.</p>
 
             </div>
         </a>
@@ -270,24 +119,7 @@ MyHelper.MyBool = true;
           <span style="float:right">.Net</span>
             
             <div class=excerpt>
-              <p>Code like the following:</p>
-
-<pre><code>if (dictionary.ContainsKey(key))
-{
-  dictionary[key] = value;  
-}
-else
-{
-  dictionary.Add(key, value);  
-}
-</code></pre>
-
-<p>Can be substituted with the following with the same functionality:</p>
-
-<pre><code>dictionary[key] = value;
-</code></pre>
-
-<p>The code will be cleaner, functionality will be the same and a few operations faster :P</p>
+              <p>Optimizing unoptimized dictionary insertions</p>
 
             </div>
         </a>
@@ -298,44 +130,18 @@ else
           <span style="float:right">.Net</span>
             
             <div class=excerpt>
-              <h2>Introduction</h2>
+              <p>Implicit operators can be used for a lot of differnet things. One usage is explained in this post: Implicit mapping between types.</p>
 
-<p>Mapping occur in many places in applications, mostly in boundaries between layers. Mapping one type to another, be it server to client DTOs or something else, there are numerous ways of accomplishing it. </p>
-
-<p>Some use a static Mapper factory, some use tools like AutoMapper, my preferred way of doing it is with the use of Implicit Operators.</p>
-
-<p>Like so:</p>
-
-<pre><code>var domainModel = new DomainModel
-{
-    Firstname = "Firstname",
-    Lastname = "Lastname"
-};
-
-ViewModel viewModel = domainModel;
-</code></pre>
-
-<p>What allows us to do this is something called an "Implicit Operator". Which are defined like below.</p>
-
-<pre><code>private class ViewModel
-{
-    public string Name { get; set; }
-
-    public static implicit operator ViewModel(DomainModel model)
-    {
-        return new ViewModel
-        {
-            Name = model.Firstname + " " + model.Lastname
-        };
-    }
-}
-
-private class DomainModel
-{
-    public string Firstname { get; set; }
-    public string Lastname { get; set; }
-}
-</code></pre>
+            </div>
+        </a>
+      </li>
+      <li class="post">
+        <a href="/2011/10/brainfart-when-sorting-lists/">
+          Brainfart when sorting Lists
+          <span style="float:right">.Net</span>
+            
+            <div class=excerpt>
+              <p>Optimizing unoptimized sorting of a list.</p>
 
             </div>
         </a>
@@ -348,9 +154,6 @@ private class DomainModel
             <a href="/">Previous Page</a>
           </p>
 
-      <p class="nav-next">
-        <a href="/page3">Next Page</a>
-      </p>
   </div>
               </div>
               <!-- #content -->
