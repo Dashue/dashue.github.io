@@ -9,7 +9,6 @@
         <a href="@postPaged.Url">
           @postPaged.Title
           <span style="float:right">@string.Join(" | ", postPaged.Categories)</span>
-            @Html.RenderSeries(postPaged)
             <div class=excerpt>
               @Html.Raw(postPaged.ContentExcerpt)
             </div>

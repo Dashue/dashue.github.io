@@ -1220,22 +1220,26 @@ ul.posts {
         text-transform: uppercase;
     }
 
-    .post .meta .categories {
+    .post .meta .categories,
+    .post .meta .snow-series{
         list-style: none;
         margin: 0;
         padding: 0;
     }
-
-        .post .meta .categories li {
+        .post .meta .categories li,
+        .post .meta .snow-series li {
             display: inline;
             border-left: 1px solid #ddd;
+            font-size: smaller;
         }
 
-        .post .meta .categories li:first-child {
+        .post .meta .categories li:first-child,
+        .post .meta .snow-series li:first-child {
             border-left: none;
         }
 
-        .post .meta .categories li span {
+        .post .meta .categories li,
+        .post .meta .snow-series li{
             padding: 2px 5px;
         }
 
@@ -1366,25 +1370,6 @@ kbd {
   white-space: nowrap;
   display: inline-block;
   margin-bottom: 5px;
-}
-
-.snow-series {
-  margin: 0 0 1.5em 3em;
-  list-style: none;
-}
-
-.snow-series li {
-    color: #222;
-}
-
-.snow-series a {
-    color: #888;
-    text-decoration: none;
-}
-
-.snow-series a:hover {
-    color: #222;
-    text-decoration: underline;
 }
 
 .subscribe{

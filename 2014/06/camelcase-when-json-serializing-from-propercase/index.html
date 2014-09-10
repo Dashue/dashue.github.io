@@ -46,9 +46,9 @@
             <li><span>Json.Net</span></li>
             <li><span>NancyFx</span></li>
         </ul>
+        
     </div>
     <div itemprop="articleBody">
-        
         <h2>Background</h2>
 
 <p>To set the scene: I have a backend written in C# and a front-end written in Javascript. C# proposes <em>ProperCase</em> and Javascript propses <em>camelCase</em> naming convention. Now the issue is that by default Json.Net serializes the data using the same casing as the type being serialized from, leaving us in a situation where we return <em>ProperCase</em> serialized data to a solution that throughout uses a different casing. To avoid having a solution mixing conventions and to avoid having to remember which portion uses which convention, we want to serialize to the expected one.</p>

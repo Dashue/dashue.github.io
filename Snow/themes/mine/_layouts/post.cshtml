@@ -14,9 +14,9 @@ Layout = "default.cshtml";
             <li><span>@category.Name</span></li>
             }
         </ul>
+        @Html.RenderSeries()
     </div>
     <div itemprop="articleBody">
-        @Html.RenderSeries()
         @Html.Raw(Model.PostContent)
     </div>
 </div>
