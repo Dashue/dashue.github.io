@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Typescript: "Only files with a .ts extension are allowed" fix
+title:  Only files with a .ts extension are allowed
 categories: Typescript, Javascript
 ---
 
