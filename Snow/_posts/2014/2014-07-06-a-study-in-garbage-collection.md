@@ -63,10 +63,9 @@ Two versions of collectors
 ## Implementations
 
 ### Generational Collectors
-A generationl collector divides objects into generations 2-3 normally. Objects are segregated by age. This works because hypotehtis. 
+A generationl collector divides objects into generations 2-3 normally. Objects are segregated by age. This works because of *"The Generational Hyphotesis"*. 
 	
-	"The Generational Hyphotesis": 
-	The majority of objects in a program, live for a very very short time, or for the whole application.
+> The majority of objects in a program, live for a very very short time, or for the whole application.
 
 - Starts by allocating objects into the young generation Gen 0
 - If an object survives certain amounts of gc, the object has a longer life time becomes promoted to old generation

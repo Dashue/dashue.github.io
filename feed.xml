@@ -171,11 +171,11 @@ Used my most collector &lt;/li&gt;
 
 &lt;h3&gt;Generational Collectors&lt;/h3&gt;
 
-&lt;p&gt;A generationl collector divides objects into generations 2-3 normally. Objects are segregated by age. This works because hypotehtis. &lt;/p&gt;
+&lt;p&gt;A generationl collector divides objects into generations 2-3 normally. Objects are segregated by age. This works because of &lt;em&gt;"The Generational Hyphotesis"&lt;/em&gt;. &lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;"The Generational Hyphotesis": 
-The majority of objects in a program, live for a very very short time, or for the whole application.
-&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The majority of objects in a program, live for a very very short time, or for the whole application.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Starts by allocating objects into the young generation Gen 0&lt;/li&gt;
