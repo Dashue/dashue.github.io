@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="keywords" content=".Net,AngularJs,GC,Javascript,Json.Net,Memory,NancyFx,Opensource,Pet Project,Software Development,Study,Typescript" />
+    <meta name="keywords" content=".Net,GC,Memory" />
     <title>johanilsson.com</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-    <link rel="canonical" href="http://www.johanilsson.com/page3/" />
+    <link rel="canonical" href="http://www.johanilsson.com/2014/10/net_memory_management_101/" />
 </head>
 <body class="home blog">
     <div id="page" class="hfeed site">
@@ -35,36 +35,95 @@
             <div id="primary" class="site-content">
                 <div id="content" role="main">
                   
-  <ul class="posts">
-      <li class="post">
-        <a href="/2011/10/implicit-operators/">
-          Implicit Operators
-          <span style="float:right">.Net</span>
-            <div class=excerpt>
-              <p>Implicit operators can be used for a lot of differnet things. One usage is explained in this post: Implicit mapping between types.</p>
+<div class="post">
+    <h1 itemprop="name">.Net Memory Management 101 <div class="kindleWidget" style="display:inline-block;padding:3px;cursor:pointer;font-size:11px;font-family:Arial;white-space:nowrap;line-height:1;">
+        <img src="https://d1xnn692s7u6t6.cloudfront.net/white-15.png" />
+    </div></h1>
+    <div class="meta">
+        <span itemprop="author" style="display:none;">Johan Nilsson</span>
+        <ul class="categories">
+            <li><span>.Net</span></li>
+            <li><span>GC</span></li>
+            <li><span>Memory</span></li>
+        </ul>
+        
+    </div>
+    <div itemprop="articleBody">
+        <h2>Background</h2>
 
-            </div>
-        </a>
-      </li>
-      <li class="post">
-        <a href="/2011/10/brainfart-when-sorting-lists/">
-          Brainfart when sorting Lists
-          <span style="float:right">.Net</span>
-            <div class=excerpt>
-              <p>Optimizing unoptimized sorting of a list.</p>
+<p>I recently viewed a video about a memory profiling product from Jetbrains: dotmemory 4. To get everyone on the same level, Maarten Balliauw provided a brief explanation to memory management and garbage collection in .Net.</p>
 
-            </div>
-        </a>
-      </li>
-  </ul> 
+<p>I thought the explanation was clear and spot on and this post is intended to recapture it for future references.</p>
 
-  <!-- Pagination links -->
-  <div id="post-pagination" class="pagination">
-          <p class="nav-previous">
-            <a href="/page2">Previous Page</a>
-          </p>
+<p>With this only being the notes from his talk, I recommend the reader to view the video for the full explanation.</p>
 
-  </div>
+<p>The video can be found here <a href="http://youtu.be/1lqfxl8AJR0">"DotMemory 4: What's new?"</a></p>
+
+<h2>Content</h2>
+
+<h3>Memory Allocation</h3>
+
+<ul>
+<li>.Net runtime reserves a region of address space for every new process called the <em>"managed heap"</em></li>
+<li>Objects are allocated in the heap</li>
+<li>Allocating memory is fast, it's just adding a pointer</li>
+<li>Some unmanaged memory is also consumed and will not be collected <em>(.NET CLR, Dynamic libraries, Graphics buffer and more)</em></li>
+</ul>
+
+<h3>Memory Release aka "Garbage Collection" (GC)</h3>
+
+<ul>
+<li>Releases objects no longer in use by examining application roots</li>
+<li>Builds a graph that contains all objects that are reachable from these roots</li>
+<li>Removes the object from the heap (releases memory) if it is not reachable from the graph</li>
+<li>Compacts reachable objects in memory</li>
+</ul>
+
+<h3>Generations</h3>
+
+<ul>
+<li>Managed heap is divided into three segments called <em>"generations"</em> or <em>"gen"</em></li>
+<li>New objects go into Gen 0</li>
+<li>Gen 0: Short-lived objects (e.g Local variables)</li>
+<li>Gen 1: In-between objects</li>
+<li>Gen 2: Long-lived objects (e.g App main, form, static)</li>
+</ul>
+
+<h3>Memory release implementation</h3>
+
+<ul>
+<li>When Gen 0 is full
+<ul>
+<li>Perform GC on Gen 0</li>
+<li>Promote reachable objects to Gen 1</li>
+<li>This is typically pretty fast</li>
+</ul></li>
+<li>When Gen 1 is full
+<ul>
+<li>Perform GC on Gen 1 and Gen 0</li>
+<li>Promoted rechable object to Gen 2</li>
+</ul></li>
+<li>When Gen 2 is full
+<ul>
+<li>Perform "<em>Full GC</em>" (2, 1, 0)</li>
+<li>Throws <em>OutOfMemoryException</em> if not enough memory exists for new allocations</li>
+</ul></li>
+</ul>
+
+<p><em>Full GC</em> has a performance impact, since all objects in the managed heap are verified, not just objects reachable from graph.</p>
+
+<h3>Large Object Heap "LOH"</h3>
+
+<ul>
+<li>Separate segment within the managed heap</li>
+<li>Large objects >85kb</li>
+<li>Only collected during <em>Full GC</em></li>
+</ul>
+
+<p><em>LOH</em> is not compacted and becomes fragmented over time. This fragmentation will cause <em>OutOfMemoryException</em> if there is not enough free space for new objects.</p>
+
+    </div>
+</div>
               </div>
               <!-- #content -->
           </div>
