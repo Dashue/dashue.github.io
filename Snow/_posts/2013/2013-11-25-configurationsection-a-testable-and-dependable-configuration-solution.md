@@ -40,6 +40,9 @@ For demonstration purpose we read a number, a string and an enumeration. Let's g
         int Age { get; }
         string Name { get; }
         DayOfWeek DayOfBirth { get; }
+
+        IEnumerable<string> MyStrings { get; }
+        List<ConnectionEntry> MyConnections { get; }
     }
 
 Heading back to the test we see that the only thing left to implement is the MyConfiguration class. Let's add the following implementation.
@@ -104,7 +107,9 @@ The following is my preferred way of storing multiple values, it's quick and sim
 
 	<MyConfiguration MyStrings="value1,value2,value3" />
 
-	[ConfigurationProperty("MyStrings", IsRequired = true)]
+&nbsp;
+
+    [ConfigurationProperty("MyStrings", IsRequired = true)]
 	[TypeConverter(typeof(CommaDelimitedStringCollectionConverter))]
 	public IEnumerable<string> MyStrings
     {
@@ -112,7 +117,67 @@ The following is my preferred way of storing multiple values, it's quick and sim
         {
         	return ((CommaDelimitedStringCollection)this["MyStrings"]).Cast<string>();
         }
-	}	
+	}
+    
+    Assert.Equal(3, configuration.MyStrings.Count());
+    Assert.Equal("Value1", configuration.MyStrings.ElementAt(0));
+    Assert.Equal("Value2", configuration.MyStrings.ElementAt(1));
+    Assert.Equal("Value3", configuration.MyStrings.ElementAt(2));
+
+A bit more advanced approach can be used when wanting to store a list of entries with multiple values. This is done accordingly:
+
+    <Connections>
+      <add Server="Server1" Port="80"/>
+      <add Server="Server2" Port="88"/>
+    </Connections>
+
+&nbsp;
+
+    [ConfigurationProperty("Connections", IsRequired = true)]
+    public ConnectionCollection ConnectionCollection
+    {
+        get { return ((ConnectionCollection)this["Connections"]); }
+    }
+
+    public List<ConnectionEntry> MyConnections
+    {
+        get { return ConnectionCollection.Cast<ConnectionEntry>().ToList(); }
+    }
+
+    public class ConnectionCollection : ConfigurationElementCollection
+    {
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new ConnectionEntry();
+        }
+
+        protected override object GetElementKey(ConfigurationElement element)
+        {
+            return ((ConnectionEntry)element).Server;
+        }
+    }
+    
+    public class ConnectionEntry : ConfigurationElement
+    {
+        [ConfigurationProperty("Server", IsRequired = true)]
+        public string Server
+        {
+            get { return (string)this["Server"]; }
+        }
+
+        [ConfigurationProperty("Port", IsRequired = true)]
+        public int Port
+        {
+            get { return (int)this["Port"]; }
+        }
+    }
+
+    Assert.Equal(2, configuration.MyConnections.Count);
+    Assert.Equal("Server1", configuration.MyConnections[0].Server);
+    Assert.Equal(80, configuration.MyConnections[0].Port);
+    Assert.Equal("Server2", configuration.MyConn
+    ections[1].Server);
+    Assert.Equal(88, configuration.MyConnections[1].Port);
 
 ##TypeConverters
 Did you notice the use of the TypeConverter of type **CommaDelimitedStringCollectionConverter** in the previous example? This is just one of many converters provided by the framework. The following is a list of all the converters I was able to find. I'll leave it up to you to tinker around and figure out which ones can be useful to your configurations.
