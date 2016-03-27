@@ -128,7 +128,7 @@ IF ... = ...
 
 &lt;p&gt;Reset password example: &lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;update users set password = 'newpasswor', reset_token = null
+&lt;pre&gt;&lt;code&gt;update users set password = 'newpassword', reset_token = null
 where id = 'user-name' 
 if reset_token = 'expected-token'
 &lt;/code&gt;&lt;/pre&gt;

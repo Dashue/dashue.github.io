@@ -12,6 +12,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
 }
 
+p, b, strong, pre, code , li{
+    font-size: 85%;
+}
+
 html {
     font-size: 62.5%;
     overflow-y: scroll;
@@ -146,7 +150,7 @@ address {
 
 pre {
     background: #F2F7F9;
-    font: 12px Monaco,Consolas,"Andale Mono","DejaVu Sans Mono",monospace;
+    font-family: Monaco,Consolas,"Andale Mono","DejaVu Sans Mono",monospace;
     line-height: 1.6;
     margin-bottom: 1.6em;
     padding: 1.6em;
@@ -155,7 +159,7 @@ pre {
 }
 
 code, kbd, tt, var {
-    font: 14px Monaco,Consolas,"Andale Mono","DejaVu Sans Mono",monospace;
+    font-family: Monaco,Consolas,"Andale Mono","DejaVu Sans Mono",monospace;
 }
 
 abbr, acronym {
@@ -1141,6 +1145,7 @@ div.post {
 
   div.post h2 {
     margin: 10px 0;
+    border-bottom: 1px dotted lightgray;
   }
 
     div.post h1 span,
