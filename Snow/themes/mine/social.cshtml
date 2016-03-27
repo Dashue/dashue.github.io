@@ -1,0 +1,22 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Snow.ViewModels.ContentViewModel>
+@using System.Collections.Generic
+@{
+  Layout = "default.cshtml";
+}
+
+<header>
+<!--   <div class="head-inner">
+    <h1>Archives</h1>
+  </div> -->
+</header>
+
+<div class="social">
+  <h1>Find me at:</h1>
+  <ul>
+      <li><a href="https://github.com/dashue" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://github.com']);">GitHub</a></li>
+      <li><a href="https://www.goodreads.com/user/show/18905539-johan-nilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','https://www.goodreads.com/user/show/18905539-johan-nilsson']);">Goodreads</a></li>   
+      <li><a href="http://www.linkedin.com/in/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://www.linkedin.com']);">LinkedIn</a></li>
+      <li><a href="http://stackoverflow.com/users/651787/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://stackoverflow.com']);">Stack Overflow</a></li>
+      <li><a href="https://twitter.com/johanilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);">Twitter</a></li>
+  </ul>
+</div>

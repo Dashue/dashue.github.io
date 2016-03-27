@@ -1385,4 +1385,6 @@ kbd {
 .prettyprint{
     word-break: break-word;
 }
-}
+
+.social { text-align: center;  }
+.social ul { list-style: none; margin: auto; }
