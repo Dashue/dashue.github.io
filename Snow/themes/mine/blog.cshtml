@@ -7,7 +7,7 @@
     @foreach(var postPaged in Model.PostsPaged) {
       <li class="post">
         <a href="@postPaged.Url">
-          @postPaged.Title
+          <b>@postPaged.Title</b>
           <span style="float:right">@string.Join(" | ", postPaged.Categories)</span>
             <div class=excerpt>
               @Html.Raw(postPaged.ContentExcerpt)
