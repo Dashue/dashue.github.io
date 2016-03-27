@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="Cassandra,Database,Study" />
+    <title>johanilsson.com</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="canonical" href="http://www.johanilsson.com/2016/03/pluralsight_cassandra_for_developers/" />
+</head>
+<body class="home blog">
+    <div id="page" class="hfeed site">
+        <header id="masthead" class="site-header" role="banner">
+            <hgroup>
+            </hgroup>
+            <nav role="navigation" class="site-navigation main-navigation">
+                <h1 class="assistive-text">Menu</h1>
+                <div class="assistive-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+                <div class="menu">
+                    <small>
+                        <a href="/">Blog</a>
+                        <a href="https://github.com/dashue" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://github.com']);">GitHub</a>
+                        <a href="https://www.goodreads.com/user/show/18905539-johan-nilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','https://www.goodreads.com/user/show/18905539-johan-nilsson']);">Goodreads</a>
+                        <a href="http://www.linkedin.com/in/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://www.linkedin.com']);">LinkedIn</a>
+                        <a href="http://stackoverflow.com/users/651787/dashu" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://stackoverflow.com']);">Stack Overflow</a>
+                        <a href="https://twitter.com/johanilsson" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com']);">Twitter</a>
+                        <a href="http://feeds.feedburner.com/johanilsson">Subscribe</a>
+                    </small>
+                </div>
+            </nav>
+        </header>
+        <div id="main">
+            <div id="primary" class="site-content">
+                <div id="content" role="main">
+                  
+<div class="post">
+    <h1 itemprop="name">Notes for Pluralsight course: Cassandra for Developers <div class="kindleWidget" style="display:inline-block;padding:3px;cursor:pointer;font-size:11px;font-family:Arial;white-space:nowrap;line-height:1;">
+        <img src="/stylesheets/images/kindle.png" />
+    </div></h1>
+    <div class="meta">
+        <span itemprop="author" style="display:none;">Johan Nilsson</span>
+        <ul class="categories">
+            <li><span>Cassandra</span></li>
+            <li><span>Database</span></li>
+            <li><span>Study</span></li>
+        </ul>
+        
+    </div>
+    <div itemprop="articleBody">
+        <p>To my future self: This was what you found noteworthy while studying the Pluralsight course <a href="https://app.pluralsight.com/library/courses/cassandra-developers/table-of-contents">Cassandra for Developers</a> by Paul O'Fallon.</p>
+
+<h2>Topology</h2>
+
+<p>Data centres | Nodes | Virtual nodes</p>
+
+<p>Keyspace | Table | Partition | Row</p>
+
+<h2>Tunable Consistency</h2>
+
+<p><strong>Replication Count</strong>:
+Number of replicas of the data stored across the cluster.</p>
+
+<p><strong>Read Consistency</strong>: 
+How many nodes the coordinator node will consult in an attempt to return the most current information to the caller.</p>
+
+<p><strong>Write Consistency</strong>: 
+From how many nodes the coordinator node will wait to receive an acknowledgement of the write, before returning a positive response to the caller.
+Configurable with each statement.</p>
+
+<p><strong>Hinted handoff</strong>:
+Strategy to help when a write fails to a node. The data is written down in the coordinator node and is retried.</p>
+
+<p><strong>Read repair</strong>:
+When the coordinator node realizes there is a missmatch in data between nodes, it will identify what right data is and update the incorrect nodes.</p>
+
+<p>Identifications depends on the configuration of <em>Read Consistency</em>.</p>
+
+<p><em>*Note: Recommended to periodically run 'nodetool repair'</em></p>
+
+<p><strong>Strong consistency</strong>:
+(Write Consitency + Read Consistency) > Replication Factor</p>
+
+<p>Only one consistent state can be observed, as oppose to eventual consistency where the read state depends on which nodes data was requested from.</p>
+
+<h2>Keys</h2>
+
+<p>Primary keys consists of one or multiple partition keys and/or one or multiple clustering keys. Data is sorted based on clustering key.</p>
+
+<p>((P<sub>Key1</sub>, P<sub>Key2</sub>...),(C<sub>Key1</sub>, C<sub>Key2</sub>...))</p>
+
+<p><em>*Note: The approach to defining keys enables modelling of different levels within the same partition</em></p>
+
+<h2>Simple Datatypes</h2>
+
+<p><strong>Counter</strong>:
+Specific type of column to achieve performant counters in a distributed environment</p>
+
+<p><strong>Static</strong>:
+Static columns are associated with a partition and the data held are shared by all rows within that partition. It is therefore not necessary to provide them when adding or updating non static data. This is to prevents duplication inbetween rows. An example would be <em>Balance</em> within a <em>Bills</em> table, where the table would hold multiple bills for a user but only one balance.  </p>
+
+<p><strong>TimeUUID</strong>:
+Guaranteed Unique Timestamps to handle timestamps in a distributed environment. Includes Mac Address, so even if 2 Timestamps are generated at the same time in two different machines, they will be unique and distinguishable from each other.</p>
+
+<p><em>*Note: Adding an aditional static TimeUUID static to a table is a good approach to keeping track of the latest entry</em></p>
+
+<h2>Complex Datatypes</h2>
+
+<p><strong>Set</strong>:
+Provides an unordered collection of elements. Example usage: book genres</p>
+
+<p><strong>List</strong>:
+Provides an ordered collection of elements. Allows to edit by position in the collection. Example usage: book chapters</p>
+
+<p><strong>Map</strong>:
+Provides a key,value based collection
+Example usage chapter read progress</p>
+
+<p><strong>Tuples</strong>:
+Fixed-length set of typed poitional fields</p>
+
+<p><strong>User Defined Types</strong>:
+Re-usable custom column type</p>
+
+<p><em>*Note: Complex types enables modelling of additional levels within the same partition</em></p>
+
+<h2>Expiring data with TTLs</h2>
+
+<p>TTLs can be configured on a <em>Column</em>, <em>Row</em> and <em>Table</em> basis.</p>
+
+<p><strong>Tombstones</strong>:
+Data is replaced by tombstones upon TTL expire, to prevent read repair from happening. Tombstones are periodically cleaned during garbage collection.</p>
+
+<h2>Data Partitioning using Time Buckets</h2>
+
+<p>By selecting the partition key to be year and month as a varchar "2016-03", data will be broken down into partitions, preventing partitions from growing too large.</p>
+
+<p><em>*Note: Be aware that querying multiple partitions will impact performance</em></p>
+
+<h2>Seconary Indexes</h2>
+
+<p>Since queries can only be run against columns partaking in the primary key, secondary indexes provides additional query options on other columns. </p>
+
+<p><em>*Note: Secondary indexes can even be placed on Collections</em></p>
+
+<h2>Manually Maintained Indexes</h2>
+
+<p>Secondary indexes comes with some restrictions, manually maintained indexes supply a workaround.</p>
+
+<p>An example: The books table contains a list of genres which is static and therefore cannot be indexed against. Whenever an action happens against a books genres, also update the index table. Searching books by genres utilizes this dedicated table which acts as a read model for books by genre.</p>
+
+<p><em>*Note: It's quite common to maintain your own indexes when using Cassandra</em></p>
+
+<h2>Batches</h2>
+
+<p>Intended for keeping tables in sync, not for fast loading of data. One use-case is for keeping manually maintained indexes in sync, like books by genre.</p>
+
+<p>Unlogged Batches is intended for multiple inserts into the same partition. The batch will be sent to the appropriate node as a single write.</p>
+
+<p><em>*Note: A Batch is not a Transaction</em></p>
+
+<h2>Compare-and-Set Operations (Light Transactions)</h2>
+
+<p>Conditional Insert</p>
+
+<pre><code>INSERT INTO ...
+...
+IF NOT EXISTS;
+</code></pre>
+
+<p>Conditional Update</p>
+
+<pre><code>UPDATE ... SET ...
+WHERE ...
+IF ... = ...
+</code></pre>
+
+<p>Reset password example: </p>
+
+<pre><code>update users set password = 'newpasswor', reset_token = null
+where id = 'user-name' 
+if reset_token = 'expected-token'
+</code></pre>
+
+<p><em>*Note: Works with Batches as well</em></p>
+
+    </div>
+</div>
+              </div>
+              <!-- #content -->
+          </div>
+          <!-- #primary .site-content -->
+      </div>
+      <!-- #main -->
+
+      <footer class="site-footer" role="contentinfo">
+        <div class="site-info">
+            Powered by <a href="https://github.com/Sandra/Sandra.Snow" rel="generator">Sandra.Snow</a>.	
+        </div>
+        <!-- .site-info -->
+    </footer>
+    <!-- #colophon .site-footer -->
+</div>
+<!-- #page .hfeed .site -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='/javascripts/prettify.js' type='text/javascript'></script>
+
+<script type='text/javascript'>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69167894-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script type='text/javascript'>
+  $(function () {
+	    $("pre code").parent().each(function () {
+	      if (!$(this).hasClass("prettyprint")) {
+	        $(this).addClass("prettyprint");
+	        a = true
+	    }
+		});
+
+	    prettyPrint();
+	});
+</script>
+<script type="text/javascript" src="https://d1xnn692s7u6t6.cloudfront.net/widget.js"></script>
+<script type="text/javascript">(function k(){window.$SendToKindle&&window.$SendToKindle.Widget?$SendToKindle.Widget.init({}):setTimeout(k,500);})();</script>
+</body>
+</html>

@@ -1,4 +1,140 @@
-<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2014/10/net_memory_management_101/</guid><link>http://www.johanilsson.com/2014/10/net_memory_management_101/</link><a10:author><a10:name /></a10:author><category>.Net</category><category>GC</category><category>Memory</category><title>.Net Memory Management 101</title><description>&lt;p&gt;A brieft explanation of memory management and garbage collection in .net&lt;/p&gt;
+<rss xmlns:a10="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Johan Nilssons blog</title><link>http://www.johanilsson.com/feed.xml</link><description>Johan Nilssons blog</description><item><guid isPermaLink="true">http://www.johanilsson.com/2016/03/pluralsight_cassandra_for_developers/</guid><link>http://www.johanilsson.com/2016/03/pluralsight_cassandra_for_developers/</link><a10:author><a10:name /></a10:author><category>Cassandra</category><category>Database</category><category>Study</category><title>Notes for Pluralsight course: Cassandra for Developers</title><description>&lt;p&gt;Notes from a study into Cassandra using the "Cassandra for Developers" Pluralsight course by Paul O'Fallon&lt;/p&gt;
+</description><pubDate>Sun, 27 Mar 2016 00:00:00 Z</pubDate><a10:updated>2016-03-27T00:00:00Z</a10:updated><a10:content type="html">&lt;p&gt;To my future self: This was what you found noteworthy while studying the Pluralsight course &lt;a href="https://app.pluralsight.com/library/courses/cassandra-developers/table-of-contents"&gt;Cassandra for Developers&lt;/a&gt; by Paul O'Fallon.&lt;/p&gt;
+
+&lt;h2&gt;Topology&lt;/h2&gt;
+
+&lt;p&gt;Data centres | Nodes | Virtual nodes&lt;/p&gt;
+
+&lt;p&gt;Keyspace | Table | Partition | Row&lt;/p&gt;
+
+&lt;h2&gt;Tunable Consistency&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Replication Count&lt;/strong&gt;:
+Number of replicas of the data stored across the cluster.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Read Consistency&lt;/strong&gt;: 
+How many nodes the coordinator node will consult in an attempt to return the most current information to the caller.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Write Consistency&lt;/strong&gt;: 
+From how many nodes the coordinator node will wait to receive an acknowledgement of the write, before returning a positive response to the caller.
+Configurable with each statement.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hinted handoff&lt;/strong&gt;:
+Strategy to help when a write fails to a node. The data is written down in the coordinator node and is retried.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Read repair&lt;/strong&gt;:
+When the coordinator node realizes there is a missmatch in data between nodes, it will identify what right data is and update the incorrect nodes.&lt;/p&gt;
+
+&lt;p&gt;Identifications depends on the configuration of &lt;em&gt;Read Consistency&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: Recommended to periodically run 'nodetool repair'&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Strong consistency&lt;/strong&gt;:
+(Write Consitency + Read Consistency) &gt; Replication Factor&lt;/p&gt;
+
+&lt;p&gt;Only one consistent state can be observed, as oppose to eventual consistency where the read state depends on which nodes data was requested from.&lt;/p&gt;
+
+&lt;h2&gt;Keys&lt;/h2&gt;
+
+&lt;p&gt;Primary keys consists of one or multiple partition keys and/or one or multiple clustering keys. Data is sorted based on clustering key.&lt;/p&gt;
+
+&lt;p&gt;((P&lt;sub&gt;Key1&lt;/sub&gt;, P&lt;sub&gt;Key2&lt;/sub&gt;...),(C&lt;sub&gt;Key1&lt;/sub&gt;, C&lt;sub&gt;Key2&lt;/sub&gt;...))&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: The approach to defining keys enables modelling of different levels within the same partition&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Simple Datatypes&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Counter&lt;/strong&gt;:
+Specific type of column to achieve performant counters in a distributed environment&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Static&lt;/strong&gt;:
+Static columns are associated with a partition and the data held are shared by all rows within that partition. It is therefore not necessary to provide them when adding or updating non static data. This is to prevents duplication inbetween rows. An example would be &lt;em&gt;Balance&lt;/em&gt; within a &lt;em&gt;Bills&lt;/em&gt; table, where the table would hold multiple bills for a user but only one balance.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TimeUUID&lt;/strong&gt;:
+Guaranteed Unique Timestamps to handle timestamps in a distributed environment. Includes Mac Address, so even if 2 Timestamps are generated at the same time in two different machines, they will be unique and distinguishable from each other.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: Adding an aditional static TimeUUID static to a table is a good approach to keeping track of the latest entry&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Complex Datatypes&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Set&lt;/strong&gt;:
+Provides an unordered collection of elements. Example usage: book genres&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;List&lt;/strong&gt;:
+Provides an ordered collection of elements. Allows to edit by position in the collection. Example usage: book chapters&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Map&lt;/strong&gt;:
+Provides a key,value based collection
+Example usage chapter read progress&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tuples&lt;/strong&gt;:
+Fixed-length set of typed poitional fields&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;User Defined Types&lt;/strong&gt;:
+Re-usable custom column type&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: Complex types enables modelling of additional levels within the same partition&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Expiring data with TTLs&lt;/h2&gt;
+
+&lt;p&gt;TTLs can be configured on a &lt;em&gt;Column&lt;/em&gt;, &lt;em&gt;Row&lt;/em&gt; and &lt;em&gt;Table&lt;/em&gt; basis.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tombstones&lt;/strong&gt;:
+Data is replaced by tombstones upon TTL expire, to prevent read repair from happening. Tombstones are periodically cleaned during garbage collection.&lt;/p&gt;
+
+&lt;h2&gt;Data Partitioning using Time Buckets&lt;/h2&gt;
+
+&lt;p&gt;By selecting the partition key to be year and month as a varchar "2016-03", data will be broken down into partitions, preventing partitions from growing too large.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: Be aware that querying multiple partitions will impact performance&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Seconary Indexes&lt;/h2&gt;
+
+&lt;p&gt;Since queries can only be run against columns partaking in the primary key, secondary indexes provides additional query options on other columns. &lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: Secondary indexes can even be placed on Collections&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Manually Maintained Indexes&lt;/h2&gt;
+
+&lt;p&gt;Secondary indexes comes with some restrictions, manually maintained indexes supply a workaround.&lt;/p&gt;
+
+&lt;p&gt;An example: The books table contains a list of genres which is static and therefore cannot be indexed against. Whenever an action happens against a books genres, also update the index table. Searching books by genres utilizes this dedicated table which acts as a read model for books by genre.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: It's quite common to maintain your own indexes when using Cassandra&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Batches&lt;/h2&gt;
+
+&lt;p&gt;Intended for keeping tables in sync, not for fast loading of data. One use-case is for keeping manually maintained indexes in sync, like books by genre.&lt;/p&gt;
+
+&lt;p&gt;Unlogged Batches is intended for multiple inserts into the same partition. The batch will be sent to the appropriate node as a single write.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: A Batch is not a Transaction&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Compare-and-Set Operations (Light Transactions)&lt;/h2&gt;
+
+&lt;p&gt;Conditional Insert&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;INSERT INTO ...
+...
+IF NOT EXISTS;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Conditional Update&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;UPDATE ... SET ...
+WHERE ...
+IF ... = ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reset password example: &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;update users set password = 'newpasswor', reset_token = null
+where id = 'user-name' 
+if reset_token = 'expected-token'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;*Note: Works with Batches as well&lt;/em&gt;&lt;/p&gt;
+</a10:content></item><item><guid isPermaLink="true">http://www.johanilsson.com/2014/10/net_memory_management_101/</guid><link>http://www.johanilsson.com/2014/10/net_memory_management_101/</link><a10:author><a10:name /></a10:author><category>.Net</category><category>GC</category><category>Memory</category><title>.Net Memory Management 101</title><description>&lt;p&gt;A brieft explanation of memory management and garbage collection in .net&lt;/p&gt;
 </description><pubDate>Fri, 10 Oct 2014 23:00:00 Z</pubDate><a10:updated>2014-10-10T23:00:00Z</a10:updated><a10:content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;I recently viewed a video about a memory profiling product from Jetbrains: dotmemory 4. To get everyone on the same level, Maarten Balliauw provided a brief explanation to memory management and garbage collection in .Net.&lt;/p&gt;
