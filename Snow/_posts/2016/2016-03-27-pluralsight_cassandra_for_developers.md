@@ -157,7 +157,7 @@ Conditional Update
 
 Reset password example: 
 	
-	update users set password = 'newpasswor', reset_token = null
+	update users set password = 'newpassword', reset_token = null
 	where id = 'user-name' 
 	if reset_token = 'expected-token'
 
