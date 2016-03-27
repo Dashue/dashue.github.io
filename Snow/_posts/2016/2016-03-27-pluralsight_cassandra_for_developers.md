@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Notes for Pluralsight course: Cassandra for Developers 
-categories: Study, Cassandra, Database 
+title: Course Notes: "Cassandra for Developers" on Pluralsight 
+categories: Study, Cassandra, Database, Pluralsight
 published: published
 ---
 
